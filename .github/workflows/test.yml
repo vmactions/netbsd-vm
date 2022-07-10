@@ -17,7 +17,9 @@ jobs:
       uses: vmactions/netbsd-vm@main
       with:
         envs: 'MYTOKEN MYTOKEN2'
-        prepare: pkg_add curl
+        prepare: |
+          export PKG_PATH="http://cdn.NetBSD.org/pub/pkgsrc/packages/NetBSD/$(uname -p)/$(uname -r|cut -f '1 2' -d.)/All/"
+          pkg_add curl
         mem: 2048
         nat: |
           "8080": "80"

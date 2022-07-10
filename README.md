@@ -1,13 +1,13 @@
-# Run GitHub CI in OpenBSD ![Test](https://github.com/vmactions/openbsd-vm/workflows/Test/badge.svg)
+# Run GitHub CI in NetBSD ![Test](https://github.com/vmactions/netbsd-vm/workflows/Test/badge.svg)
 
-Use this action to run your CI in OpenBSD.
+Use this action to run your CI in NetBSD.
 
-The github workflow only supports Ubuntu, Windows and MacOS. But what if you need an OpenBSD?
+The github workflow only supports Ubuntu, Windows and MacOS. But what if you need an NetBSD?
 
-This action is to support OpenBSD.
+This action is to support NetBSD.
 
 
-Sample workflow `openbsd.yml`:
+Sample workflow `netbsd.yml`:
 
 ```yml
 
@@ -18,19 +18,21 @@ on: [push]
 jobs:
   testfreebsd:
     runs-on: macos-12
-    name: A job to run test OpenBSD
+    name: A job to run test NetBSD
     env:
       MYTOKEN : ${{ secrets.MYTOKEN }}
       MYTOKEN2: "value2"
     steps:
     - uses: actions/checkout@v2
-    - name: Test in OpenBSD
+    - name: Test in NetBSD
       id: test
-      uses: vmactions/openbsd-vm@v0.0.1
+      uses: vmactions/netbsd-vm@v0.0.1
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
-        prepare: pkg_add curl
+        prepare: |
+          export PKG_PATH="http://cdn.NetBSD.org/pub/pkgsrc/packages/NetBSD/$(uname -p)/$(uname -r|cut -f '1 2' -d.)/All/"
+          pkg_add curl
         run: |
           pwd
           ls -lah
@@ -59,9 +61,9 @@ All the `GITHUB_*` as well as `CI=true` env variables are passed into the VM.
 
 So, you will have the same directory and same default env variables when you `run` the CI script.
 
-The default shell in OpenBSD is `ksh`, if you want to use `sh` to execute the `run` script, please set `usesh` to `true`.
+The default shell in NetBSD is `ksh`, if you want to use `sh` to execute the `run` script, please set `usesh` to `true`.
 
-The code is shared from the host to the OpenBSD VM via `rsync`, you can choose to use to `sshfs` share code instead.
+The code is shared from the host to the NetBSD VM via `rsync`, you can choose to use to `sshfs` share code instead.
 
 
 ```
@@ -70,14 +72,16 @@ The code is shared from the host to the OpenBSD VM via `rsync`, you can choose t
 
     steps:
     - uses: actions/checkout@v2
-    - name: Test in OpenBSD
+    - name: Test in NetBSD
       id: test
-      uses: vmactions/openbsd-vm@v0.0.1
+      uses: vmactions/netbsd-vm@v0.0.1
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
         sync: sshfs
-        prepare: pkg_add curl
+        prepare: |
+          export PKG_PATH="http://cdn.NetBSD.org/pub/pkgsrc/packages/NetBSD/$(uname -p)/$(uname -r|cut -f '1 2' -d.)/All/"
+          pkg_add curl
 
 
 
@@ -92,9 +96,9 @@ You can add NAT port between the host and the VM.
 ...
     steps:
     - uses: actions/checkout@v2
-    - name: Test in OpenBSD
+    - name: Test in NetBSD
       id: test
-      uses: vmactions/openbsd-vm@v0.0.1
+      uses: vmactions/netbsd-vm@v0.0.1
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
@@ -112,9 +116,9 @@ The default memory of the VM is 1024MB, you can use `mem` option to set the memo
 ...
     steps:
     - uses: actions/checkout@v2
-    - name: Test in OpenBSD
+    - name: Test in NetBSD
       id: test
-      uses: vmactions/openbsd-vm@v0.0.1
+      uses: vmactions/netbsd-vm@v0.0.1
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
@@ -129,4 +133,4 @@ GitHub only supports Ubuntu, Windows and MacOS out of the box.
 
 However, the MacOS support virtualization. It has VirtualBox installed.
 
-So, we run the OpenBSD VM in VirtualBox on MacOS.
+So, we run the NetBSD VM in VirtualBox on MacOS.
