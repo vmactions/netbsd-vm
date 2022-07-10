@@ -30,6 +30,7 @@ export VM_OS_NAME
 vmsh="$VM_VBOX"
 
 if [ ! -e "$vmsh" ]; then
+  echo "Downloading vbox to: $PWD"
   wget "$VM_VBOX_LINK"
 fi
 

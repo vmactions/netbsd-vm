@@ -29,11 +29,12 @@ async function shell(cmd) {
 async function setup(nat, mem) {
   try {
     await shell("bash run.sh importVM");
+    let workingDir = __dirname;
 
     await shell("cd " + workingDir + " && pwd && ls -lah" );
     await shell("bash -c 'pwd && ls -lah ~/.ssh/ && cat ~/.ssh/config'" );
 
-    let workingDir = __dirname;
+
     if (nat) {
       let nats = nat.split("\n").filter(x => x !== "");
       for (let element of nats) {
