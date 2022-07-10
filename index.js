@@ -1,7 +1,5 @@
 const core = require('@actions/core');
 const exec = require('@actions/exec');
-const tc = require('@actions/tool-cache');
-const io = require('@actions/io');
 const fs = require("fs");
 const path = require("path");
 
@@ -34,10 +32,6 @@ async function setup(nat, mem) {
   try {
 
     await shell("bash run.sh importVM");
-
-
-    await shell("pwd && ls -lah" );
-    await shell("bash -c 'pwd && ls -lah ~/.ssh/ && cat ~/.ssh/config'" );
 
 
     if (nat) {
