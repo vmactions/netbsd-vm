@@ -9,9 +9,8 @@ const path = require("path");
 
 var osname = "netbsd";
 var loginTag = "NetBSD/amd64 (localhost) (constty)";
-    
-    
-    
+var workingDir = __dirname;
+
 async function execSSH(cmd, desp = "") {
   core.info(desp);
   core.info("exec ssh: " + cmd);
@@ -19,19 +18,25 @@ async function execSSH(cmd, desp = "") {
 }
 
 
-async function shell(cmd) {
+async function shell(cmd, cdToScriptHome = true) {
   core.info("exec shell: " + cmd);
-  await exec.exec("bash", [], { input: cmd });
-  
+  if(cdToScriptHome) {
+    await exec.exec("bash", [], { input: "cd " + workingDir + " && (" + cmd + ")" });
+  } else {
+    await exec.exec("bash", [], { input:  cmd  });
+  }
+
+
 }
 
 
 async function setup(nat, mem) {
   try {
-    await shell("cd " + workingDir + " && " + "bash run.sh importVM");
-    let workingDir = __dirname;
 
-    await shell("cd " + workingDir + " && pwd && ls -lah" );
+    await shell("bash run.sh importVM");
+
+
+    await shell("pwd && ls -lah" );
     await shell("bash -c 'pwd && ls -lah ~/.ssh/ && cat ~/.ssh/config'" );
 
 
@@ -46,30 +51,30 @@ async function setup(nat, mem) {
           let hostPort = segs[1].trim().trim('"');
           let vmPort = segs[2].trim().trim('"');
 
-          await shell("cd " + workingDir + " && " + "bash vbox.sh addNAT " + osname + " " + proto + " " + hostPort + " " + vmPort);
+          await shell("bash vbox.sh addNAT " + osname + " " + proto + " " + hostPort + " " + vmPort);
 
         } else if (segs.length === 2) {
           let proto = "tcp"
           let hostPort = segs[0].trim().trim('"');
           let vmPort = segs[1].trim().trim('"');
-          await shell("cd " + workingDir + " && " + "bash vbox.sh addNAT " + osname + " " + proto + " " + hostPort + " " + vmPort);
+          await shell("bash vbox.sh addNAT " + osname + " " + proto + " " + hostPort + " " + vmPort);
         }
       };
     }
 
     if (mem) {
-      await shell("cd " + workingDir + " && " + "bash vbox.sh setMemory " + osname + " " + mem);
+      await shell("bash vbox.sh setMemory " + osname + " " + mem);
     }
 
-    await shell("cd " + workingDir + " && " + "bash vbox.sh setCPU " + osname + " 3");
+    await shell("bash vbox.sh setCPU " + osname + " 3");
 
-    await shell("cd " + workingDir + " && " + "bash vbox.sh startVM " + osname );
+    await shell("bash vbox.sh startVM " + osname );
 
     core.info("First boot");
     
 
 
-    await shell("cd " + workingDir + " && " + "bash vbox.sh waitForText " + osname + "'"+ loginTag +"'");
+    await shell("bash vbox.sh waitForText " + osname + "'"+ loginTag +"'");
 
 
     let cmd1 = "mkdir -p /Users/runner/work && ln -s /Users/runner/work/  work";
@@ -82,7 +87,7 @@ async function setup(nat, mem) {
     } else {
       let cmd2 = "pkg_add rsync-3.2.3p0-iconv";
       await execSSH(cmd2, "Setup rsync-3.2.3p0-iconv");
-      await shell("rsync -auvzrtopg  --exclude _actions/vmactions/" + osname+ "-vm  /Users/runner/work/ " + osname + ":work");
+      await shell("rsync -auvzrtopg  --exclude _actions/vmactions/" + osname+ "-vm  /Users/runner/work/ " + osname + ":work", false);
     }
 
     core.info("OK, Ready!");
@@ -90,7 +95,7 @@ async function setup(nat, mem) {
   }
   catch (error) {
     core.setFailed(error.message);
-    await shell("cd " + workingDir + " && pwd && ls -lah" );
+    await shell("pwd && ls -lah" );
     await shell("bash -c 'pwd && ls -lah ~/.ssh/ && cat ~/.ssh/config'" );
   }
 }
