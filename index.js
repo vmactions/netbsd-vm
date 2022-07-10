@@ -28,7 +28,7 @@ async function shell(cmd) {
 
 async function setup(nat, mem) {
   try {
-    await shell("bash run.sh importVM");
+    await shell("cd " + workingDir + " && " + "bash run.sh importVM");
     let workingDir = __dirname;
 
     await shell("cd " + workingDir + " && pwd && ls -lah" );
@@ -82,7 +82,7 @@ async function setup(nat, mem) {
     } else {
       let cmd2 = "pkg_add rsync-3.2.3p0-iconv";
       await execSSH(cmd2, "Setup rsync-3.2.3p0-iconv");
-      await shell("rsync -auvzrtopg  --exclude _actions/vmactions/openbsd-vm  /Users/runner/work/ openbsd:work");
+      await shell("rsync -auvzrtopg  --exclude _actions/vmactions/" + osname+ "-vm  /Users/runner/work/ " + osname + ":work");
     }
 
     core.info("OK, Ready!");
@@ -115,7 +115,7 @@ async function main() {
   var prepare = core.getInput("prepare");
   if (prepare) {
     core.info("Running prepare: " + prepare);
-    await exec.exec("ssh -t openbsd", [], { input: prepare });
+    await exec.exec("ssh -t " + osname, [], { input: prepare });
   }
 
   var run = core.getInput("run");
@@ -124,9 +124,9 @@ async function main() {
   try {
     var usesh = core.getInput("usesh").toLowerCase() == "true";
     if (usesh) {
-      await exec.exec("ssh openbsd sh -c 'cd $GITHUB_WORKSPACE && exec sh'", [], { input: run });
+      await exec.exec("ssh " + osname + " sh -c 'cd $GITHUB_WORKSPACE && exec sh'", [], { input: run });
     } else {
-      await exec.exec("ssh openbsd sh -c 'cd $GITHUB_WORKSPACE && exec \"$SHELL\"'", [], { input: run });
+      await exec.exec("ssh " + osname + " sh -c 'cd $GITHUB_WORKSPACE && exec \"$SHELL\"'", [], { input: run });
     }
   } catch (error) {
     core.setFailed(error.message);
@@ -136,7 +136,7 @@ async function main() {
       let sync = core.getInput("sync");
       if (sync != "sshfs") {
         core.info("get back by rsync");
-        await exec.exec("rsync -uvzrtopg  openbsd:work/ /Users/runner/work");
+        await exec.exec("rsync -uvzrtopg  " + osname + ":work/ /Users/runner/work");
       }
     }
   }
