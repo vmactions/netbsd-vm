@@ -29,6 +29,10 @@ async function shell(cmd) {
 async function setup(nat, mem) {
   try {
     await shell("bash run.sh importVM");
+
+    await shell("cd " + workingDir + " && pwd && ls -lah" );
+    await shell("bash -c 'pwd && ls -lah ~/.ssh/ && cat ~/.ssh/config'" );
+
     let workingDir = __dirname;
     if (nat) {
       let nats = nat.split("\n").filter(x => x !== "");
@@ -62,8 +66,7 @@ async function setup(nat, mem) {
 
     core.info("First boot");
     
-    await shell("cd " + workingDir + " && pwd && ls -lah" );
-    await shell("bash -c 'pwd && ls -lah ~/.ssh/ && cat ~/.ssh/config'" );
+
 
     await shell("cd " + workingDir + " && " + "bash vbox.sh waitForText " + osname + "'"+ loginTag +"'");
 
