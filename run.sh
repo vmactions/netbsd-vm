@@ -54,11 +54,12 @@ importVM() {
   bash $vmsh setup
   
   if [ ! -e "$ovazip" ]; then
-    wget "$OVA_LINK"
+    echo "Downloading $OVA_LINK"
+    wget -q "$OVA_LINK"
   fi
   
   if [ ! -e "$ovafile" ]; then
-    7za e -y $ovazip  -o .
+    7za e -y $ovazip  -o.
   fi
   
   bash $vmsh addSSHAuthorizedKeys id_rsa.pub
