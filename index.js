@@ -54,6 +54,9 @@ async function setup(nat, mem) {
     await exec.exec("cd " + workingDir + " && " + "bash vbox.sh startVM " + osname );
 
     core.info("First boot");
+    
+    await exec.exec("cd " + workingDir + " && pwd && ls -lah" );
+    await exec.exec("bash -c 'pwd && ls -lah ~/.ssh/ && cat ~/.ssh/config'" );
 
     await exec.exec("cd " + workingDir + " && " + "bash vbox.sh waitForText " + osname + "'"+ loginTag +"'");
 
