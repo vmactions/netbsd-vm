@@ -27,7 +27,7 @@ fi
 
 export VM_OS_NAME
 
-$vmsh="$VM_VBOX"
+vmsh="$VM_VBOX"
 
 if [ ! -e "$vmsh" ]; then
   wget "$VM_VBOX_LINK"
