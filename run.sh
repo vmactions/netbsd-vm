@@ -30,7 +30,7 @@ export VM_OS_NAME
 $vmsh="$VM_VBOX"
 
 if [ ! -e "$vmsh" ]; then
-  wget -q "$VM_VBOX_LINK"
+  wget "$VM_VBOX_LINK"
 fi
 
 
@@ -43,12 +43,6 @@ ova="$VM_OVA_NAME.ova"
 ovazip="$ova.zip"
 
 ovafile="$ova"
-
-
-
-getOSName() {
-  echo "$osname"
-}
 
 
 
