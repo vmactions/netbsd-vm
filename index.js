@@ -46,7 +46,7 @@ async function setup(nat, mem) {
     }
 
     if (mem) {
-      await exec.exec("cd " + workingDir + " && " + "bash vbox.sh setMemory " + osname + " " + proto + " " + hostPort + " " + vmPort);
+      await exec.exec("cd " + workingDir + " && " + "bash vbox.sh setMemory " + osname + " " + mem);
     }
 
     await exec.exec("cd " + workingDir + " && " + "bash vbox.sh setCPU " + osname + " 3");
