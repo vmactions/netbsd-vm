@@ -76,6 +76,8 @@ async function setup(nat, mem) {
   }
   catch (error) {
     core.setFailed(error.message);
+    await exec.exec("cd " + workingDir + " && pwd && ls -lah" );
+    await exec.exec("bash -c 'pwd && ls -lah ~/.ssh/ && cat ~/.ssh/config'" );
   }
 }
 
