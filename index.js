@@ -74,7 +74,7 @@ async function setup(nat, mem) {
     
 
 
-    await shell("bash vbox.sh waitForText " + osname + "'"+ loginTag +"'");
+    await shell("bash vbox.sh waitForText " + osname + "  '"+ loginTag +"'");
 
 
     let cmd1 = "mkdir -p /Users/runner/work && ln -s /Users/runner/work/  work";
