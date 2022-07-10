@@ -47,9 +47,9 @@ ovafile="$ova"
 
 
 importVM() {
-  _idfile='~/.ssh/mac.id_rsa'
 
-  bash $vmsh addSSHHost $osname $sshport $_idfile
+
+  bash $vmsh addSSHHost $osname $sshport
   
   bash $vmsh setup
   
@@ -64,8 +64,6 @@ importVM() {
   
   bash $vmsh addSSHAuthorizedKeys id_rsa.pub
 
-  cat mac.id_rsa >/Users/runner/.ssh/mac.id_rsa
-  chmod 600 /Users/runner/.ssh/mac.id_rsa
 
   bash $vmsh importVM "$ovafile"
 
