@@ -16,7 +16,7 @@ cd "$_script_home"
 
 
 if [ ! -e "netbsd-9.2.conf" ]; then
-  wget "$CONF_LINK"
+  wget -q "$CONF_LINK"
 fi
 
 . netbsd-9.2.conf
@@ -28,6 +28,10 @@ fi
 export VM_OS_NAME
 
 $vmsh="$VM_VBOX"
+
+if [ ! -e "$vmsh" ]; then
+  wget -q "$VM_VBOX_LINK"
+fi
 
 
 
@@ -51,9 +55,9 @@ getOSName() {
 importVM() {
   _idfile='~/.ssh/mac.id_rsa'
 
-  $vmsh addSSHHost $osname $sshport $_idfile
+  bash $vmsh addSSHHost $osname $sshport $_idfile
   
-  $vmsh setup
+  bash $vmsh setup
   
   if [ ! -e "$ovazip" ]; then
     wget "$ovazip"
@@ -63,12 +67,12 @@ importVM() {
     7za e -y $ovazip  -o .
   fi
   
-  $vmsh addSSHAuthorizedKeys id_rsa.pub
+  bash $vmsh addSSHAuthorizedKeys id_rsa.pub
 
   cat mac.id_rsa >/Users/runner/.ssh/mac.id_rsa
   chmod 600 /Users/runner/.ssh/mac.id_rsa
 
-  $vmsh importVM "$ovafile"
+  bash $vmsh importVM "$ovafile"
 
 
 }
