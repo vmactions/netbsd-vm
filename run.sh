@@ -6,7 +6,7 @@ OVA_LINK="https://github.com/vmactions/netbsd-builder/releases/download/v0.0.1/n
 
 CONF_LINK="https://raw.githubusercontent.com/vmactions/netbsd-builder/main/conf/netbsd-9.2.conf"
 
-if [ !-e "netbsd-9.2.conf" ]; then
+if [ ! -e "netbsd-9.2.conf" ]; then
   wget "$CONF_LINK"
 fi
 
