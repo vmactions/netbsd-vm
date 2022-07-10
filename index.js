@@ -65,7 +65,7 @@ async function setup(nat, mem) {
     await shell("bash vbox.sh startVM " + osname );
 
     core.info("First boot");
-    
+
 
 
     await shell("bash vbox.sh waitForText " + osname + "  '"+ loginTag +"'");
