@@ -48,23 +48,24 @@ ovafile="$ova"
 
 
 importVM() {
+  _idfile='~/.ssh/mac.id_rsa'
 
+  bash $vmsh addSSHHost $osname $sshport "$_idfile"
 
-  bash $vmsh addSSHHost $osname $sshport
-  
   bash $vmsh setup
-  
+
   if [ ! -e "$ovazip" ]; then
     echo "Downloading $OVA_LINK"
     wget -q "$OVA_LINK"
   fi
-  
+
   if [ ! -e "$ovafile" ]; then
     7za e -y $ovazip  -o.
   fi
-  
-  bash $vmsh addSSHAuthorizedKeys id_rsa.pub
 
+  bash $vmsh addSSHAuthorizedKeys id_rsa.pub
+  cat mac.id_rsa >$HOME/.ssh/mac.id_rsa
+  chmod 600 $HOME/.ssh/mac.id_rsa
 
   bash $vmsh importVM "$ovafile"
 
