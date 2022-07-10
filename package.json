@@ -1,29 +1,25 @@
 {
-  "name": "vmactions-openbsd",
+  "name": "vmactions-netbsd",
   "version": "0.0.1",
-  "description": "FM actions for OpenBSD",
+  "description": "FM actions for NetBSD",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vmactions/openbsd-vm.git"
+    "url": "git+https://github.com/vmactions/netbsd-vm.git"
   },
   "keywords": [
     "GitHub",
     "Actions",
-    "OpenBSD"
+    "NetBSD"
   ],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vmactions/openbsd-vm/issues"
+    "url": "https://github.com/vmactions/netbsd-vm/issues"
   },
-  "homepage": "https://github.com/vmactions/openbsd-vm",
-  "dependencies": {
+  "homepage": "https://github.com/vmactions/netbsd-vm",
+  "devDependencies": {
     "@actions/core": "^1.9.0",
-    "@actions/exec": "^1.1.1",
-    "@actions/github": "^5.0.3",
-    "@actions/io": "^1.1.2",
-    "@actions/tool-cache": "^2.0.1",
-    "shelljs": "^0.8.5"
+    "@actions/exec": "^1.1.1"
   }
 }
