@@ -82,11 +82,11 @@ async function setup(nat, mem) {
 
     let sync = core.getInput("sync");
     if (sync == "sshfs") {
-      let cmd2 = "pkg_add sshfs-fuse && sshfs -o allow_other,default_permissions runner@10.0.2.2:work /Users/runner/work";
+      let cmd2 = "PKG_PATH=\"http://cdn.NetBSD.org/pub/pkgsrc/packages/NetBSD/$(uname -p)/$(uname -r|cut -f '1 2' -d.)/All/\" pkg_add sshfs-fuse && sshfs -o allow_other,default_permissions runner@10.0.2.2:work /Users/runner/work";
       await execSSH(cmd2, "Setup sshfs");
     } else {
-      let cmd2 = "pkg_add rsync-3.2.3p0-iconv";
-      await execSSH(cmd2, "Setup rsync-3.2.3p0-iconv");
+      let cmd2 = "PKG_PATH=\"http://cdn.NetBSD.org/pub/pkgsrc/packages/NetBSD/$(uname -p)/$(uname -r|cut -f '1 2' -d.)/All/\" pkg_add rsync";
+      await execSSH(cmd2, "Setup rsync");
       await shell("rsync -auvzrtopg  --exclude _actions/vmactions/" + osname+ "-vm  /Users/runner/work/ " + osname + ":work", false);
     }
 
