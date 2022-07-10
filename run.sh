@@ -54,7 +54,7 @@ importVM() {
   bash $vmsh setup
   
   if [ ! -e "$ovazip" ]; then
-    wget "$ovazip"
+    wget "$OVA_LINK"
   fi
   
   if [ ! -e "$ovafile" ]; then
