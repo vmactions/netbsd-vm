@@ -34,28 +34,28 @@ async function setup(nat, mem) {
           let hostPort = segs[1].trim().trim('"');
           let vmPort = segs[2].trim().trim('"');
 
-          await exec.exec("bash vbox.sh addNAT " + osname + " " + proto + " " + hostPort + " " + vmPort);
+          await exec.exec("cd " workingDir + " && " + "bash vbox.sh addNAT " + osname + " " + proto + " " + hostPort + " " + vmPort);
 
         } else if (segs.length === 2) {
           let proto = "tcp"
           let hostPort = segs[0].trim().trim('"');
           let vmPort = segs[1].trim().trim('"');
-          await exec.exec("bash vbox.sh addNAT " + osname + " " + proto + " " + hostPort + " " + vmPort);
+          await exec.exec("cd " workingDir + " && " + "bash vbox.sh addNAT " + osname + " " + proto + " " + hostPort + " " + vmPort);
         }
       };
     }
 
     if (mem) {
-      await exec.exec("bash vbox.sh setMemory " + osname + " " + proto + " " + hostPort + " " + vmPort);
+      await exec.exec("cd " workingDir + " && " + "bash vbox.sh setMemory " + osname + " " + proto + " " + hostPort + " " + vmPort);
     }
 
-    await exec.exec("bash vbox.sh setCPU " + osname + " 3");
+    await exec.exec("cd " workingDir + " && " + "bash vbox.sh setCPU " + osname + " 3");
 
-    await exec.exec("bash vbox.sh startVM " + osname );
+    await exec.exec("cd " workingDir + " && " + "bash vbox.sh startVM " + osname );
 
     core.info("First boot");
 
-    await exec.exec("bash vbox.sh waitForText " + osname + "'"+ loginTag +"'");
+    await exec.exec("cd " workingDir + " && " + "bash vbox.sh waitForText " + osname + "'"+ loginTag +"'");
 
 
     let cmd1 = "mkdir -p /Users/runner/work && ln -s /Users/runner/work/  work";
