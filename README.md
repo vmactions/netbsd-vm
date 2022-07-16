@@ -26,7 +26,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@v0.0.1
+      uses: vmactions/netbsd-vm@v0.0.2
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
@@ -74,7 +74,7 @@ The code is shared from the host to the NetBSD VM via `rsync`, you can choose to
     - uses: actions/checkout@v2
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@v0.0.1
+      uses: vmactions/netbsd-vm@v0.0.2
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
@@ -98,7 +98,7 @@ You can add NAT port between the host and the VM.
     - uses: actions/checkout@v2
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@v0.0.1
+      uses: vmactions/netbsd-vm@v0.0.2
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
@@ -118,13 +118,31 @@ The default memory of the VM is 1024MB, you can use `mem` option to set the memo
     - uses: actions/checkout@v2
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@v0.0.1
+      uses: vmactions/netbsd-vm@v0.0.2
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
         mem: 2048
 ...
 ```
+
+
+
+It uses [the latest NetBSD release](conf/default.release.conf) by default, you can use `release` option to use another version of NetBSD:
+
+```
+...
+    steps:
+    - uses: actions/checkout@v2
+    - name: Test in NetBSD
+      id: test
+      uses: vmactions/netbsd-vm@v0.0.2
+      with:
+        release: 9.2
+...
+```
+
+All the supported releases are here: [conf](conf)
 
 
 # Under the hood
