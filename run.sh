@@ -156,12 +156,11 @@ rsyncBackFromVM() {
 
 
 installRsyncInVM() {
-  (printf "%s " "$VM_INSTALL_CMD" ; printf "%s " "$VM_RSYNC_PKG") | ssh "$osname" 
+  ssh "$osname" "$VM_INSTALL_CMD $VM_RSYNC_PKG"
 }
 
 runSSHFSInVM() {
-  (printf "%s " "$VM_INSTALL_CMD" ; printf "%s " "$VM_SSHFS_PKG"; printf "%s" "&& sshfs -o allow_other,default_permissions runner@10.0.2.2:work /Users/runner/work") | ssh "$osname" 
-
+  ssh "$osname" "$VM_INSTALL_CMD $VM_SSHFS_PKG && sshfs -o allow_other,default_permissions runner@10.0.2.2:work /Users/runner/work"
 }
 
 
