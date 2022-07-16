@@ -31,7 +31,6 @@ jobs:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
         prepare: |
-          export PKG_PATH="http://cdn.NetBSD.org/pub/pkgsrc/packages/NetBSD/$(uname -p)/$(uname -r|cut -f '1 2' -d.)/All/"
           pkg_add curl
         run: |
           pwd
@@ -80,7 +79,6 @@ The code is shared from the host to the NetBSD VM via `rsync`, you can choose to
         usesh: true
         sync: sshfs
         prepare: |
-          export PKG_PATH="http://cdn.NetBSD.org/pub/pkgsrc/packages/NetBSD/$(uname -p)/$(uname -r|cut -f '1 2' -d.)/All/"
           pkg_add curl
 
 
