@@ -12,7 +12,7 @@ on:
       - 'conf/*'
 
 jobs:
-  testfreebsd:
+  test:
     strategy:
       matrix:
         release: [ "", "8.0", "8.1", "8.2", "9.0", "9.1", "9.2"]
