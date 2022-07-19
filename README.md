@@ -16,7 +16,7 @@ name: Test
 on: [push]
 
 jobs:
-  testfreebsd:
+  test:
     runs-on: macos-12
     name: A job to run test NetBSD
     env:
@@ -26,7 +26,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@v0.0.2
+      uses: vmactions/netbsd-vm@v0.0.4
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
@@ -73,7 +73,7 @@ The code is shared from the host to the NetBSD VM via `rsync`, you can choose to
     - uses: actions/checkout@v2
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@v0.0.2
+      uses: vmactions/netbsd-vm@v0.0.4
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
@@ -96,7 +96,7 @@ You can add NAT port between the host and the VM.
     - uses: actions/checkout@v2
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@v0.0.2
+      uses: vmactions/netbsd-vm@v0.0.4
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
@@ -116,7 +116,7 @@ The default memory of the VM is 1024MB, you can use `mem` option to set the memo
     - uses: actions/checkout@v2
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@v0.0.2
+      uses: vmactions/netbsd-vm@v0.0.4
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
@@ -134,7 +134,7 @@ It uses [the latest NetBSD release](conf/default.release.conf) by default, you c
     - uses: actions/checkout@v2
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@v0.0.2
+      uses: vmactions/netbsd-vm@v0.0.4
       with:
         release: 9.2
 ...
