@@ -1,0 +1,4 @@
+          pwd
+          ls -lah
+          whoami
+          env
