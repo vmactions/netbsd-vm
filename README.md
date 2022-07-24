@@ -142,7 +142,7 @@ It uses [the latest NetBSD 9.2](conf/default.release.conf) by default, you can u
 ...
 ```
 
-All the supported releases are here: [NetBSD  8.0", "8.1", "8.2", "9.0", "9.1", "9.2", "](conf)
+All the supported releases are here: [NetBSD  "8.0", "8.1", "8.2", "9.0", "9.1", "9.2", "](conf)
 
 
 # Under the hood
