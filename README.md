@@ -34,7 +34,7 @@ jobs:
           pkg_add curl
 
         run: |
-                    pwd
+          pwd
           ls -lah
           whoami
           env
