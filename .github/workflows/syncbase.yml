@@ -11,7 +11,7 @@ on:
 
     
 jobs:
-  generate:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
