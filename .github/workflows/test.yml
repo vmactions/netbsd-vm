@@ -28,7 +28,7 @@ jobs:
     if: ${{ !contains(github.repository, 'solaris') && !contains(github.repository, 'dragonflybsd')}}
     strategy:
       matrix:
-        release: [ "8.0", "8.1", "8.2", "9.0", "9.1", "9.2", ""]
+        release: [ "8.0", "8.1", "8.2", "9.0", "9.1", "9.2", "9.3", ""]
     runs-on: macos-12
     name: A job to run test sshfs NetBSD
     env:
@@ -59,7 +59,7 @@ jobs:
   test:
     strategy:
       matrix:
-        release: [ "8.0", "8.1", "8.2", "9.0", "9.1", "9.2", ""]
+        release: [ "8.0", "8.1", "8.2", "9.0", "9.1", "9.2", "9.3", ""]
     runs-on: macos-12
     name: A job to run test NetBSD
     env:
