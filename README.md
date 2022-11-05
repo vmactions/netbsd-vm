@@ -46,7 +46,7 @@ jobs:
 ```
 
 
-The latest major version is: `v0`, which is the most recommended to use. (You can also use the latest full version: `v0.0.9`)  
+The latest major version is: `v0`, which is the most recommended to use. (You can also use the latest full version: `v0.1.0`)  
 
 
 
@@ -162,7 +162,7 @@ The default memory of the VM is 1024MB, you can use `mem` option to set the memo
 
 
 
-It uses [the latest NetBSD 9.2](conf/default.release.conf) by default, you can use `release` option to use another version of NetBSD:
+It uses [the latest NetBSD 9.3](conf/default.release.conf) by default, you can use `release` option to use another version of NetBSD:
 
 ```
 ...
@@ -176,7 +176,7 @@ It uses [the latest NetBSD 9.2](conf/default.release.conf) by default, you can u
 ...
 ```
 
-All the supported releases are here: [NetBSD  8.0, 8.1, 8.2, 9.0, 9.1, 9.2](conf)
+All the supported releases are here: [NetBSD  8.0, 8.1, 8.2, 9.0, 9.1, 9.2, 9.3](conf)
 
 
 # Under the hood
