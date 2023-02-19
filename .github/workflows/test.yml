@@ -42,7 +42,7 @@ jobs:
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
-          pkg_add curl
+          /usr/sbin/pkg_add curl
         mem: 2048
         copyback: false
         release: ${{ matrix.release }}
@@ -73,7 +73,7 @@ jobs:
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
-          pkg_add curl
+          /usr/sbin/pkg_add curl
         mem: 2048
         copyback: false
         release: ${{ matrix.release }}
