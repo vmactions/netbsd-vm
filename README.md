@@ -31,7 +31,7 @@ jobs:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
         prepare: |
-          pkg_add curl
+          /usr/sbin/pkg_add curl
 
         run: |
           pwd
@@ -85,7 +85,7 @@ The code is shared from the host to the VM via `rsync`, you can choose to use to
         usesh: true
         sync: sshfs
         prepare: |
-          pkg_add curl
+          /usr/sbin/pkg_add curl
 
 
 
@@ -113,7 +113,7 @@ When using `rsync`,  you can define `copyback: false` to not copy files back fro
         sync: rsync
         copyback: false
         prepare: |
-          pkg_add curl
+          /usr/sbin/pkg_add curl
 
 
 
