@@ -17,7 +17,7 @@ on: [push]
 
 jobs:
   test:
-    runs-on: macos-12
+    runs-on: ubuntu-22.04
     name: A job to run test in NetBSD
     env:
       MYTOKEN : ${{ secrets.MYTOKEN }}
@@ -50,7 +50,7 @@ The latest major version is: `v0`, which is the most recommended to use. (You ca
 
 
 
-The `runs-on: macos-12` must be `macos-12`.
+The `runs-on: ubuntu-22.04` must be `ubuntu-22.04`.
 
 The `envs: 'MYTOKEN MYTOKEN2'` is the env names that you want to pass into the vm.
 
@@ -172,11 +172,11 @@ It uses [the latest NetBSD 9.3](conf/default.release.conf) by default, you can u
       id: test
       uses: vmactions/netbsd-vm@v0
       with:
-        release: 9.2
+        release: 9.3
 ...
 ```
 
-All the supported releases are here: [NetBSD  8.0, 8.1, 8.2, 9.0, 9.1, 9.2, 9.3](conf)
+All the supported releases are here: [NetBSD  9.0, 9.1, 9.2, 9.3](conf)
 
 
 # Under the hood
