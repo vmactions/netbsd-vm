@@ -181,10 +181,16 @@ All the supported releases are here: [NetBSD  8.0, 8.1, 8.2, 9.0, 9.1, 9.2, 9.3]
 
 # Under the hood
 
-GitHub only supports Ubuntu, Windows and MacOS out of the box.
+We use Qemu and Libvirt to run the NetBSD VM.
 
-However, the MacOS support virtualization. It has VirtualBox installed.
 
-So, we run the NetBSD VM in VirtualBox on MacOS.
+
+
+# Upcoming features:
+
+1. Runs on MacOS to use cpu accelaration.
+2. Support ARM and other architecture.
+
+
 
 
