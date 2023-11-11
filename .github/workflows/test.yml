@@ -31,7 +31,7 @@ jobs:
         release: [ "9.0", "9.1", "9.2", "9.3", ""]
         runs: [ "ubuntu-22.04"]
     runs-on: ${{ matrix.runs }}
-    name: A job to run test sshfs NetBSD
+    name: sshfs NetBSD
     env:
       MYTOKEN : ${{ secrets.MYTOKEN }}
       MYTOKEN2: "value2"
@@ -64,7 +64,7 @@ jobs:
         release: [ "9.0", "9.1", "9.2", "9.3", ""]
         runs: [ "ubuntu-22.04"]
     runs-on: ${{ matrix.runs }}
-    name: A job to run test NetBSD
+    name: NetBSD
     env:
       MYTOKEN : ${{ secrets.MYTOKEN }}
       MYTOKEN2: "value2"
