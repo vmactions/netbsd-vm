@@ -40,7 +40,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@7963194639208697512ba2ce6b845ee13a14110b
+      uses: vmactions/netbsd-vm@375a0019e15aee5ed25b95d31666f8205a4fdce3
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -77,7 +77,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@7963194639208697512ba2ce6b845ee13a14110b
+      uses: vmactions/netbsd-vm@375a0019e15aee5ed25b95d31666f8205a4fdce3
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
