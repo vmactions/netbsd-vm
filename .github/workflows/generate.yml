@@ -36,6 +36,9 @@ jobs:
           echo "LATEST_TAG=${LATEST_TAG}" >> $GITHUB_ENV
           echo "LATEST_VERSION_NUMBER=${LATEST_TAG:1}" >> $GITHUB_ENV
 
+          oldHash="$(cat .github/workflows/test.yml | grep -i "uses: ${{ github.repository }}" | head -1 | cut -d @ -f 2)"
+          echo "OLD_HASH=${oldHash}" >> $GITHUB_ENV
+
           git clone https://github.com/vmactions/base-vm.git
 
           mkdir -p .github/tpl
@@ -65,9 +68,9 @@ jobs:
       - name: Check modifications
         run: |
           #if only hash id in test.yml changes, skip
-          currentHash="c645715efde4e623defc0f9c80ee30c7af86457b"
+          currentHash="$(cat .github/workflows/test.yml | grep -i "uses: ${{ github.repository }}" | head -1 | cut -d @ -f 2)"
           echo "Current hash: $currentHash"
-          parentHash="$(cat .github/workflows/test.yml | grep -i "uses: ${{ github.repository }}" | head -1 | cut -d @ -f 2)"
+          parentHash="$OLD_HASH"
           echo "Parent hash: $parentHash"
           cp .github/workflows/test.yml test.yml.back
           sed -i "s/$currentHash/$parentHash/g" .github/workflows/test.yml
