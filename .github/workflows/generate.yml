@@ -65,7 +65,7 @@ jobs:
       - name: Check modifications
         run: |
           #if only hash id in test.yml changes, skip
-          currentHash="c456bfa6274a983d25f36bff1715c8ed7633d7f8"
+          currentHash="c645715efde4e623defc0f9c80ee30c7af86457b"
           echo "Current hash: $currentHash"
           parentHash="$(cat .github/workflows/test.yml | grep -i "uses: ${{ github.repository }}" | head -1 | cut -d @ -f 2)"
           echo "Parent hash: $parentHash"
@@ -76,7 +76,11 @@ jobs:
           else
             #has changes:
             rm -f test.yml.back
+            rm -rf base-vm
+            git diff
             #commit all changes and get new hash
+            git config  user.email "ghactions@vmactions.org"
+            git config  user.name "Generate.yml"
             git add .
             git commit -m "Update"
             newHash="$(git rev-parse main)"
