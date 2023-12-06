@@ -72,6 +72,7 @@ jobs:
           echo "Current hash: $currentHash"
           parentHash="$OLD_HASH"
           echo "Parent hash: $parentHash"
+          git diff
           cp .github/workflows/test.yml test.yml.back
           sed -i "s/$currentHash/$parentHash/g" .github/workflows/test.yml
           if git diff --quiet; then
@@ -80,7 +81,6 @@ jobs:
             #has changes:
             rm -f test.yml.back
             rm -rf base-vm
-            git diff
             #commit all changes and get new hash
             git config  user.email "ghactions@vmactions.org"
             git config  user.name "Generate.yml"
