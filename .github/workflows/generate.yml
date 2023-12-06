@@ -65,9 +65,9 @@ jobs:
       - name: Check modifications
         run: |
           #if only hash id in test.yml changes, skip
-          currentHash="4e5c09377b0a68d864d35a0c367f313e114bdaaa"
+          currentHash="c456bfa6274a983d25f36bff1715c8ed7633d7f8"
           echo "Current hash: $currentHash"
-          parentHash="$(git rev-parse main~1)"
+          parentHash="$(cat .github/workflows/test.yml | grep -i "uses: ${{ github.repository }}" | head -1 | cut -d @ -f 2)"
           echo "Parent hash: $parentHash"
           cp .github/workflows/test.yml test.yml.back
           sed -i "s/$currentHash/$parentHash/g" .github/workflows/test.yml
