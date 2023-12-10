@@ -37,6 +37,7 @@ jobs:
       MYTOKEN2: "value2"
       SEC_VBOX : ${{ secrets.SEC_VBOX }}
       DEBUG: 1
+      CURRENT_SHA: ${{ github.sha }}
     steps:
     - uses: actions/checkout@v4
     - name: Creating Web console
@@ -47,7 +48,7 @@ jobs:
         port: 8000
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@github.sha
+      uses: vmactions/netbsd-vm@${{ env.CURRENT_SHA }}
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -80,11 +81,12 @@ jobs:
       MYTOKEN : ${{ secrets.MYTOKEN }}
       MYTOKEN2: "value2"
       SEC_VBOX : ${{ secrets.SEC_VBOX }}
+      CURRENT_SHA: ${{ github.sha }}
     steps:
     - uses: actions/checkout@v4
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@github.sha
+      uses: vmactions/netbsd-vm@${{ env.CURRENT_SHA }}
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
