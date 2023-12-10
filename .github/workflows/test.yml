@@ -84,7 +84,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@${{ '${{GITHUB_SHA}}' }}
+      uses: vmactions/netbsd-vm@${{GITHUB_SHA}}
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
