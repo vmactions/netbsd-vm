@@ -47,7 +47,7 @@ jobs:
         port: 8000
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@${{github.sha}}
+      uses: vmactions/netbsd-vm@${{ github.sha }}
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -84,7 +84,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@${{github.sha}}
+      uses: vmactions/netbsd-vm@${{ github.sha }}
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
