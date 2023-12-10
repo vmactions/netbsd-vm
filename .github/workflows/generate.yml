@@ -37,6 +37,8 @@ jobs:
           echo "LATEST_TAG=${LATEST_TAG}" >> $GITHUB_ENV
           echo "LATEST_VERSION_NUMBER=${LATEST_TAG:1}" >> $GITHUB_ENV
 
+          oldHash="$(cat .github/workflows/test.yml | grep -i "uses: ${{ github.repository }}" | head -1 | cut -d @ -f 2)"
+          echo "OLD_HASH=${oldHash}" >> $GITHUB_ENV
 
           git clone https://github.com/vmactions/base-vm.git
 
@@ -64,6 +66,35 @@ jobs:
           npm install --save
           git add node_modules
 
+      - name: Check modifications
+        run: |
+          #if only hash id in test.yml changes, skip
+          currentHash="$(cat .github/workflows/test.yml | grep -i "uses: ${{ github.repository }}" | head -1 | cut -d @ -f 2)"
+          echo "Current hash: $currentHash"
+          lastHash="$(git rev-parse 'HEAD~1')"
+          echo "Last hash: $lastHash"
+          oldHash="$lastHash"
+          echo "OLD_HASH: $OLD_HASH"
+          echo "Old hash using last hash: $oldHash"
+          git diff
+          cp .github/workflows/test.yml test.yml.back
+          sed -i "s/$currentHash/$oldHash/g" .github/workflows/test.yml
+          if git diff --quiet; then
+            echo "no changes"
+          else
+            #has changes:
+            rm -f test.yml.back
+            rm -rf base-vm
+            #commit all changes and get new hash
+            git config  user.email "ghactions@vmactions.org"
+            git config  user.name "Generate.yml"
+            git add .
+            git commit -m "Generated from base-vm"
+            newHash="$(git rev-parse main)"
+            echo "New hash: $newHash"
+            #modify test.yml
+            sed -i "s/$oldHash/$newHash/g" .github/workflows/test.yml
+          fi
       - uses: EndBug/add-and-commit@v9
         with:
           message: "Update from base vm"
