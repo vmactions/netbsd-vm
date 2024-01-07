@@ -176,7 +176,7 @@ It uses [the NetBSD 9.3](conf/default.release.conf) by default, you can use `rel
 ...
 ```
 
-All the supported releases are here: NetBSD  9.0, 9.1, 9.2, 9.3 [See all here](conf)
+All the supported releases are here: NetBSD  9.0, 9.1, 9.2, 9.3, test.releases [See all here](conf)
 
 
 # Under the hood
