@@ -172,7 +172,7 @@ It uses [the NetBSD 9.3](conf/default.release.conf) by default, you can use `rel
       id: test
       uses: vmactions/netbsd-vm@v1
       with:
-        release: 9.3
+        release: "9.3"
 ...
 ```
 
