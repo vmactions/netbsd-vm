@@ -209,7 +209,14 @@ EOF
     echo "Run sshfs"
     ssh "$osname" sh <<EOF
 
-sshfs -o reconnect,ServerAliveCountMax=2,allow_other,default_permissions host:work $HOME/work
+if sshfs -o reconnect,ServerAliveCountMax=2,allow_other,default_permissions host:work $HOME/work ; then
+  echo "run sshfs in vm is OK, show mount:"
+  mount
+  tree $HOME/work
+else
+  echo "error run sshfs in vm."
+  exit 1
+fi
 
 EOF
 
