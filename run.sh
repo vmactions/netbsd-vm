@@ -212,7 +212,9 @@ EOF
 if sshfs -o reconnect,ServerAliveCountMax=2,allow_other,default_permissions host:work $HOME/work ; then
   echo "run sshfs in vm is OK, show mount:"
   /sbin/mount
-  tree $HOME/work
+  if [ "$osname" = "netbsd"]; then
+    tree $HOME/work
+  fi
 else
   echo "error run sshfs in vm."
   exit 1
