@@ -211,8 +211,10 @@ EOF
 
 if sshfs -o reconnect,ServerAliveCountMax=2,allow_other,default_permissions host:work $HOME/work ; then
   echo "run sshfs in vm is OK, show mount:"
-  mount
-  tree $HOME/work
+  /sbin/mount
+  if [ "$ACTIONS_RUNNER_DEBUG" ]; then
+    tree $HOME/work
+  fi
 else
   echo "error run sshfs in vm."
   exit 1
