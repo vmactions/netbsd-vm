@@ -62,8 +62,7 @@ jobs:
         usesh: true
         sync: sshfs
         run: |
-          pwd
-          ls -lah work
+          ls -lah /root/work
           tree $HOME/work/
           if [ -z "$(ls -A $HOME/work)" ]; then
             echo "sshfs error."
