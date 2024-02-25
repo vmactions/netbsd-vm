@@ -231,6 +231,8 @@ EOF
 #run in the vm, just as soon as the vm is up
 onStarted() {
   bash $vmsh addSSHHost $osname "$_idfile"
+  #just touch the file, so that the user can access this file in the VM
+  echo "" >>${GITHUB_ENV}
   if [ -e "hooks/onStarted.sh" ]; then
     ssh "$osname" sh <hooks/onStarted.sh
   fi
