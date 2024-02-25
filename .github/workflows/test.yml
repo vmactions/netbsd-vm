@@ -68,8 +68,10 @@ jobs:
             echo "sshfs error."
             exit 1
           fi
+          echo "TEST_ENV=abc" >>${GITHUB_ENV}
     - name: Test NAT
-      run: 
+      run:
+        echo "TEST_ENV=$TEST_ENV"
         ssh -vvv -p 10022 -i $HOME/.ssh/host.id_rsa root@localhost "uname -a;whoami;pwd"
 
   test:
