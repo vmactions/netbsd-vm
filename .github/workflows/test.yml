@@ -101,13 +101,15 @@ jobs:
           udp:"8081": "80"
         usesh: true
         run: |
+echo "TEST_ENV=abc" >>${GITHUB_ENV}
           pwd
           ls -lah
           whoami
           env
 
     - name: Test NAT
-      run: 
+      run:
+        echo "TEST_ENV=$TEST_ENV"
         ssh -vvv -p 10022 -i $HOME/.ssh/host.id_rsa root@localhost "uname -a;whoami;pwd"
 
 
