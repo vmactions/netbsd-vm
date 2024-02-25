@@ -72,6 +72,7 @@ jobs:
     - name: Test NAT
       run:
         echo "TEST_ENV=$TEST_ENV"
+        [ "$TEST_ENV" = "abc" ]
         ssh -vvv -p 10022 -i $HOME/.ssh/host.id_rsa root@localhost "uname -a;whoami;pwd"
 
   test:
@@ -112,6 +113,7 @@ jobs:
     - name: Test NAT
       run:
         echo "TEST_ENV=$TEST_ENV"
+        [ "$TEST_ENV" = "abc" ]
         ssh -vvv -p 10022 -i $HOME/.ssh/host.id_rsa root@localhost "uname -a;whoami;pwd"
 
 
