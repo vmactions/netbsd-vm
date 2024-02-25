@@ -101,7 +101,7 @@ jobs:
           udp:"8081": "80"
         usesh: true
         run: |
-echo "TEST_ENV=abc" >>${GITHUB_ENV}
+          echo "TEST_ENV=abc" >>${GITHUB_ENV}
           pwd
           ls -lah
           whoami
