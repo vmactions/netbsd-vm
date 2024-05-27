@@ -46,7 +46,7 @@ jobs:
 ```
 
 
-The latest major version is: `v1`, which is the most recommended to use. (You can also use the latest full version: `v1.0.7`)  
+The latest major version is: `v1`, which is the most recommended to use. (You can also use the latest full version: `v1.0.8`)  
 
 
 If you are migrating from the previous `v0`, please change the `runs-on: ` to `runs-on: ubuntu-latest`
@@ -178,7 +178,7 @@ It uses [the NetBSD 10.0](conf/default.release.conf) by default, you can use `re
 ...
 ```
 
-All the supported releases are here: NetBSD  10.0, 9.0, 9.1, 9.2, 9.3, test.releases [See all here](conf)
+All the supported releases are here: NetBSD  10.0, 9.0, 9.1, 9.2, 9.3, 9.4, test.releases [See all here](conf)
 
 
 # Under the hood
