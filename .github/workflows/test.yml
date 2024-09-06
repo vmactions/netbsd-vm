@@ -29,7 +29,7 @@ jobs:
     strategy:
       matrix:
         release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", ""]
-        runs: [ "ubuntu-22.04"]
+        runs: [ "ubuntu-22.04", "ubuntu-24.04", "ubuntu-latest"]
     runs-on: ${{ matrix.runs }}
     name: sshfs NetBSD
     env:
@@ -47,7 +47,7 @@ jobs:
         port: 8000
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@d8438ef2d5ea32066560681bfdaba2ab49747fc1
+      uses: vmactions/netbsd-vm@005d0de3069dfbd20f620498899f80381f0c1647
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -79,7 +79,7 @@ jobs:
     strategy:
       matrix:
         release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", ""]
-        runs: [ "ubuntu-22.04"]
+        runs: [ "ubuntu-22.04", "ubuntu-24.04", "ubuntu-latest"]
     runs-on: ${{ matrix.runs }}
     name: NetBSD
     env:
@@ -90,7 +90,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@d8438ef2d5ea32066560681bfdaba2ab49747fc1
+      uses: vmactions/netbsd-vm@005d0de3069dfbd20f620498899f80381f0c1647
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
