@@ -38,10 +38,11 @@ jobs:
           ls -lah
           whoami
           env
-          sysctl hw.model
-          sysctl hw.ncpu
-          sysctl hw.physmem
-          sysctl hw.usermem
+          /sbin/sysctl hw.model
+          /sbin/sysctl hw.ncpu
+          /sbin/sysctl hw.physmem
+          /sbin/sysctl hw.usermem
+          /usr/bin/vmstat
 
 
 
