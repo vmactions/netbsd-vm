@@ -47,7 +47,7 @@ jobs:
         port: 8000
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@1b02a76dcdebc2930425d0198cf7324e7dd6bbc1
+      uses: vmactions/netbsd-vm@b965523ff18f9f3d96fb1ad1ae1440862d459825
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -90,7 +90,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@1b02a76dcdebc2930425d0198cf7324e7dd6bbc1
+      uses: vmactions/netbsd-vm@b965523ff18f9f3d96fb1ad1ae1440862d459825
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -109,6 +109,10 @@ jobs:
           ls -lah
           whoami
           env
+          sysctl hw.model
+          sysctl hw.ncpu
+          sysctl hw.physmem
+          sysctl hw.usermem
 
     - name: Test NAT
       run:
