@@ -47,7 +47,7 @@ jobs:
         port: 8000
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@40d6f9a94acc59ce0c498eb569bdaa75ac2467cf
+      uses: vmactions/netbsd-vm@2d16f77c96cbba737e7fdf1af44029d917bf5351
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -100,7 +100,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@40d6f9a94acc59ce0c498eb569bdaa75ac2467cf
+      uses: vmactions/netbsd-vm@2d16f77c96cbba737e7fdf1af44029d917bf5351
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
