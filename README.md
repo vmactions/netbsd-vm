@@ -213,15 +213,15 @@ Support custom shell:
       id: vm
       uses: vmactions/netbsd-vm@v1
     - name: Custom shell step 1
-	  shell: netbsd {0}
-	  run: |
-	    cd $GITHUB_WORKSPACE;
+      shell: netbsd {0}
+      run: |
+        cd $GITHUB_WORKSPACE;
         pwd
         echo "this is step 1, running inside the VM"
     - name: Custom shell step 2
-	  shell: netbsd {0}
-	  run: |
-	    cd $GITHUB_WORKSPACE;
+      shell: netbsd {0}
+      run: |
+        cd $GITHUB_WORKSPACE;
         pwd
         echo "this is step 2, running inside the VM"
 ...
