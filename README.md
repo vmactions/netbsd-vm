@@ -201,6 +201,34 @@ It uses [the NetBSD 10.0](conf/default.release.conf) by default, you can use `re
 All the supported releases are here: NetBSD  10.0, 9.0, 9.1, 9.2, 9.3, 9.4, test.releases [See all here](conf)
 
 
+
+
+Support custom shell:
+
+```
+...
+    steps:
+    - uses: actions/checkout@v4
+    - name: Test
+      id: vm
+      uses: vmactions/netbsd-vm@v1
+    - name: Custom shell step 1
+	  shell: netbsd {0}
+	  run: |
+	    cd $GITHUB_WORKSPACE;
+        pwd
+        echo "this is step 1, running inside the VM"
+    - name: Custom shell step 2
+	  shell: netbsd {0}
+	  run: |
+	    cd $GITHUB_WORKSPACE;
+        pwd
+        echo "this is step 2, running inside the VM"
+...
+```
+
+
+
 # Under the hood
 
 We use Qemu and Libvirt to run the NetBSD VM.
