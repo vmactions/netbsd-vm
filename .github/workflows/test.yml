@@ -28,7 +28,7 @@ jobs:
     if: ${{ !contains(github.repository, 'solaris') && !contains(github.repository, 'dragonflybsd') && !contains(github.repository, 'omnios')}}
     strategy:
       matrix:
-        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", ""]
+        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1", ""]
         runs: [ "ubuntu-22.04", "ubuntu-24.04", "ubuntu-latest"]
     runs-on: ${{ matrix.runs }}
     name: sshfs NetBSD
@@ -47,7 +47,7 @@ jobs:
         port: 8000
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@08f3a8b3e63009dd2bf14388ec29d38d9f1286a1
+      uses: vmactions/netbsd-vm@b6262013872eb3e45aea83887eb41eb145447d55
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -105,7 +105,7 @@ jobs:
   test:
     strategy:
       matrix:
-        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", ""]
+        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1", ""]
         runs: [ "ubuntu-22.04", "ubuntu-24.04", "ubuntu-latest"]
     runs-on: ${{ matrix.runs }}
     name: NetBSD
@@ -117,7 +117,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@08f3a8b3e63009dd2bf14388ec29d38d9f1286a1
+      uses: vmactions/netbsd-vm@b6262013872eb3e45aea83887eb41eb145447d55
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
