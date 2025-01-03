@@ -77,7 +77,7 @@ So, you will have the same directory and same default env variables when you `ru
 
 ## 2. Share code
 
-The code is shared from the host to the VM via `rsync` by default, you can choose to use `sshfs` or `nfs` share code instead.
+The code is shared from the host to the VM via `rsync` by default, you can choose to use `sshfs` or `nfs` to share code instead.
 
 
 ```
@@ -208,11 +208,33 @@ It uses [the NetBSD 10.1](conf/default.release.conf) by default, you can use `re
 ...
 ```
 
-All the supported releases are here: NetBSD  10.0, 10.1, 9.0, 9.1, 9.2, 9.3, 9.4, test.releases [See all here](conf)
+
+## 6. Select architecture
+
+The vm is using x86_64(AMD64) by default, but you can use `arch` option to change the architecture:
+
+```
+...
+    steps:
+    - uses: actions/checkout@v4
+    - name: Test
+      id: test
+      uses: vmactions/netbsd-vm@v1
+      with:
+        release: "9.3"
+        arch: aarch64
+...
+```
+
+
+All the supported releases are here:
+
+{{RELEASE_TABLE}}
 
 
 
-## 6. Custom shell
+
+## 7. Custom shell
 
 Support custom shell:
 
@@ -251,8 +273,10 @@ We use Qemu and Libvirt to run the NetBSD VM.
 
 # Upcoming features:
 
-1. Runs on MacOS to use cpu accelaration.
-2. Support ARM and other architecture.
+1. Support other architectures.
+
+
+
 
 
 
