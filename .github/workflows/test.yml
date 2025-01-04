@@ -77,7 +77,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@24fc5eb9d218b4ac3b2c3d84fe7db33bc4b7fba9
+      uses: vmactions/netbsd-vm@9e8b1eed159d3807e6ea90baa37f4dd6ee5ca105
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -190,7 +190,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@24fc5eb9d218b4ac3b2c3d84fe7db33bc4b7fba9
+      uses: vmactions/netbsd-vm@9e8b1eed159d3807e6ea90baa37f4dd6ee5ca105
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -295,7 +295,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@24fc5eb9d218b4ac3b2c3d84fe7db33bc4b7fba9
+      uses: vmactions/netbsd-vm@9e8b1eed159d3807e6ea90baa37f4dd6ee5ca105
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
