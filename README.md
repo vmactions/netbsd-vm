@@ -268,7 +268,7 @@ Support custom shell:
       id: vm
       uses: vmactions/netbsd-vm@v1
       with:
-        sync: sshfs
+        sync: nfs
     - name: Custom shell step 1
       shell: netbsd {0}
       run: |
