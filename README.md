@@ -9,7 +9,7 @@ All the supported releases are here:
 
 
 
-| Release | x86_64  | aarch64(arm64) |
+| Release | x86_64(amd64)  | aarch64(arm64) |
 |---------|---------|---------|
 |  10.1   |  ✅     |   ✅   |
 |  10.0   |  ✅     |   ✅   |
