@@ -53,6 +53,7 @@ jobs:
           /usr/sbin/pkg_add curl
 
         run: |
+          cd $GITHUB_WORKSPACE;
           pwd
           ls -lah
           whoami
