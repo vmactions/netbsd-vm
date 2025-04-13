@@ -1,5 +1,4 @@
           cd $GITHUB_WORKSPACE;
-          pwd
           ls -lah
           whoami
           env
