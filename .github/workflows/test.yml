@@ -31,7 +31,10 @@ jobs:
       matrix:
         release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1", ""]
         arch: [ "aarch64", ""]
-        runs: [ "ubuntu-24.04"]
+        runs: [ "ubuntu-24.04", "ubuntu-24.04-arm"]
+        exclude:
+          - runs: "ubuntu-24.04-arm"
+            arch: ""
 
     runs-on: ${{ matrix.runs }}
     name: sshfs NetBSD
@@ -147,7 +150,11 @@ jobs:
       matrix:
         release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1", ""]
         arch: [ "aarch64", ""]
-        runs: [ "ubuntu-24.04"]
+        runs: [ "ubuntu-24.04", "ubuntu-24.04-arm"]
+        exclude:
+          - runs: "ubuntu-24.04-arm"
+            arch: ""
+
     runs-on: ${{ matrix.runs }}
     name: nfs NetBSD
     env:
@@ -262,7 +269,11 @@ jobs:
       matrix:
         release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1", ""]
         arch: [ "aarch64", ""]
-        runs: [ "ubuntu-24.04"]
+        runs: [ "ubuntu-24.04", "ubuntu-24.04-arm"]
+        exclude:
+          - runs: "ubuntu-24.04-arm"
+            arch: ""
+
     runs-on: ${{ matrix.runs }}
     name: NetBSD
     env:
