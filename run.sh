@@ -250,13 +250,15 @@ scpToVM() {
 
 
     echo "==> Ensuring $target_host:$dest_dir exists..."
-    ssh -o MACs=umac-64-etm@openssh.com "$target_host" "mkdir -p $dest_dir"
+    ssh -O -o MACs=umac-64-etm@openssh.com "$target_host" "mkdir -p $dest_dir"
 
     echo "==> Uploading files via scp (excluding _actions and _PipelineMapping)..."
     find "$src_dir" -maxdepth 1 ! -name "_actions" ! -name "_PipelineMapping" | \
     while read -r item; do
         [[ "$item" == "$src_dir" ]] && continue
-        scp -r -p -o MACs=umac-64-etm@openssh.com "$item" "$target_host:$dest_dir"
+        #use -O for compatible mode to use scp subsustem
+        #just for netbsd 9.0/1/2/3
+        scp -r -p -O -o MACs=umac-64-etm@openssh.com "$item" "$target_host:$dest_dir"
     done
 
     echo "==> Done."
@@ -278,10 +280,10 @@ scpBackFromVM() {
         relative_path="${item#$remote_dir/}"
         local_target="$local_dir/$relative_path"
 
-        if ssh -o MACs=umac-64-etm@openssh.com "$target_host" "[ -d \"$item\" ]"; then
+        if ssh -o MACs=umac-64-etm@openssh.com -O "$target_host" "[ -d \"$item\" ]"; then
             mkdir -p "$local_target"
         else
-            scp -p -o MACs=umac-64-etm@openssh.com "$target_host:$item" "$local_target"
+            scp -p -o MACs=umac-64-etm@openssh.com -O "$target_host:$item" "$local_target"
         fi
     done
 
