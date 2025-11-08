@@ -250,7 +250,7 @@ scpToVM() {
 
 
     echo "==> Ensuring $target_host:$dest_dir exists..."
-    ssh -O -o MACs=umac-64-etm@openssh.com "$target_host" "mkdir -p $dest_dir"
+    ssh -o MACs=umac-64-etm@openssh.com "$target_host" "mkdir -p $dest_dir"
 
     echo "==> Uploading files via scp (excluding _actions and _PipelineMapping)..."
     find "$src_dir" -maxdepth 1 ! -name "_actions" ! -name "_PipelineMapping" | \
@@ -283,7 +283,7 @@ scpBackFromVM() {
         if ssh -o MACs=umac-64-etm@openssh.com -O "$target_host" "[ -d \"$item\" ]"; then
             mkdir -p "$local_target"
         else
-            scp -p -o MACs=umac-64-etm@openssh.com -O "$target_host:$item" "$local_target"
+            scp -p -r -O -o MACs=umac-64-etm@openssh.com "$target_host:$item" "$local_target"
         fi
     done
 
