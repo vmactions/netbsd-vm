@@ -270,7 +270,7 @@ scpToVM() {
             created_dirs["$remote_dir_path"]=1
         fi
 
-        scp -p -o MACs=umac-64-etm@openssh.com "$file" "$target_host:\"$remote_path\""
+        scp -p -o MACs=umac-64-etm@openssh.com "$file" "$target_host:$remote_path"
     done
 
     echo "==> Done."
