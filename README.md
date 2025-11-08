@@ -96,7 +96,7 @@ So, you will have the same directory and same default env variables when you `ru
 
 ## 2. Share code
 
-The code is shared from the host to the VM via `rsync` by default, you can choose to use `sshfs` or `nfs` to share code instead.
+The code is shared from the host to the VM via `rsync` by default, you can choose to use `sshfs` or `nfs` or `scp` to share code instead.
 
 
 ```
@@ -125,7 +125,7 @@ The code is shared from the host to the VM via `rsync` by default, you can choos
 You can also set `sync: no`, so the files will not be synced to the  VM.
 
 
-When using `rsync`,  you can define `copyback: false` to not copy files back from the VM in to the host.
+When using `rsync` or `scp`,  you can define `copyback: false` to not copy files back from the VM in to the host.
 
 
 ```
@@ -151,6 +151,9 @@ When using `rsync`,  you can define `copyback: false` to not copy files back fro
 
 
 ```
+
+
+
 
 
 ## 3. NAT from host runner to the VM
@@ -250,9 +253,10 @@ The vm is using x86_64(AMD64) by default, but you can use `arch` option to chang
 ...
 ```
 
-When you run with `aarch64`, the host runner should still be the normal x86_64 runner: `runs-on: ubuntu-latest`
+When you run with `aarch64`, the host runner should still be the normal `x86_64` runner: `runs-on: ubuntu-latest`
 
-It's not recommended to use 'ubuntu-24.04-arm' as runner, it's much more slower.
+It's not recommended to use `ubuntu-24.04-arm` as runner, it's much more slower.
+
 
 
 ## 7. Custom shell
@@ -294,7 +298,7 @@ We use Qemu and Libvirt to run the NetBSD VM.
 
 # Upcoming features:
 
-1. Support s390x, or other architectures.
+1. Support other architectures, eg: sparc64 or powerpc64.
 2. Support MacOS runner.
 
 
