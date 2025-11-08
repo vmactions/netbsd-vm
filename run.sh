@@ -252,11 +252,17 @@ scpToVM() {
     echo "==> Ensuring $target_host:$dest_dir exists..."
     ssh -o MACs=umac-64-etm@openssh.com "$target_host" "mkdir -p $dest_dir"
 
-    echo "==> Uploading files via scp (excluding _actions and _PipelineMapping)..."
-    find "$src_dir" -maxdepth 1 ! -name "_actions" ! -name "_PipelineMapping" | \
-    while read -r item; do
-        [[ "$item" == "$src_dir" ]] && continue
-        scp -r -p -o MACs=umac-64-etm@openssh.com "$item" "$target_host:$dest_dir"
+    echo "==> Creating remote subdirectories..."
+    find "$src_dir" -type d ! -name "_actions" ! -name "_PipelineMapping" | sed "s|$src_dir|$dest_dir|" | \
+    while read -r dir; do
+        ssh -o MACs=umac-64-etm@openssh.com "$target_host" "mkdir -p \"$dir\""
+    done
+
+    echo "==> Uploading files via scp..."
+    find "$src_dir" -type f ! -path "*/_actions/*" ! -path "*/_PipelineMapping/*" | \
+    while read -r file; do
+        relative="${file#$src_dir/}"
+        scp -p -o MACs=umac-64-etm@openssh.com "$file" "$target_host:$dest_dir/$relative"
     done
 
     echo "==> Done."
