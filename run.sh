@@ -248,23 +248,30 @@ scpToVM() {
     local src_dir="$HOME/work"
     local dest_dir="work"
 
-
     echo "==> Ensuring $target_host:$dest_dir exists..."
     ssh -o MACs=umac-64-etm@openssh.com "$target_host" "mkdir -p \"$dest_dir\""
 
-    echo "==> Uploading files via scp (auto-create remote parent dirs)..."
+    declare -A created_dirs
+    created_dirs["$dest_dir"]=1
+
+    echo "==> Uploading files via scp..."
     find "$src_dir" -type f \
         ! -path "*/_actions/*" \
-        ! -path "*/_PipelineMapping/*" \
-        | while read -r file; do
-            relative="${file#$src_dir/}"
-            remote_path="$dest_dir/$relative"
-            remote_dir_path="$(dirname "$remote_path")"
+        ! -path "*/_PipelineMapping/*" |
+    while read -r file; do
+        relative="${file#"$src_dir"/}"
+        [ "$relative" = "$file" ] && continue
 
+        remote_path="$dest_dir/$relative"
+        remote_dir_path="$(dirname "$remote_path")"
+
+        if [[ -z "${created_dirs["$remote_dir_path"]}" ]]; then
             ssh -o MACs=umac-64-etm@openssh.com "$target_host" "mkdir -p \"$remote_dir_path\""
+            created_dirs["$remote_dir_path"]=1
+        fi
 
-            scp -p -o MACs=umac-64-etm@openssh.com "$file" "$target_host:$remote_path"
-        done
+        scp -p -o MACs=umac-64-etm@openssh.com "$file" "$target_host:\"$remote_path\""
+    done
 
     echo "==> Done."
 }
