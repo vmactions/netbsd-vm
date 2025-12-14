@@ -299,7 +299,7 @@ async function main() {
     let sshHost = osName;
     args.push("--ssh-name", sshHost);
 
-    core.startGroup("Starting VM with anyvm.py");
+    core.startGroup("Starting VM with anyvm.org");
     let output = "";
     const options = {
       listeners: {
