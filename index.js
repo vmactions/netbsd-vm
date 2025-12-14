@@ -352,7 +352,7 @@ async function main() {
       if (sync !== 'scp') {
         core.info("Installing rsync in VM...");
         if (osName.includes('netbsd')) {
-          await execSSH("pkgin -y install rsync", { host: sshHost }, true);
+          await execSSH("/usr/sbin/pkg_add rsync", { host: sshHost }, true);
         }
       }
 
