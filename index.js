@@ -348,6 +348,15 @@ async function main() {
 
     if (isScpOrRsync) {
       core.startGroup("Syncing source code to VM");
+      // Install rsync in VM if needed
+      if (sync !== 'scp') {
+        core.info("Installing rsync in VM...");
+        if (osName.includes('netbsd')) {
+          await execSSH("pkgin -y install rsync", { host: sshHost }, true);
+        }
+      }
+
+      core.startGroup("Syncing source code to VM");
       await execSSH(`rm -rf ${vmWork}`, { host: sshHost });
       await execSSH(`mkdir -p ${vmWork}`, { host: sshHost });
       if (sync === 'scp') {
