@@ -1,6 +1,10 @@
 name: 'NetBSD-vm'
 description: 'Run CI in NetBSD for GitHub Actions'
 inputs:
+  osname:
+    description: 'The OS name'
+    required: false
+    default: 'NetBSD'
   prepare:
     description: 'Install some tools before CI runs'
     required: false
