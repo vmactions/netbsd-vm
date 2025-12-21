@@ -8,13 +8,4 @@
             arch: aarch64
           - release: "9.4"
             arch: aarch64
-          - release: "9.0"
-            arch: riscv64
-          - release: "9.1"
-            arch: riscv64
-          - release: "9.2"
-            arch: riscv64
-          - release: "9.3"
-            arch: riscv64
-          - release: "9.4"
-            arch: riscv64
+          - arch: riscv64
