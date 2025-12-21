@@ -37,7 +37,16 @@ jobs:
             arch: ""
           - runs: "ubuntu-24.04-arm"
             arch: "riscv64"
-
+          - release: "9.0"
+            arch: aarch64
+          - release: "9.1"
+            arch: aarch64
+          - release: "9.2"
+            arch: aarch64
+          - release: "9.3"
+            arch: aarch64
+          - release: "9.4"
+            arch: aarch64
 
     runs-on: ${{ matrix.runs }}
     name: sshfs NetBSD
@@ -91,7 +100,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@fc0f1d0c31879c443f67aba47c6102f0d7cc0189
+      uses: vmactions/netbsd-vm@c34bf57c8841f1f55b06255b98b9541c5eb8e9a8
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -169,7 +178,16 @@ jobs:
             arch: ""
           - runs: "ubuntu-24.04-arm"
             arch: "riscv64"
-
+          - release: "9.0"
+            arch: aarch64
+          - release: "9.1"
+            arch: aarch64
+          - release: "9.2"
+            arch: aarch64
+          - release: "9.3"
+            arch: aarch64
+          - release: "9.4"
+            arch: aarch64
 
     runs-on: ${{ matrix.runs }}
     name: nfs NetBSD
@@ -222,7 +240,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@fc0f1d0c31879c443f67aba47c6102f0d7cc0189
+      uses: vmactions/netbsd-vm@c34bf57c8841f1f55b06255b98b9541c5eb8e9a8
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -301,7 +319,16 @@ jobs:
             arch: ""
           - runs: "ubuntu-24.04-arm"
             arch: "riscv64"
-
+          - release: "9.0"
+            arch: aarch64
+          - release: "9.1"
+            arch: aarch64
+          - release: "9.2"
+            arch: aarch64
+          - release: "9.3"
+            arch: aarch64
+          - release: "9.4"
+            arch: aarch64
 
     runs-on: ${{ matrix.runs }}
     name: scp NetBSD
@@ -349,7 +376,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@fc0f1d0c31879c443f67aba47c6102f0d7cc0189
+      uses: vmactions/netbsd-vm@c34bf57c8841f1f55b06255b98b9541c5eb8e9a8
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -416,7 +443,16 @@ jobs:
             arch: ""
           - runs: "ubuntu-24.04-arm"
             arch: "riscv64"
-
+          - release: "9.0"
+            arch: aarch64
+          - release: "9.1"
+            arch: aarch64
+          - release: "9.2"
+            arch: aarch64
+          - release: "9.3"
+            arch: aarch64
+          - release: "9.4"
+            arch: aarch64
 
 
     runs-on: ${{ matrix.runs }}
@@ -462,7 +498,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@fc0f1d0c31879c443f67aba47c6102f0d7cc0189
+      uses: vmactions/netbsd-vm@c34bf57c8841f1f55b06255b98b9541c5eb8e9a8
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
