@@ -47,16 +47,8 @@ jobs:
             arch: aarch64
           - release: "9.4"
             arch: aarch64
-          - release: "9.0"
-            arch: riscv64
-          - release: "9.1"
-            arch: riscv64
-          - release: "9.2"
-            arch: riscv64
-          - release: "9.3"
-            arch: riscv64
-          - release: "9.4"
-            arch: riscv64
+          - arch: riscv64
+
 
     runs-on: ${{ matrix.runs }}
     name: sshfs NetBSD
@@ -110,7 +102,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@37ba5e2650d37ffc6a78b892098fb92aeee938ea
+      uses: vmactions/netbsd-vm@80ad01fdc2c496bc4154ea202db35e708b2ced46
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -198,16 +190,8 @@ jobs:
             arch: aarch64
           - release: "9.4"
             arch: aarch64
-          - release: "9.0"
-            arch: riscv64
-          - release: "9.1"
-            arch: riscv64
-          - release: "9.2"
-            arch: riscv64
-          - release: "9.3"
-            arch: riscv64
-          - release: "9.4"
-            arch: riscv64
+          - arch: riscv64
+
 
     runs-on: ${{ matrix.runs }}
     name: nfs NetBSD
@@ -260,7 +244,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@37ba5e2650d37ffc6a78b892098fb92aeee938ea
+      uses: vmactions/netbsd-vm@80ad01fdc2c496bc4154ea202db35e708b2ced46
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -350,16 +334,8 @@ jobs:
             arch: aarch64
           - release: "9.4"
             arch: aarch64
-          - release: "9.0"
-            arch: riscv64
-          - release: "9.1"
-            arch: riscv64
-          - release: "9.2"
-            arch: riscv64
-          - release: "9.3"
-            arch: riscv64
-          - release: "9.4"
-            arch: riscv64
+          - arch: riscv64
+
 
     runs-on: ${{ matrix.runs }}
     name: scp NetBSD
@@ -407,7 +383,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@37ba5e2650d37ffc6a78b892098fb92aeee938ea
+      uses: vmactions/netbsd-vm@80ad01fdc2c496bc4154ea202db35e708b2ced46
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -485,16 +461,8 @@ jobs:
             arch: aarch64
           - release: "9.4"
             arch: aarch64
-          - release: "9.0"
-            arch: riscv64
-          - release: "9.1"
-            arch: riscv64
-          - release: "9.2"
-            arch: riscv64
-          - release: "9.3"
-            arch: riscv64
-          - release: "9.4"
-            arch: riscv64
+          - arch: riscv64
+
 
 
     runs-on: ${{ matrix.runs }}
@@ -540,7 +508,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@37ba5e2650d37ffc6a78b892098fb92aeee938ea
+      uses: vmactions/netbsd-vm@80ad01fdc2c496bc4154ea202db35e708b2ced46
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
