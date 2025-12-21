@@ -1,5 +1,7 @@
 # Run GitHub CI in NetBSD ![Test](https://github.com/vmactions/netbsd-vm/workflows/Test/badge.svg)
 
+Powered by [AnyVM.org](https://anyvm.org)
+
 Use this action to run your CI in NetBSD.
 
 The github workflow only supports Ubuntu, Windows and MacOS. But what if you need to use NetBSD?
@@ -45,7 +47,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@v1
+      uses: vmactions/netbsd-vm@
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
@@ -70,7 +72,7 @@ jobs:
 ```
 
 
-The latest major version is: `v1`, which is the most recommended to use. (You can also use the latest full version: `v1.2.3`)  
+The latest major version is: ``, which is the most recommended to use. (You can also use the latest full version: ``)  
 
 
 If you are migrating from the previous `v0`, please change the `runs-on: ` to `runs-on: ubuntu-latest`
@@ -107,7 +109,7 @@ The code is shared from the host to the VM via `rsync` by default, you can choos
     - uses: actions/checkout@v4
     - name: Test
       id: test
-      uses: vmactions/netbsd-vm@v1
+      uses: vmactions/netbsd-vm@
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
@@ -136,7 +138,7 @@ When using `rsync` or `scp`,  you can define `copyback: false` to not copy files
     - uses: actions/checkout@v4
     - name: Test
       id: test
-      uses: vmactions/netbsd-vm@v1
+      uses: vmactions/netbsd-vm@
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
@@ -166,7 +168,7 @@ You can add NAT port between the host and the VM.
     - uses: actions/checkout@v4
     - name: Test
       id: test
-      uses: vmactions/netbsd-vm@v1
+      uses: vmactions/netbsd-vm@
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
@@ -188,7 +190,7 @@ The default memory of the VM is 6144MB, you can use `mem` option to set the memo
     - uses: actions/checkout@v4
     - name: Test
       id: test
-      uses: vmactions/netbsd-vm@v1
+      uses: vmactions/netbsd-vm@
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
@@ -205,7 +207,7 @@ The VM is using all the cpu cores of the host by default, you can use `cpu` opti
     - uses: actions/checkout@v4
     - name: Test
       id: test
-      uses: vmactions/netbsd-vm@v1
+      uses: vmactions/netbsd-vm@
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
@@ -224,7 +226,7 @@ It uses [the NetBSD 10.1](conf/default.release.conf) by default, you can use `re
     - uses: actions/checkout@v4
     - name: Test
       id: test
-      uses: vmactions/netbsd-vm@v1
+      uses: vmactions/netbsd-vm@
       with:
         release: "9.3"
 ...
@@ -246,7 +248,7 @@ The vm is using x86_64(AMD64) by default, but you can use `arch` option to chang
     - uses: actions/checkout@v4
     - name: Test
       id: test
-      uses: vmactions/netbsd-vm@v1
+      uses: vmactions/netbsd-vm@
       with:
         release: "9.3"
         arch: aarch64
@@ -269,7 +271,7 @@ Support custom shell:
     - uses: actions/checkout@v4
     - name: Start VM
       id: vm
-      uses: vmactions/netbsd-vm@v1
+      uses: vmactions/netbsd-vm@
       with:
         sync: nfs
     - name: Custom shell step 1
@@ -291,7 +293,7 @@ Support custom shell:
 
 # Under the hood
 
-We use Qemu and Libvirt to run the NetBSD VM.
+We use Qemu to run the NetBSD VM.
 
 
 
@@ -299,7 +301,7 @@ We use Qemu and Libvirt to run the NetBSD VM.
 # Upcoming features:
 
 1. Support other architectures, eg: sparc64 or powerpc64.
-2. Support MacOS runner.
+
 
 
 
