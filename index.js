@@ -299,7 +299,10 @@ async function main() {
       }
 
       try {
+        const restoreStart = Date.now();
         restoredKey = await cache.restoreCache([cacheDir], cacheKey, restoreKeys);
+        const restoreElapsed = Date.now() - restoreStart;
+        core.info(`cache.restoreCache() took ${restoreElapsed}ms`);
         if (restoredKey) {
           core.info(`Cache restored: ${restoredKey}`);
         } else {
