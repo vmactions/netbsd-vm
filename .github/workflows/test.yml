@@ -59,7 +59,7 @@ jobs:
       DEBUG: 1
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Check arch
       id: check
       run: |
@@ -102,7 +102,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@8937af9527fdf0ac4555bd2ce0b2e39c64f62e86
+      uses: vmactions/netbsd-vm@214bb7cce16d129b69ccaf862800bed52ddd56bc
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -203,7 +203,7 @@ jobs:
       DEBUG: 1
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Check arch
       id: check
       run: |
@@ -245,7 +245,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@8937af9527fdf0ac4555bd2ce0b2e39c64f62e86
+      uses: vmactions/netbsd-vm@214bb7cce16d129b69ccaf862800bed52ddd56bc
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -347,7 +347,7 @@ jobs:
       DEBUG: 1
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Check arch
       id: check
       run: |
@@ -384,7 +384,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@8937af9527fdf0ac4555bd2ce0b2e39c64f62e86
+      uses: vmactions/netbsd-vm@214bb7cce16d129b69ccaf862800bed52ddd56bc
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -476,7 +476,7 @@ jobs:
       SEC_VBOX : ${{ vars.SEC_VBOX }}
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Check arch
       id: check
       run: |
@@ -511,7 +511,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@8937af9527fdf0ac4555bd2ce0b2e39c64f62e86
+      uses: vmactions/netbsd-vm@214bb7cce16d129b69ccaf862800bed52ddd56bc
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
