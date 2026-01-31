@@ -2,6 +2,7 @@
   "name": "vmactions-NetBSD",
   "version": "",
   "description": "GitHub actions for NetBSD",
+  "type": "module",
   "main": "index.js",
   "repository": {
     "type": "git",
