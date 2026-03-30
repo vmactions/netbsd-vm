@@ -52,7 +52,7 @@ jobs:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
         prepare: |
-          /usr/sbin/pkg_add curl
+          /usr/sbin/pkg_add -u curl
 
         run: |
           cd $GITHUB_WORKSPACE;
