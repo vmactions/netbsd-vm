@@ -102,7 +102,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@494187eb9c484135a6cfd42b828ffb6dba0e45a3
+      uses: vmactions/netbsd-vm@84264ddf38e230c86adf17c7b821ee2548b1c2e9
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -245,7 +245,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@494187eb9c484135a6cfd42b828ffb6dba0e45a3
+      uses: vmactions/netbsd-vm@84264ddf38e230c86adf17c7b821ee2548b1c2e9
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -384,7 +384,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@494187eb9c484135a6cfd42b828ffb6dba0e45a3
+      uses: vmactions/netbsd-vm@84264ddf38e230c86adf17c7b821ee2548b1c2e9
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -512,7 +512,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@494187eb9c484135a6cfd42b828ffb6dba0e45a3
+      uses: vmactions/netbsd-vm@84264ddf38e230c86adf17c7b821ee2548b1c2e9
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -571,6 +571,138 @@ jobs:
 
 
 
+
+
+
+  testcustomshell:
+    strategy:
+      fail-fast: false
+      matrix:
+        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1"
+, ""]
+        arch: [ "aarch64", "", "riscv64"]
+        runs: [ "ubuntu-24.04", "ubuntu-24.04-arm"]
+        exclude:
+          - runs: "ubuntu-24.04-arm"
+            arch: ""
+          - runs: "ubuntu-24.04-arm"
+            arch: "riscv64"
+          - release: "9.0"
+            arch: aarch64
+          - release: "9.1"
+            arch: aarch64
+          - release: "9.2"
+            arch: aarch64
+          - release: "9.3"
+            arch: aarch64
+          - release: "9.4"
+            arch: aarch64
+          - arch: riscv64
+
+
+
+    runs-on: ${{ matrix.runs }}
+    name: customshell NetBSD
+    env:
+      MYTOKEN : ${{ secrets.MYTOKEN }}
+      MYTOKEN2: "value2"
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    steps:
+    - uses: actions/checkout@v6
+    - name: Check arch
+      id: check
+      run: |
+        _release="${{ matrix.release }}"
+        if [ -z "$_release" ]; then
+          . conf/default.release.conf
+          _release="$DEFAULT_RELEASE"
+        fi
+
+        _arch="${{ matrix.arch }}"
+        if [ "${_arch}" = "x86_64" ]; then
+          _arch=""
+        fi
+
+        if [ -z "${_arch}" ]; then
+          #ok, go ahead
+          echo "arch is empty"
+          echo "run=true" >> $GITHUB_OUTPUT
+        elif [ -e "conf/${_release}-${_arch}.conf" ]; then
+          #ok, go ahead
+          echo "conf exists: conf/${_release}-${_arch}.conf"
+          if [[ "$(echo "NetBSD" | tr '[:upper:]' '[:lower:]')-${_arch}" == "freebsd-riscv64" ]]; then
+            echo "The NetBSD-${_arch} doesn't support rsync, skip."
+            echo "run=false" >> $GITHUB_OUTPUT
+          else
+            echo "run=true" >> $GITHUB_OUTPUT
+          fi
+        else
+          echo "The release ${_release} doesn't support ${_arch}, skip."
+          echo "run=false" >> $GITHUB_OUTPUT
+        fi
+    - name: Test in NetBSD
+      if: ${{ steps.check.outputs.run == 'true' }}
+      id: test
+      uses: vmactions/netbsd-vm@84264ddf38e230c86adf17c7b821ee2548b1c2e9
+      with:
+        envs: 'MYTOKEN MYTOKEN2'
+        prepare: |
+          /usr/sbin/pkg_add -u curl
+        mem: 4096
+        release: ${{ matrix.release }}
+        arch: ${{ matrix.arch }}
+        nat: |
+          "20022": "22"
+          "8080": "80"
+          "8443": "443"
+          udp:"8081": "80"
+        usesh: true
+        debug: true
+        custom-shell-name: vmsh
+        run: |
+          env
+          echo "TEST_ENV=abc" >>${GITHUB_ENV}
+          cd $GITHUB_WORKSPACE;
+          ls -lah
+          whoami
+          env
+          /sbin/sysctl hw.model
+          /sbin/sysctl hw.ncpu
+          /sbin/sysctl hw.physmem
+          /sbin/sysctl hw.usermem
+          /usr/bin/vmstat
+
+    - name: Test NAT
+      if: ${{ steps.check.outputs.run == 'true' }}
+      env:
+        VM_USER: ""
+      run: |
+        set -e
+        echo "TEST_ENV=$TEST_ENV"
+        [ "$TEST_ENV" = "abc" ]
+        ssh -v  -p 20022 ${VM_USER:-root}@localhost  "uname -a;whoami;pwd"
+
+    - name: Test custom shell
+      if: ${{ steps.check.outputs.run == 'true' }}
+      shell: vmsh {0}
+      run: |
+        pwd
+          cd $GITHUB_WORKSPACE;
+          ls -lah
+          whoami
+          env
+          /sbin/sysctl hw.model
+          /sbin/sysctl hw.ncpu
+          /sbin/sysctl hw.physmem
+          /sbin/sysctl hw.usermem
+          /usr/bin/vmstat
+
+
+
+
+
+
+
   testerr:
     strategy:
       fail-fast: false
@@ -581,7 +713,7 @@ jobs:
     - name: Test in NetBSD
       id: testerr
       continue-on-error: true 
-      uses: vmactions/netbsd-vm@494187eb9c484135a6cfd42b828ffb6dba0e45a3
+      uses: vmactions/netbsd-vm@84264ddf38e230c86adf17c7b821ee2548b1c2e9
       with:
         usesh: true
         debug: true
@@ -609,7 +741,7 @@ jobs:
     - name: Test in NetBSD
       id: testpass
       continue-on-error: true 
-      uses: vmactions/netbsd-vm@494187eb9c484135a6cfd42b828ffb6dba0e45a3
+      uses: vmactions/netbsd-vm@84264ddf38e230c86adf17c7b821ee2548b1c2e9
       with:
         usesh: true
         debug: true
