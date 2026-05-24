@@ -102,7 +102,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@a2e677926f6586d5cff094878b53564d7bf7beb4
+      uses: vmactions/netbsd-vm@c86c968c55bb8d27290a754b76bcf99778c620ff
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -117,6 +117,7 @@ jobs:
           udp:"8081": "80"
         usesh: true
         debug: true
+        debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
         sync: sshfs
         run: |
           set -e
@@ -239,7 +240,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@a2e677926f6586d5cff094878b53564d7bf7beb4
+      uses: vmactions/netbsd-vm@c86c968c55bb8d27290a754b76bcf99778c620ff
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -254,6 +255,7 @@ jobs:
           udp:"8081": "80"
         usesh: true
         debug: true
+        debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
         sync: nfs
         run: |
           ls -lah $HOME/work
@@ -377,7 +379,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@a2e677926f6586d5cff094878b53564d7bf7beb4
+      uses: vmactions/netbsd-vm@c86c968c55bb8d27290a754b76bcf99778c620ff
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -392,6 +394,7 @@ jobs:
           udp:"8081": "80"
         usesh: true
         debug: true
+        debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
         sync: scp
         run: |
           ls -lah $HOME/work
@@ -505,7 +508,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@a2e677926f6586d5cff094878b53564d7bf7beb4
+      uses: vmactions/netbsd-vm@c86c968c55bb8d27290a754b76bcf99778c620ff
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -520,6 +523,7 @@ jobs:
           udp:"8081": "80"
         usesh: true
         debug: true
+        debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
         disable-cache: ${{ matrix.disableCache }}
         run: |
           env
@@ -636,7 +640,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@a2e677926f6586d5cff094878b53564d7bf7beb4
+      uses: vmactions/netbsd-vm@c86c968c55bb8d27290a754b76bcf99778c620ff
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -651,6 +655,7 @@ jobs:
           udp:"8081": "80"
         usesh: true
         debug: true
+        debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
         custom-shell-name: vmsh
         run: |
           env
@@ -706,7 +711,7 @@ jobs:
     - name: Test in NetBSD
       id: testerr
       continue-on-error: true 
-      uses: vmactions/netbsd-vm@a2e677926f6586d5cff094878b53564d7bf7beb4
+      uses: vmactions/netbsd-vm@c86c968c55bb8d27290a754b76bcf99778c620ff
       with:
         usesh: true
         debug: true
@@ -734,7 +739,7 @@ jobs:
     - name: Test in NetBSD
       id: testpass
       continue-on-error: true 
-      uses: vmactions/netbsd-vm@a2e677926f6586d5cff094878b53564d7bf7beb4
+      uses: vmactions/netbsd-vm@c86c968c55bb8d27290a754b76bcf99778c620ff
       with:
         usesh: true
         debug: true
