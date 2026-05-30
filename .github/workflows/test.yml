@@ -102,7 +102,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@beb17664a73ac2a442bf11cacb074dfb9dae7c2c
+      uses: vmactions/netbsd-vm@57e11e991f825ead2f5bebff48763e6b6b111b5b
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -240,7 +240,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@beb17664a73ac2a442bf11cacb074dfb9dae7c2c
+      uses: vmactions/netbsd-vm@57e11e991f825ead2f5bebff48763e6b6b111b5b
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -379,7 +379,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@beb17664a73ac2a442bf11cacb074dfb9dae7c2c
+      uses: vmactions/netbsd-vm@57e11e991f825ead2f5bebff48763e6b6b111b5b
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -508,7 +508,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@beb17664a73ac2a442bf11cacb074dfb9dae7c2c
+      uses: vmactions/netbsd-vm@57e11e991f825ead2f5bebff48763e6b6b111b5b
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -640,7 +640,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ steps.check.outputs.run == 'true' }}
       id: test
-      uses: vmactions/netbsd-vm@beb17664a73ac2a442bf11cacb074dfb9dae7c2c
+      uses: vmactions/netbsd-vm@57e11e991f825ead2f5bebff48763e6b6b111b5b
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -711,7 +711,7 @@ jobs:
     - name: Test in NetBSD
       id: testerr
       continue-on-error: true 
-      uses: vmactions/netbsd-vm@beb17664a73ac2a442bf11cacb074dfb9dae7c2c
+      uses: vmactions/netbsd-vm@57e11e991f825ead2f5bebff48763e6b6b111b5b
       with:
         usesh: true
         debug: true
@@ -739,7 +739,7 @@ jobs:
     - name: Test in NetBSD
       id: testpass
       continue-on-error: true 
-      uses: vmactions/netbsd-vm@beb17664a73ac2a442bf11cacb074dfb9dae7c2c
+      uses: vmactions/netbsd-vm@57e11e991f825ead2f5bebff48763e6b6b111b5b
       with:
         usesh: true
         debug: true
