@@ -1,0 +1,90 @@
+          - release: "9.0"
+            arch: aarch64
+          - release: "9.0"
+            arch: riscv64
+          - release: "9.0"
+            arch: powerpc64
+          - release: "9.0"
+            arch: sparc64
+          - release: "9.0"
+            arch: ppc64le
+          - release: "9.0"
+            arch: s390x
+          - release: "9.1"
+            arch: aarch64
+          - release: "9.1"
+            arch: riscv64
+          - release: "9.1"
+            arch: powerpc64
+          - release: "9.1"
+            arch: sparc64
+          - release: "9.1"
+            arch: ppc64le
+          - release: "9.1"
+            arch: s390x
+          - release: "9.2"
+            arch: aarch64
+          - release: "9.2"
+            arch: riscv64
+          - release: "9.2"
+            arch: powerpc64
+          - release: "9.2"
+            arch: sparc64
+          - release: "9.2"
+            arch: ppc64le
+          - release: "9.2"
+            arch: s390x
+          - release: "9.3"
+            arch: aarch64
+          - release: "9.3"
+            arch: riscv64
+          - release: "9.3"
+            arch: powerpc64
+          - release: "9.3"
+            arch: sparc64
+          - release: "9.3"
+            arch: ppc64le
+          - release: "9.3"
+            arch: s390x
+          - release: "9.4"
+            arch: aarch64
+          - release: "9.4"
+            arch: riscv64
+          - release: "9.4"
+            arch: powerpc64
+          - release: "9.4"
+            arch: sparc64
+          - release: "9.4"
+            arch: ppc64le
+          - release: "9.4"
+            arch: s390x
+          - release: "10.0"
+            arch: riscv64
+          - release: "10.0"
+            arch: powerpc64
+          - release: "10.0"
+            arch: sparc64
+          - release: "10.0"
+            arch: ppc64le
+          - release: "10.0"
+            arch: s390x
+          - release: "10.1"
+            arch: riscv64
+          - release: "10.1"
+            arch: powerpc64
+          - release: "10.1"
+            arch: sparc64
+          - release: "10.1"
+            arch: ppc64le
+          - release: "10.1"
+            arch: s390x
+          - release: ""
+            arch: riscv64
+          - release: ""
+            arch: powerpc64
+          - release: ""
+            arch: sparc64
+          - release: ""
+            arch: ppc64le
+          - release: ""
+            arch: s390x
