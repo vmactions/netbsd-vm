@@ -168,7 +168,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":[],"aarch64":[],"riscv64":[],"powerpc64":[],"sparc64":[],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'sshfs') }}
       id: test
-      uses: vmactions/netbsd-vm@8f1af889a1941789898f3bffe1445c5fb9cb3c22
+      uses: vmactions/netbsd-vm@f5152e5dbc00eab8c2afe4f51540fddb75fd5183
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -371,7 +371,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":[],"aarch64":[],"riscv64":[],"powerpc64":[],"sparc64":[],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'nfs') }}
       id: test
-      uses: vmactions/netbsd-vm@8f1af889a1941789898f3bffe1445c5fb9cb3c22
+      uses: vmactions/netbsd-vm@f5152e5dbc00eab8c2afe4f51540fddb75fd5183
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -582,7 +582,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":[],"aarch64":[],"riscv64":[],"powerpc64":[],"sparc64":[],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'scp') }}
       id: test
-      uses: vmactions/netbsd-vm@8f1af889a1941789898f3bffe1445c5fb9cb3c22
+      uses: vmactions/netbsd-vm@f5152e5dbc00eab8c2afe4f51540fddb75fd5183
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -775,7 +775,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":[],"aarch64":[],"riscv64":[],"powerpc64":[],"sparc64":[],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@8f1af889a1941789898f3bffe1445c5fb9cb3c22
+      uses: vmactions/netbsd-vm@f5152e5dbc00eab8c2afe4f51540fddb75fd5183
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -973,7 +973,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":[],"aarch64":[],"riscv64":[],"powerpc64":[],"sparc64":[],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@8f1af889a1941789898f3bffe1445c5fb9cb3c22
+      uses: vmactions/netbsd-vm@f5152e5dbc00eab8c2afe4f51540fddb75fd5183
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -1044,7 +1044,7 @@ jobs:
     - name: Test in NetBSD
       id: testerr
       continue-on-error: true
-      uses: vmactions/netbsd-vm@8f1af889a1941789898f3bffe1445c5fb9cb3c22
+      uses: vmactions/netbsd-vm@f5152e5dbc00eab8c2afe4f51540fddb75fd5183
       with:
         usesh: true
         debug: true
@@ -1072,7 +1072,7 @@ jobs:
     - name: Test in NetBSD
       id: testpass
       continue-on-error: true
-      uses: vmactions/netbsd-vm@8f1af889a1941789898f3bffe1445c5fb9cb3c22
+      uses: vmactions/netbsd-vm@f5152e5dbc00eab8c2afe4f51540fddb75fd5183
       with:
         usesh: true
         debug: true
