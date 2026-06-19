@@ -1,11 +1,1 @@
-          - release: "9.0"
-            arch: aarch64
-          - release: "9.1"
-            arch: aarch64
-          - release: "9.2"
-            arch: aarch64
-          - release: "9.3"
-            arch: aarch64
-          - release: "9.4"
-            arch: aarch64
-          - arch: riscv64
+          # Manual matrix excludes only; combos with no conf are auto-excluded.
