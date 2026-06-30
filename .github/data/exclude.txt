@@ -1,1 +1,8 @@
           # Manual matrix excludes only; combos with no conf are auto-excluded.
+          # sparc64 (QEMU sun4u, TCG) is still built and shipped, but NOT
+          # CI-tested: the emulated CMD646 PCI-IDE and wm0 NIC intermittently
+          # lose interrupts under net+disk DMA, so the guest occasionally fails
+          # to boot (cmdide0 "lost interrupt" -> stalls -> ssh probe times out).
+          # The single-key exclude drops every sparc64 combo from all test jobs.
+          # Mirrors anyvm's netbsd.yml stance; run sparc64 by hand if needed.
+          - arch: "sparc64"
