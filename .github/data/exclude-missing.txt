@@ -1,6 +1,4 @@
           - release: "9.0"
-            arch: aarch64
-          - release: "9.0"
             arch: riscv64
           - release: "9.0"
             arch: powerpc64
@@ -10,8 +8,6 @@
             arch: ppc64le
           - release: "9.0"
             arch: s390x
-          - release: "9.1"
-            arch: aarch64
           - release: "9.1"
             arch: riscv64
           - release: "9.1"
@@ -23,8 +19,6 @@
           - release: "9.1"
             arch: s390x
           - release: "9.2"
-            arch: aarch64
-          - release: "9.2"
             arch: riscv64
           - release: "9.2"
             arch: powerpc64
@@ -35,8 +29,6 @@
           - release: "9.2"
             arch: s390x
           - release: "9.3"
-            arch: aarch64
-          - release: "9.3"
             arch: riscv64
           - release: "9.3"
             arch: powerpc64
@@ -46,8 +38,6 @@
             arch: ppc64le
           - release: "9.3"
             arch: s390x
-          - release: "9.4"
-            arch: aarch64
           - release: "9.4"
             arch: riscv64
           - release: "9.4"
@@ -73,6 +63,12 @@
           - release: "10.1"
             arch: ppc64le
           - release: "10.1"
+            arch: s390x
+          - release: "11.0"
+            arch: powerpc64
+          - release: "11.0"
+            arch: ppc64le
+          - release: "11.0"
             arch: s390x
           - release: ""
             arch: riscv64
