@@ -46,6 +46,13 @@ jobs:
           - runs: "ubuntu-24.04-arm"
             arch: "s390x"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
+          # sparc64 (QEMU sun4u, TCG) is still built and shipped, but NOT
+          # CI-tested: the emulated CMD646 PCI-IDE and wm0 NIC intermittently
+          # lose interrupts under net+disk DMA, so the guest occasionally fails
+          # to boot (cmdide0 "lost interrupt" -> stalls -> ssh probe times out).
+          # The single-key exclude drops every sparc64 combo from all test jobs.
+          # Mirrors anyvm's netbsd.yml stance; run sparc64 by hand if needed.
+          - arch: "sparc64"
           - release: "9.0"
             arch: riscv64
           - release: "9.0"
@@ -142,7 +149,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'sshfs') }}
       id: test
-      uses: vmactions/netbsd-vm@c9f8385710faf830348253e9352181cd530d33d4
+      uses: vmactions/netbsd-vm@cd358caf30ca7e5c2f935048ce37040f20932ed1
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -231,6 +238,13 @@ jobs:
           - runs: "ubuntu-24.04-arm"
             arch: "s390x"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
+          # sparc64 (QEMU sun4u, TCG) is still built and shipped, but NOT
+          # CI-tested: the emulated CMD646 PCI-IDE and wm0 NIC intermittently
+          # lose interrupts under net+disk DMA, so the guest occasionally fails
+          # to boot (cmdide0 "lost interrupt" -> stalls -> ssh probe times out).
+          # The single-key exclude drops every sparc64 combo from all test jobs.
+          # Mirrors anyvm's netbsd.yml stance; run sparc64 by hand if needed.
+          - arch: "sparc64"
           - release: "9.0"
             arch: riscv64
           - release: "9.0"
@@ -319,7 +333,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'nfs') }}
       id: test
-      uses: vmactions/netbsd-vm@c9f8385710faf830348253e9352181cd530d33d4
+      uses: vmactions/netbsd-vm@cd358caf30ca7e5c2f935048ce37040f20932ed1
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -409,6 +423,13 @@ jobs:
           - runs: "ubuntu-24.04-arm"
             arch: "s390x"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
+          # sparc64 (QEMU sun4u, TCG) is still built and shipped, but NOT
+          # CI-tested: the emulated CMD646 PCI-IDE and wm0 NIC intermittently
+          # lose interrupts under net+disk DMA, so the guest occasionally fails
+          # to boot (cmdide0 "lost interrupt" -> stalls -> ssh probe times out).
+          # The single-key exclude drops every sparc64 combo from all test jobs.
+          # Mirrors anyvm's netbsd.yml stance; run sparc64 by hand if needed.
+          - arch: "sparc64"
           - release: "9.0"
             arch: riscv64
           - release: "9.0"
@@ -504,7 +525,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'scp') }}
       id: test
-      uses: vmactions/netbsd-vm@c9f8385710faf830348253e9352181cd530d33d4
+      uses: vmactions/netbsd-vm@cd358caf30ca7e5c2f935048ce37040f20932ed1
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -583,6 +604,13 @@ jobs:
           - runs: "ubuntu-24.04-arm"
             arch: "s390x"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
+          # sparc64 (QEMU sun4u, TCG) is still built and shipped, but NOT
+          # CI-tested: the emulated CMD646 PCI-IDE and wm0 NIC intermittently
+          # lose interrupts under net+disk DMA, so the guest occasionally fails
+          # to boot (cmdide0 "lost interrupt" -> stalls -> ssh probe times out).
+          # The single-key exclude drops every sparc64 combo from all test jobs.
+          # Mirrors anyvm's netbsd.yml stance; run sparc64 by hand if needed.
+          - arch: "sparc64"
           - release: "9.0"
             arch: riscv64
           - release: "9.0"
@@ -671,7 +699,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@c9f8385710faf830348253e9352181cd530d33d4
+      uses: vmactions/netbsd-vm@cd358caf30ca7e5c2f935048ce37040f20932ed1
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -755,6 +783,13 @@ jobs:
           - runs: "ubuntu-24.04-arm"
             arch: "s390x"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
+          # sparc64 (QEMU sun4u, TCG) is still built and shipped, but NOT
+          # CI-tested: the emulated CMD646 PCI-IDE and wm0 NIC intermittently
+          # lose interrupts under net+disk DMA, so the guest occasionally fails
+          # to boot (cmdide0 "lost interrupt" -> stalls -> ssh probe times out).
+          # The single-key exclude drops every sparc64 combo from all test jobs.
+          # Mirrors anyvm's netbsd.yml stance; run sparc64 by hand if needed.
+          - arch: "sparc64"
           - release: "9.0"
             arch: riscv64
           - release: "9.0"
@@ -843,7 +878,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@c9f8385710faf830348253e9352181cd530d33d4
+      uses: vmactions/netbsd-vm@cd358caf30ca7e5c2f935048ce37040f20932ed1
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -914,7 +949,7 @@ jobs:
     - name: Test in NetBSD
       id: testerr
       continue-on-error: true
-      uses: vmactions/netbsd-vm@c9f8385710faf830348253e9352181cd530d33d4
+      uses: vmactions/netbsd-vm@cd358caf30ca7e5c2f935048ce37040f20932ed1
       with:
         usesh: true
         debug: true
@@ -942,7 +977,7 @@ jobs:
     - name: Test in NetBSD
       id: testpass
       continue-on-error: true
-      uses: vmactions/netbsd-vm@c9f8385710faf830348253e9352181cd530d33d4
+      uses: vmactions/netbsd-vm@cd358caf30ca7e5c2f935048ce37040f20932ed1
       with:
         usesh: true
         debug: true
