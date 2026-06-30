@@ -64,12 +64,6 @@
             arch: ppc64le
           - release: "10.1"
             arch: s390x
-          - release: "11.0"
-            arch: powerpc64
-          - release: "11.0"
-            arch: ppc64le
-          - release: "11.0"
-            arch: s390x
           - release: ""
             arch: riscv64
           - release: ""
