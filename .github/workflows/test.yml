@@ -149,7 +149,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'sshfs') }}
       id: test
-      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
+      uses: vmactions/netbsd-vm@d5a7e9e6a2530ea68117b96987a4495d534b7d35
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -354,7 +354,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'nfs') }}
       id: test
-      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
+      uses: vmactions/netbsd-vm@d5a7e9e6a2530ea68117b96987a4495d534b7d35
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -567,7 +567,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'scp') }}
       id: test
-      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
+      uses: vmactions/netbsd-vm@d5a7e9e6a2530ea68117b96987a4495d534b7d35
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -781,7 +781,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
+      uses: vmactions/netbsd-vm@d5a7e9e6a2530ea68117b96987a4495d534b7d35
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -981,7 +981,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
+      uses: vmactions/netbsd-vm@d5a7e9e6a2530ea68117b96987a4495d534b7d35
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -1100,7 +1100,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
+      uses: vmactions/netbsd-vm@d5a7e9e6a2530ea68117b96987a4495d534b7d35
       with:
         mem: 4096
         usesh: true
@@ -1160,7 +1160,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
+      uses: vmactions/netbsd-vm@d5a7e9e6a2530ea68117b96987a4495d534b7d35
       with:
         mem: 4096
         usesh: true
@@ -1221,7 +1221,7 @@ jobs:
     - name: Test in NetBSD
       id: testerr
       continue-on-error: true
-      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
+      uses: vmactions/netbsd-vm@d5a7e9e6a2530ea68117b96987a4495d534b7d35
       with:
         usesh: true
         debug: true
@@ -1249,7 +1249,7 @@ jobs:
     - name: Test in NetBSD
       id: testpass
       continue-on-error: true
-      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
+      uses: vmactions/netbsd-vm@d5a7e9e6a2530ea68117b96987a4495d534b7d35
       with:
         usesh: true
         debug: true
