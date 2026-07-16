@@ -149,7 +149,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'sshfs') }}
       id: test
-      uses: vmactions/netbsd-vm@e62598b4d836960bedf35da4e507115319a38779
+      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -354,7 +354,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'nfs') }}
       id: test
-      uses: vmactions/netbsd-vm@e62598b4d836960bedf35da4e507115319a38779
+      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -567,7 +567,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'scp') }}
       id: test
-      uses: vmactions/netbsd-vm@e62598b4d836960bedf35da4e507115319a38779
+      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -781,7 +781,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@e62598b4d836960bedf35da4e507115319a38779
+      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -981,7 +981,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@e62598b4d836960bedf35da4e507115319a38779
+      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -1083,6 +1083,134 @@ jobs:
 
 
 
+  # cache-after-prepare: the first job seeds (or reuses) the prepared-image
+  # cache; the second job must then restore it, skip 'prepare', and still see
+  # prepare's effect inside the VM. The marker file counts how many times
+  # 'prepare' ever ran in the booted image: it must be exactly 1 in both jobs
+  # (a second 'prepare' run on the cached image would make it 2).
+  testcacheafterprepare:
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-24.04
+    name: cache-after-prepare seed NetBSD
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    steps:
+    - uses: actions/checkout@v6
+    - name: Test in NetBSD
+      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')['x86_64'], 'rsync') }}
+      id: test
+      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
+      with:
+        mem: 4096
+        usesh: true
+        debug: true
+        debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
+        cache-after-prepare: true
+        prepare: |
+          /usr/sbin/pkg_add -u curl
+          echo prepared >> "$HOME/.cache_after_prepare_count"
+        run: |
+          set -e
+          [ "$(grep -c prepared "$HOME/.cache_after_prepare_count")" -eq 1 ]
+          cd $GITHUB_WORKSPACE;
+          ls -lah
+          whoami
+          env
+          /sbin/sysctl hw.model
+          /sbin/sysctl hw.ncpu
+          /sbin/sysctl hw.physmem
+          /sbin/sysctl hw.usermem
+          /usr/bin/vmstat
+
+    - name: Collect VM debug artifacts
+      if: failure()
+      run: |
+        mkdir -p ./vm-debug-artifacts
+        find /home/runner/work/_actions -type d -name output 2>/dev/null | while read d; do
+          find "$d" -type f \( -name "*.log" -o -name "*.ppm" \) | while read f; do
+            rel="${f#/home/runner/work/_actions/}"
+            mkdir -p "./vm-debug-artifacts/$(dirname "$rel")"
+            cp "$f" "./vm-debug-artifacts/$rel"
+          done
+        done
+        echo "Collected:"
+        find ./vm-debug-artifacts -type f || true
+    - name: Upload VM debug artifacts
+      if: failure()
+      uses: actions/upload-artifact@v7
+      with:
+        name: vm-debug-${{ github.job }}-${{ strategy.job-index }}
+        path: vm-debug-artifacts/
+        retention-days: 7
+        if-no-files-found: ignore
+
+  testcacheafterpreparehit:
+    needs: testcacheafterprepare
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-24.04
+    name: cache-after-prepare hit NetBSD
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    steps:
+    - uses: actions/checkout@v6
+    # The inputs (notably 'prepare' and the sync method) must be byte-identical
+    # to the seed job above: the prepared-image cache key hashes them.
+    - name: Test in NetBSD
+      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')['x86_64'], 'rsync') }}
+      id: test
+      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
+      with:
+        mem: 4096
+        usesh: true
+        debug: true
+        debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
+        cache-after-prepare: true
+        prepare: |
+          /usr/sbin/pkg_add -u curl
+          echo prepared >> "$HOME/.cache_after_prepare_count"
+        run: |
+          set -e
+          [ "$(grep -c prepared "$HOME/.cache_after_prepare_count")" -eq 1 ]
+          cd $GITHUB_WORKSPACE;
+          ls -lah
+          whoami
+          env
+          /sbin/sysctl hw.model
+          /sbin/sysctl hw.ncpu
+          /sbin/sysctl hw.physmem
+          /sbin/sysctl hw.usermem
+          /usr/bin/vmstat
+
+    - name: Verify prepare was skipped
+      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[]}')['x86_64'], 'rsync') }}
+      run: |
+        set -e
+        echo "cache-after-prepare-hit=${{ steps.test.outputs.cache-after-prepare-hit }}"
+        [ "${{ steps.test.outputs.cache-after-prepare-hit }}" = "true" ]
+    - name: Collect VM debug artifacts
+      if: failure()
+      run: |
+        mkdir -p ./vm-debug-artifacts
+        find /home/runner/work/_actions -type d -name output 2>/dev/null | while read d; do
+          find "$d" -type f \( -name "*.log" -o -name "*.ppm" \) | while read f; do
+            rel="${f#/home/runner/work/_actions/}"
+            mkdir -p "./vm-debug-artifacts/$(dirname "$rel")"
+            cp "$f" "./vm-debug-artifacts/$rel"
+          done
+        done
+        echo "Collected:"
+        find ./vm-debug-artifacts -type f || true
+    - name: Upload VM debug artifacts
+      if: failure()
+      uses: actions/upload-artifact@v7
+      with:
+        name: vm-debug-${{ github.job }}-${{ strategy.job-index }}
+        path: vm-debug-artifacts/
+        retention-days: 7
+        if-no-files-found: ignore
+
   testerr:
     strategy:
       fail-fast: false
@@ -1093,7 +1221,7 @@ jobs:
     - name: Test in NetBSD
       id: testerr
       continue-on-error: true
-      uses: vmactions/netbsd-vm@e62598b4d836960bedf35da4e507115319a38779
+      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
       with:
         usesh: true
         debug: true
@@ -1121,7 +1249,7 @@ jobs:
     - name: Test in NetBSD
       id: testpass
       continue-on-error: true
-      uses: vmactions/netbsd-vm@e62598b4d836960bedf35da4e507115319a38779
+      uses: vmactions/netbsd-vm@05648513fd9759ed1abbc84e710858c6f8e542d0
       with:
         usesh: true
         debug: true
