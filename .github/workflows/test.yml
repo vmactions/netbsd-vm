@@ -30,7 +30,7 @@ jobs:
       matrix:
         release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1"
 , ""]
-        arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x"]
+        arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386"]
         runs: [ "ubuntu-24.04", "ubuntu-24.04-arm"]
         exclude:
           - runs: "ubuntu-24.04-arm"
@@ -45,6 +45,8 @@ jobs:
             arch: "ppc64le"
           - runs: "ubuntu-24.04-arm"
             arch: "s390x"
+          - runs: "ubuntu-24.04-arm"
+            arch: "i386"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
           # sparc64 (QEMU sun4u, TCG) is still built and shipped, but NOT
           # CI-tested: the emulated CMD646 PCI-IDE and wm0 NIC intermittently
@@ -243,7 +245,7 @@ jobs:
       matrix:
         release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1"
 , ""]
-        arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x"]
+        arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386"]
         runs: [ "ubuntu-24.04", "ubuntu-24.04-arm"]
         exclude:
           - runs: "ubuntu-24.04-arm"
@@ -258,6 +260,8 @@ jobs:
             arch: "ppc64le"
           - runs: "ubuntu-24.04-arm"
             arch: "s390x"
+          - runs: "ubuntu-24.04-arm"
+            arch: "i386"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
           # sparc64 (QEMU sun4u, TCG) is still built and shipped, but NOT
           # CI-tested: the emulated CMD646 PCI-IDE and wm0 NIC intermittently
@@ -449,7 +453,7 @@ jobs:
       matrix:
         release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1"
 , ""]
-        arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x"]
+        arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386"]
         runs: [ "ubuntu-24.04", "ubuntu-24.04-arm"]
         exclude:
           - runs: "ubuntu-24.04-arm"
@@ -464,6 +468,8 @@ jobs:
             arch: "ppc64le"
           - runs: "ubuntu-24.04-arm"
             arch: "s390x"
+          - runs: "ubuntu-24.04-arm"
+            arch: "i386"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
           # sparc64 (QEMU sun4u, TCG) is still built and shipped, but NOT
           # CI-tested: the emulated CMD646 PCI-IDE and wm0 NIC intermittently
@@ -669,7 +675,7 @@ jobs:
       matrix:
         release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1"
 , ""]
-        arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x"]
+        arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386"]
         runs: [ "ubuntu-24.04", "ubuntu-24.04-arm"]
         disableCache: [ "", "true"]
         exclude:
@@ -685,6 +691,8 @@ jobs:
             arch: "ppc64le"
           - runs: "ubuntu-24.04-arm"
             arch: "s390x"
+          - runs: "ubuntu-24.04-arm"
+            arch: "i386"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
           # sparc64 (QEMU sun4u, TCG) is still built and shipped, but NOT
           # CI-tested: the emulated CMD646 PCI-IDE and wm0 NIC intermittently
@@ -870,7 +878,7 @@ jobs:
       matrix:
         release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1"
 , ""]
-        arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x"]
+        arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386"]
         runs: [ "ubuntu-24.04", "ubuntu-24.04-arm"]
         exclude:
           - runs: "ubuntu-24.04-arm"
@@ -885,6 +893,8 @@ jobs:
             arch: "ppc64le"
           - runs: "ubuntu-24.04-arm"
             arch: "s390x"
+          - runs: "ubuntu-24.04-arm"
+            arch: "i386"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
           # sparc64 (QEMU sun4u, TCG) is still built and shipped, but NOT
           # CI-tested: the emulated CMD646 PCI-IDE and wm0 NIC intermittently
