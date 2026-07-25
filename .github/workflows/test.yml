@@ -48,13 +48,21 @@ jobs:
           - runs: "ubuntu-24.04-arm"
             arch: "i386"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
-          # sparc64 (QEMU sun4u, TCG) is still built and shipped, but NOT
-          # CI-tested: the emulated CMD646 PCI-IDE and wm0 NIC intermittently
-          # lose interrupts under net+disk DMA, so the guest occasionally fails
-          # to boot (cmdide0 "lost interrupt" -> stalls -> ssh probe times out).
-          # The single-key exclude drops every sparc64 combo from all test jobs.
-          # Mirrors anyvm's netbsd.yml stance; run sparc64 by hand if needed.
-          - arch: "sparc64"
+          # sparc64 used to be excluded here (2026-06-30 .. 2026-07-25): the
+          # emulated CMD646 PCI-IDE and wm0 NIC intermittently lost interrupts
+          # under net+disk DMA, so guests randomly failed to boot. That was a
+          # QEMU bug, not a guest one -- the sun4u sabre PCI host bridge
+          # overwrites an outstanding IRQ request, so the guest's
+          # interrupt-clear is dropped and both devices wedge. netbsd-builder
+          # now patches it and publishes the fixed qemu-system-sparc64, which
+          # anyvm >= 0.5.3 downloads and forces on Linux x86_64 hosts; the
+          # sparc64 confs pin BUILDER_VERSION=2.1.5 / ANYVM_VERSION=0.5.3 so
+          # every run gets it. Verified by anyvm's own netbsd.yml testsparc64
+          # job (10.0/10.1/11.0 x sshfs,nfs,sys-nfs,scp,rsync -- all green),
+          # so sparc64 is CI-tested again and the exclude is gone.
+          # NOTE the arm64-runner excludes above still drop sparc64 there on
+          # purpose: the patched QEMU tarball is a Linux x86_64 build, so an
+          # ubuntu-24.04-arm runner would fall back to stock QEMU and wedge.
           - release: "9.0"
             arch: riscv64
           - release: "9.0"
@@ -167,7 +175,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","rsync"],"ppc64le":[],"s390x":[],"i386":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'sshfs') }}
       id: test
-      uses: vmactions/netbsd-vm@c1c3d77e5343d02fde72065a5378195b22288dd9
+      uses: vmactions/netbsd-vm@75d73584877467eff49b75450056c6e469ab7ac0
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -279,13 +287,21 @@ jobs:
           - runs: "ubuntu-24.04-arm"
             arch: "i386"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
-          # sparc64 (QEMU sun4u, TCG) is still built and shipped, but NOT
-          # CI-tested: the emulated CMD646 PCI-IDE and wm0 NIC intermittently
-          # lose interrupts under net+disk DMA, so the guest occasionally fails
-          # to boot (cmdide0 "lost interrupt" -> stalls -> ssh probe times out).
-          # The single-key exclude drops every sparc64 combo from all test jobs.
-          # Mirrors anyvm's netbsd.yml stance; run sparc64 by hand if needed.
-          - arch: "sparc64"
+          # sparc64 used to be excluded here (2026-06-30 .. 2026-07-25): the
+          # emulated CMD646 PCI-IDE and wm0 NIC intermittently lost interrupts
+          # under net+disk DMA, so guests randomly failed to boot. That was a
+          # QEMU bug, not a guest one -- the sun4u sabre PCI host bridge
+          # overwrites an outstanding IRQ request, so the guest's
+          # interrupt-clear is dropped and both devices wedge. netbsd-builder
+          # now patches it and publishes the fixed qemu-system-sparc64, which
+          # anyvm >= 0.5.3 downloads and forces on Linux x86_64 hosts; the
+          # sparc64 confs pin BUILDER_VERSION=2.1.5 / ANYVM_VERSION=0.5.3 so
+          # every run gets it. Verified by anyvm's own netbsd.yml testsparc64
+          # job (10.0/10.1/11.0 x sshfs,nfs,sys-nfs,scp,rsync -- all green),
+          # so sparc64 is CI-tested again and the exclude is gone.
+          # NOTE the arm64-runner excludes above still drop sparc64 there on
+          # purpose: the patched QEMU tarball is a Linux x86_64 build, so an
+          # ubuntu-24.04-arm runner would fall back to stock QEMU and wedge.
           - release: "9.0"
             arch: riscv64
           - release: "9.0"
@@ -390,7 +406,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","rsync"],"ppc64le":[],"s390x":[],"i386":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'nfs') }}
       id: test
-      uses: vmactions/netbsd-vm@c1c3d77e5343d02fde72065a5378195b22288dd9
+      uses: vmactions/netbsd-vm@75d73584877467eff49b75450056c6e469ab7ac0
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -503,13 +519,21 @@ jobs:
           - runs: "ubuntu-24.04-arm"
             arch: "i386"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
-          # sparc64 (QEMU sun4u, TCG) is still built and shipped, but NOT
-          # CI-tested: the emulated CMD646 PCI-IDE and wm0 NIC intermittently
-          # lose interrupts under net+disk DMA, so the guest occasionally fails
-          # to boot (cmdide0 "lost interrupt" -> stalls -> ssh probe times out).
-          # The single-key exclude drops every sparc64 combo from all test jobs.
-          # Mirrors anyvm's netbsd.yml stance; run sparc64 by hand if needed.
-          - arch: "sparc64"
+          # sparc64 used to be excluded here (2026-06-30 .. 2026-07-25): the
+          # emulated CMD646 PCI-IDE and wm0 NIC intermittently lost interrupts
+          # under net+disk DMA, so guests randomly failed to boot. That was a
+          # QEMU bug, not a guest one -- the sun4u sabre PCI host bridge
+          # overwrites an outstanding IRQ request, so the guest's
+          # interrupt-clear is dropped and both devices wedge. netbsd-builder
+          # now patches it and publishes the fixed qemu-system-sparc64, which
+          # anyvm >= 0.5.3 downloads and forces on Linux x86_64 hosts; the
+          # sparc64 confs pin BUILDER_VERSION=2.1.5 / ANYVM_VERSION=0.5.3 so
+          # every run gets it. Verified by anyvm's own netbsd.yml testsparc64
+          # job (10.0/10.1/11.0 x sshfs,nfs,sys-nfs,scp,rsync -- all green),
+          # so sparc64 is CI-tested again and the exclude is gone.
+          # NOTE the arm64-runner excludes above still drop sparc64 there on
+          # purpose: the patched QEMU tarball is a Linux x86_64 build, so an
+          # ubuntu-24.04-arm runner would fall back to stock QEMU and wedge.
           - release: "9.0"
             arch: riscv64
           - release: "9.0"
@@ -621,7 +645,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","rsync"],"ppc64le":[],"s390x":[],"i386":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'scp') }}
       id: test
-      uses: vmactions/netbsd-vm@c1c3d77e5343d02fde72065a5378195b22288dd9
+      uses: vmactions/netbsd-vm@75d73584877467eff49b75450056c6e469ab7ac0
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -742,13 +766,21 @@ jobs:
           - runs: "ubuntu-24.04-arm"
             arch: "i386"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
-          # sparc64 (QEMU sun4u, TCG) is still built and shipped, but NOT
-          # CI-tested: the emulated CMD646 PCI-IDE and wm0 NIC intermittently
-          # lose interrupts under net+disk DMA, so the guest occasionally fails
-          # to boot (cmdide0 "lost interrupt" -> stalls -> ssh probe times out).
-          # The single-key exclude drops every sparc64 combo from all test jobs.
-          # Mirrors anyvm's netbsd.yml stance; run sparc64 by hand if needed.
-          - arch: "sparc64"
+          # sparc64 used to be excluded here (2026-06-30 .. 2026-07-25): the
+          # emulated CMD646 PCI-IDE and wm0 NIC intermittently lost interrupts
+          # under net+disk DMA, so guests randomly failed to boot. That was a
+          # QEMU bug, not a guest one -- the sun4u sabre PCI host bridge
+          # overwrites an outstanding IRQ request, so the guest's
+          # interrupt-clear is dropped and both devices wedge. netbsd-builder
+          # now patches it and publishes the fixed qemu-system-sparc64, which
+          # anyvm >= 0.5.3 downloads and forces on Linux x86_64 hosts; the
+          # sparc64 confs pin BUILDER_VERSION=2.1.5 / ANYVM_VERSION=0.5.3 so
+          # every run gets it. Verified by anyvm's own netbsd.yml testsparc64
+          # job (10.0/10.1/11.0 x sshfs,nfs,sys-nfs,scp,rsync -- all green),
+          # so sparc64 is CI-tested again and the exclude is gone.
+          # NOTE the arm64-runner excludes above still drop sparc64 there on
+          # purpose: the patched QEMU tarball is a Linux x86_64 build, so an
+          # ubuntu-24.04-arm runner would fall back to stock QEMU and wedge.
           - release: "9.0"
             arch: riscv64
           - release: "9.0"
@@ -853,7 +885,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","rsync"],"ppc64le":[],"s390x":[],"i386":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@c1c3d77e5343d02fde72065a5378195b22288dd9
+      uses: vmactions/netbsd-vm@75d73584877467eff49b75450056c6e469ab7ac0
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -960,13 +992,21 @@ jobs:
           - runs: "ubuntu-24.04-arm"
             arch: "i386"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
-          # sparc64 (QEMU sun4u, TCG) is still built and shipped, but NOT
-          # CI-tested: the emulated CMD646 PCI-IDE and wm0 NIC intermittently
-          # lose interrupts under net+disk DMA, so the guest occasionally fails
-          # to boot (cmdide0 "lost interrupt" -> stalls -> ssh probe times out).
-          # The single-key exclude drops every sparc64 combo from all test jobs.
-          # Mirrors anyvm's netbsd.yml stance; run sparc64 by hand if needed.
-          - arch: "sparc64"
+          # sparc64 used to be excluded here (2026-06-30 .. 2026-07-25): the
+          # emulated CMD646 PCI-IDE and wm0 NIC intermittently lost interrupts
+          # under net+disk DMA, so guests randomly failed to boot. That was a
+          # QEMU bug, not a guest one -- the sun4u sabre PCI host bridge
+          # overwrites an outstanding IRQ request, so the guest's
+          # interrupt-clear is dropped and both devices wedge. netbsd-builder
+          # now patches it and publishes the fixed qemu-system-sparc64, which
+          # anyvm >= 0.5.3 downloads and forces on Linux x86_64 hosts; the
+          # sparc64 confs pin BUILDER_VERSION=2.1.5 / ANYVM_VERSION=0.5.3 so
+          # every run gets it. Verified by anyvm's own netbsd.yml testsparc64
+          # job (10.0/10.1/11.0 x sshfs,nfs,sys-nfs,scp,rsync -- all green),
+          # so sparc64 is CI-tested again and the exclude is gone.
+          # NOTE the arm64-runner excludes above still drop sparc64 there on
+          # purpose: the patched QEMU tarball is a Linux x86_64 build, so an
+          # ubuntu-24.04-arm runner would fall back to stock QEMU and wedge.
           - release: "9.0"
             arch: riscv64
           - release: "9.0"
@@ -1071,7 +1111,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","rsync"],"ppc64le":[],"s390x":[],"i386":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@c1c3d77e5343d02fde72065a5378195b22288dd9
+      uses: vmactions/netbsd-vm@75d73584877467eff49b75450056c6e469ab7ac0
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -1199,7 +1239,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","rsync"],"ppc64le":[],"s390x":[],"i386":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@c1c3d77e5343d02fde72065a5378195b22288dd9
+      uses: vmactions/netbsd-vm@75d73584877467eff49b75450056c6e469ab7ac0
       with:
         mem: 4096
         usesh: true
@@ -1264,7 +1304,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","rsync"],"ppc64le":[],"s390x":[],"i386":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@c1c3d77e5343d02fde72065a5378195b22288dd9
+      uses: vmactions/netbsd-vm@75d73584877467eff49b75450056c6e469ab7ac0
       with:
         mem: 4096
         usesh: true
@@ -1330,7 +1370,7 @@ jobs:
     - name: Test in NetBSD
       id: testerr
       continue-on-error: true
-      uses: vmactions/netbsd-vm@c1c3d77e5343d02fde72065a5378195b22288dd9
+      uses: vmactions/netbsd-vm@75d73584877467eff49b75450056c6e469ab7ac0
       with:
         usesh: true
         debug: true
@@ -1358,7 +1398,7 @@ jobs:
     - name: Test in NetBSD
       id: testpass
       continue-on-error: true
-      uses: vmactions/netbsd-vm@c1c3d77e5343d02fde72065a5378195b22288dd9
+      uses: vmactions/netbsd-vm@75d73584877467eff49b75450056c6e469ab7ac0
       with:
         usesh: true
         debug: true
