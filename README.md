@@ -36,17 +36,19 @@ All the supported releases are here:
 
 
 
-| Release | x86_64(amd64)  | aarch64(arm64) | riscv64 | sparc64 |
+| Release | x86_64(amd64) | aarch64(arm64) | riscv64 | sparc64 |
 |---------|---------|---------|---------|---------|
-|  11.0   |  ✅ (rsync,scp,sshfs,nfs)     |   ✅ (rsync,scp,sshfs,nfs)   |   ✅ (rsync,scp,sshfs,nfs)   |   ✅ (scp,sshfs,nfs)   |
-|  10.1   |  ✅ (rsync,scp,sshfs,nfs)     |   ✅ (rsync,scp,sshfs,nfs)   |   —   |   ✅ (rsync,scp,sshfs,nfs)   |
-|  10.0   |  ✅ (rsync,scp,sshfs,nfs)     |   ✅ (rsync,scp,sshfs,nfs)   |   —   |   ✅ (rsync,scp,sshfs,nfs)   |
-|  9.4    |  ✅ (rsync,scp,sshfs,nfs)     |   ✅ (rsync,scp,sshfs,nfs)   |   —   |   —   |
-|  9.3    |  ✅ (rsync,scp,sshfs,nfs)     |   ✅ (rsync,scp,sshfs,nfs)   |   —   |   —   |
-|  9.2    |  ✅ (rsync,scp,sshfs,nfs)     |   ✅ (rsync,scp,sshfs,nfs)   |   —   |   —   |
-|  9.1    |  ✅ (rsync,scp,sshfs,nfs)     |   ✅ (rsync,scp,sshfs,nfs)   |   —   |   —   |
-|  9.0    |  ✅ (rsync,scp,sshfs,nfs)     |   ✅ (rsync,scp,sshfs,nfs)   |   —   |   —   |
+| 11.0 | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | ✅ (scp,sshfs,nfs) |
+| 10.1 | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | — | ✅ (scp,sshfs,nfs,rsync) |
+| 10.0 | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | — | ✅ (scp,sshfs,nfs,rsync) |
+| 9.4 | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | — | — |
+| 9.3 | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | — | — |
+| 9.2 | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | — | — |
+| 9.1 | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | — | — |
+| 9.0 | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | — | — |
 
+<!-- arch-label: x86_64 = x86_64(amd64) -->
+<!-- arch-label: aarch64 = aarch64(arm64) -->
 
 > **Note:** NetBSD sparc64 runs under QEMU `sun4u` (TCG only). All releases
 > ship a single-IDE-disk image. The CMD646 IDE "lost interrupt" wedge that
@@ -62,7 +64,16 @@ All the supported releases are here:
 > tarball, so there sparc64 falls back to the system QEMU and can still wedge
 > under heavy concurrent I/O -- a re-run usually succeeds.
 
-
+> **Note:** NetBSD 8.0/8.1/8.2 confs are kept on disk but deliberately
+> shelved (undocumented -- no table row, no releases.json entry; verified
+> against `git show HEAD:.github/data/table.md`, which has never listed a
+> 8.x row). The official 8.0 pkgsrc bulk-build source has gone from
+> upstream (commit b6a2576 "revert my last changes. the official 8.0 pkg
+> src has gone, we can not build it"), so 8.x cannot produce a working
+> image.
+<!-- shelved: 8.0 -->
+<!-- shelved: 8.1 -->
+<!-- shelved: 8.2 -->
 
 
 
@@ -112,7 +123,7 @@ jobs:
 ```
 
 
-The latest major version is: `v1`, which is the most recommended to use. (You can also use the latest full version: `v1.4.4`)  
+The latest major version is: `v1`, which is the most recommended to use. (You can also use the latest full version: `v1.4.5`)  
 
 
 If you are migrating from the previous `v0`, please change the `runs-on: ` to `runs-on: ubuntu-latest`
