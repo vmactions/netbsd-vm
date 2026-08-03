@@ -92,8 +92,16 @@
             arch: i386
           - release: "10.1"
             arch: loongarch64
-          - release: ""
-            arch: riscv64
+          - release: "11.0"
+            arch: powerpc64
+          - release: "11.0"
+            arch: ppc64le
+          - release: "11.0"
+            arch: s390x
+          - release: "11.0"
+            arch: i386
+          - release: "11.0"
+            arch: loongarch64
           - release: ""
             arch: powerpc64
           - release: ""
