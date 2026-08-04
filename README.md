@@ -103,7 +103,7 @@ jobs:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
         prepare: |
-          /usr/sbin/pkg_add -u curl || PKG_PATH=http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/x86_64/9.0_2026Q1/All /usr/sbin/pkg_add -u curl
+          /usr/sbin/pkg_add -u curl
 
         run: |
           cd $GITHUB_WORKSPACE;
@@ -392,7 +392,7 @@ The `prepare` step (installing packages etc.) normally runs on every build. With
       with:
         cache-after-prepare: true
         prepare: |
-          /usr/sbin/pkg_add -u curl || PKG_PATH=http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/x86_64/9.0_2026Q1/All /usr/sbin/pkg_add -u curl
+          /usr/sbin/pkg_add -u curl
         run: |
           ...
 ...
