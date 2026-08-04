@@ -201,11 +201,11 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'sshfs') }}
       id: test
-      uses: vmactions/netbsd-vm@46d2537eec6e272095eeb99cfcb6c416e81fa1bc
+      uses: vmactions/netbsd-vm@f88e3f24a96d58d1a5791856a4bdde3836aba198
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
-          /usr/sbin/pkg_add -u curl || PKG_PATH=http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/x86_64/9.0_2026Q1/All /usr/sbin/pkg_add -u curl
+          /usr/sbin/pkg_add -u curl
         mem: 4096
         release: ${{ matrix.release }}
         arch: ${{ matrix.arch }}
@@ -458,11 +458,11 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'nfs') }}
       id: test
-      uses: vmactions/netbsd-vm@46d2537eec6e272095eeb99cfcb6c416e81fa1bc
+      uses: vmactions/netbsd-vm@f88e3f24a96d58d1a5791856a4bdde3836aba198
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
-          /usr/sbin/pkg_add -u curl || PKG_PATH=http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/x86_64/9.0_2026Q1/All /usr/sbin/pkg_add -u curl
+          /usr/sbin/pkg_add -u curl
         mem: 4096
         release: ${{ matrix.release }}
         arch: ${{ matrix.arch }}
@@ -723,11 +723,11 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'scp') }}
       id: test
-      uses: vmactions/netbsd-vm@46d2537eec6e272095eeb99cfcb6c416e81fa1bc
+      uses: vmactions/netbsd-vm@f88e3f24a96d58d1a5791856a4bdde3836aba198
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
-          /usr/sbin/pkg_add -u curl || PKG_PATH=http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/x86_64/9.0_2026Q1/All /usr/sbin/pkg_add -u curl
+          /usr/sbin/pkg_add -u curl
         mem: 4096
         release: ${{ matrix.release }}
         arch: ${{ matrix.arch }}
@@ -989,11 +989,11 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@46d2537eec6e272095eeb99cfcb6c416e81fa1bc
+      uses: vmactions/netbsd-vm@f88e3f24a96d58d1a5791856a4bdde3836aba198
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
-          /usr/sbin/pkg_add -u curl || PKG_PATH=http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/x86_64/9.0_2026Q1/All /usr/sbin/pkg_add -u curl
+          /usr/sbin/pkg_add -u curl
         mem: 4096
         release: ${{ matrix.release }}
         arch: ${{ matrix.arch }}
@@ -1241,11 +1241,11 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@46d2537eec6e272095eeb99cfcb6c416e81fa1bc
+      uses: vmactions/netbsd-vm@f88e3f24a96d58d1a5791856a4bdde3836aba198
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
-          /usr/sbin/pkg_add -u curl || PKG_PATH=http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/x86_64/9.0_2026Q1/All /usr/sbin/pkg_add -u curl
+          /usr/sbin/pkg_add -u curl
         mem: 4096
         release: ${{ matrix.release }}
         arch: ${{ matrix.arch }}
@@ -1369,7 +1369,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@46d2537eec6e272095eeb99cfcb6c416e81fa1bc
+      uses: vmactions/netbsd-vm@f88e3f24a96d58d1a5791856a4bdde3836aba198
       with:
         mem: 4096
         usesh: true
@@ -1377,7 +1377,7 @@ jobs:
         debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
         cache-after-prepare: true
         prepare: |
-          /usr/sbin/pkg_add -u curl || PKG_PATH=http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/x86_64/9.0_2026Q1/All /usr/sbin/pkg_add -u curl
+          /usr/sbin/pkg_add -u curl
           echo prepared >> "$HOME/.cache_after_prepare_count"
         run: |
           set -e
@@ -1434,7 +1434,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@46d2537eec6e272095eeb99cfcb6c416e81fa1bc
+      uses: vmactions/netbsd-vm@f88e3f24a96d58d1a5791856a4bdde3836aba198
       with:
         mem: 4096
         usesh: true
@@ -1442,7 +1442,7 @@ jobs:
         debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
         cache-after-prepare: true
         prepare: |
-          /usr/sbin/pkg_add -u curl || PKG_PATH=http://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/x86_64/9.0_2026Q1/All /usr/sbin/pkg_add -u curl
+          /usr/sbin/pkg_add -u curl
           echo prepared >> "$HOME/.cache_after_prepare_count"
         run: |
           set -e
@@ -1500,7 +1500,7 @@ jobs:
     - name: Test in NetBSD
       id: testerr
       continue-on-error: true
-      uses: vmactions/netbsd-vm@46d2537eec6e272095eeb99cfcb6c416e81fa1bc
+      uses: vmactions/netbsd-vm@f88e3f24a96d58d1a5791856a4bdde3836aba198
       with:
         usesh: true
         debug: true
@@ -1528,7 +1528,7 @@ jobs:
     - name: Test in NetBSD
       id: testpass
       continue-on-error: true
-      uses: vmactions/netbsd-vm@46d2537eec6e272095eeb99cfcb6c416e81fa1bc
+      uses: vmactions/netbsd-vm@f88e3f24a96d58d1a5791856a4bdde3836aba198
       with:
         usesh: true
         debug: true
