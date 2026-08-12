@@ -38,14 +38,14 @@ All the supported releases are here:
 
 | Release | x86_64(amd64) | aarch64(arm64) | riscv64 | sparc64 |
 |---------|---------|---------|---------|---------|
-| 11.0 | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | ✅ (scp,sshfs,nfs) |
-| 10.1 | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | — | ✅ (scp,sshfs,nfs,rsync) |
-| 10.0 | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | — | ✅ (scp,sshfs,nfs,rsync) |
-| 9.4 | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | — | — |
-| 9.3 | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | — | — |
-| 9.2 | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | — | — |
-| 9.1 | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | — | — |
-| 9.0 | ✅ (rsync,scp,sshfs,nfs) | ✅ (rsync,scp,sshfs,nfs) | — | — |
+| 11.0 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (scp,sshfs,nfs,tar) |
+| 10.1 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | — | ✅ (scp,sshfs,nfs,rsync,tar) |
+| 10.0 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | — | ✅ (scp,sshfs,nfs,rsync,tar) |
+| 9.4 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | — | — |
+| 9.3 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | — | — |
+| 9.2 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | — | — |
+| 9.1 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | — | — |
+| 9.0 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | — | — |
 
 <!-- arch-label: x86_64 = x86_64(amd64) -->
 <!-- arch-label: aarch64 = aarch64(arm64) -->
@@ -101,7 +101,6 @@ jobs:
       uses: vmactions/netbsd-vm@v1
       with:
         envs: 'MYTOKEN MYTOKEN2'
-        usesh: true
         prepare: |
           /usr/sbin/pkg_add -u curl
 
@@ -142,6 +141,8 @@ All the source code tree in the Host machine are mounted into the VM.
 All the `GITHUB_*` as well as `CI=true` env variables are passed into the VM.
 
 So, you will have the same directory and same default env variables when you `run` the CI script.
+
+The `prepare` and `run` scripts are always executed with `sh` in the VM, whatever the default login shell of the VM is.
 
 
 
