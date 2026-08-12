@@ -199,7 +199,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'sshfs') }}
       id: test
-      uses: vmactions/netbsd-vm@8b38e14f564957198516c547c4e1029d9ce18278
+      uses: vmactions/netbsd-vm@e082762ab9da3c7ea85a8b9fdd8d1edecb78569b
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -212,7 +212,6 @@ jobs:
           "8080": "80"
           "8443": "443"
           udp:"8081": "80"
-        usesh: true
         debug: true
         debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
         sync: sshfs
@@ -456,7 +455,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'nfs') }}
       id: test
-      uses: vmactions/netbsd-vm@8b38e14f564957198516c547c4e1029d9ce18278
+      uses: vmactions/netbsd-vm@e082762ab9da3c7ea85a8b9fdd8d1edecb78569b
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -469,7 +468,6 @@ jobs:
           "8080": "80"
           "8443": "443"
           udp:"8081": "80"
-        usesh: true
         debug: true
         debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
         sync: nfs
@@ -721,7 +719,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'scp') }}
       id: test
-      uses: vmactions/netbsd-vm@8b38e14f564957198516c547c4e1029d9ce18278
+      uses: vmactions/netbsd-vm@e082762ab9da3c7ea85a8b9fdd8d1edecb78569b
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -734,7 +732,6 @@ jobs:
           "8080": "80"
           "8443": "443"
           udp:"8081": "80"
-        usesh: true
         debug: true
         debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
         sync: scp
@@ -987,7 +984,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@8b38e14f564957198516c547c4e1029d9ce18278
+      uses: vmactions/netbsd-vm@e082762ab9da3c7ea85a8b9fdd8d1edecb78569b
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -1000,7 +997,6 @@ jobs:
           "8080": "80"
           "8443": "443"
           udp:"8081": "80"
-        usesh: true
         debug: true
         debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
         disable-cache: ${{ matrix.disableCache }}
@@ -1239,7 +1235,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@8b38e14f564957198516c547c4e1029d9ce18278
+      uses: vmactions/netbsd-vm@e082762ab9da3c7ea85a8b9fdd8d1edecb78569b
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -1252,7 +1248,6 @@ jobs:
           "8080": "80"
           "8443": "443"
           udp:"8081": "80"
-        usesh: true
         debug: true
         debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
         custom-shell-name: vmsh
@@ -1367,10 +1362,9 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@8b38e14f564957198516c547c4e1029d9ce18278
+      uses: vmactions/netbsd-vm@e082762ab9da3c7ea85a8b9fdd8d1edecb78569b
       with:
         mem: 4096
-        usesh: true
         debug: true
         debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
         cache-after-prepare: true
@@ -1432,10 +1426,9 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@8b38e14f564957198516c547c4e1029d9ce18278
+      uses: vmactions/netbsd-vm@e082762ab9da3c7ea85a8b9fdd8d1edecb78569b
       with:
         mem: 4096
-        usesh: true
         debug: true
         debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
         cache-after-prepare: true
@@ -1498,9 +1491,8 @@ jobs:
     - name: Test in NetBSD
       id: testerr
       continue-on-error: true
-      uses: vmactions/netbsd-vm@8b38e14f564957198516c547c4e1029d9ce18278
+      uses: vmactions/netbsd-vm@e082762ab9da3c7ea85a8b9fdd8d1edecb78569b
       with:
-        usesh: true
         debug: true
         run: |
           echo "this is an error"
@@ -1526,9 +1518,8 @@ jobs:
     - name: Test in NetBSD
       id: testpass
       continue-on-error: true
-      uses: vmactions/netbsd-vm@8b38e14f564957198516c547c4e1029d9ce18278
+      uses: vmactions/netbsd-vm@e082762ab9da3c7ea85a8b9fdd8d1edecb78569b
       with:
-        usesh: true
         debug: true
         run: |
           echo "this is a normal command"
