@@ -12,6 +12,8 @@
             arch: i386
           - release: "9.0"
             arch: loongarch64
+          - release: "9.0"
+            arch: armv7
           - release: "9.1"
             arch: riscv64
           - release: "9.1"
@@ -26,6 +28,8 @@
             arch: i386
           - release: "9.1"
             arch: loongarch64
+          - release: "9.1"
+            arch: armv7
           - release: "9.2"
             arch: riscv64
           - release: "9.2"
@@ -40,6 +44,8 @@
             arch: i386
           - release: "9.2"
             arch: loongarch64
+          - release: "9.2"
+            arch: armv7
           - release: "9.3"
             arch: riscv64
           - release: "9.3"
@@ -54,6 +60,8 @@
             arch: i386
           - release: "9.3"
             arch: loongarch64
+          - release: "9.3"
+            arch: armv7
           - release: "9.4"
             arch: riscv64
           - release: "9.4"
@@ -68,6 +76,8 @@
             arch: i386
           - release: "9.4"
             arch: loongarch64
+          - release: "9.4"
+            arch: armv7
           - release: "10.0"
             arch: riscv64
           - release: "10.0"
@@ -80,6 +90,8 @@
             arch: i386
           - release: "10.0"
             arch: loongarch64
+          - release: "10.0"
+            arch: armv7
           - release: "10.1"
             arch: riscv64
           - release: "10.1"
@@ -92,6 +104,8 @@
             arch: i386
           - release: "10.1"
             arch: loongarch64
+          - release: "10.1"
+            arch: armv7
           - release: "11.0"
             arch: powerpc64
           - release: "11.0"
@@ -102,6 +116,8 @@
             arch: i386
           - release: "11.0"
             arch: loongarch64
+          - release: "11.0"
+            arch: armv7
           - release: ""
             arch: powerpc64
           - release: ""
@@ -112,3 +128,5 @@
             arch: i386
           - release: ""
             arch: loongarch64
+          - release: ""
+            arch: armv7
