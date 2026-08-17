@@ -233,7 +233,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'sshfs') }}
       id: test
-      uses: vmactions/netbsd-vm@5153bf99379ad3d2fd653dcb58e9eebe6dcbb3e4
+      uses: vmactions/netbsd-vm@5eab95c3f7ac1d9cdf29020d2a0438738c4017b5
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -511,7 +511,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'nfs') }}
       id: test
-      uses: vmactions/netbsd-vm@5153bf99379ad3d2fd653dcb58e9eebe6dcbb3e4
+      uses: vmactions/netbsd-vm@5eab95c3f7ac1d9cdf29020d2a0438738c4017b5
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -797,7 +797,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'scp') }}
       id: test
-      uses: vmactions/netbsd-vm@5153bf99379ad3d2fd653dcb58e9eebe6dcbb3e4
+      uses: vmactions/netbsd-vm@5eab95c3f7ac1d9cdf29020d2a0438738c4017b5
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -931,7 +931,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}', 'tar') }}
       id: test
-      uses: vmactions/netbsd-vm@5153bf99379ad3d2fd653dcb58e9eebe6dcbb3e4
+      uses: vmactions/netbsd-vm@5eab95c3f7ac1d9cdf29020d2a0438738c4017b5
       with:
         mem: 4096
         debug: true
@@ -998,7 +998,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}', '9p') }}
       id: test
-      uses: vmactions/netbsd-vm@5153bf99379ad3d2fd653dcb58e9eebe6dcbb3e4
+      uses: vmactions/netbsd-vm@5eab95c3f7ac1d9cdf29020d2a0438738c4017b5
       with:
         mem: 4096
         debug: true
@@ -1230,7 +1230,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@5153bf99379ad3d2fd653dcb58e9eebe6dcbb3e4
+      uses: vmactions/netbsd-vm@5eab95c3f7ac1d9cdf29020d2a0438738c4017b5
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -1503,7 +1503,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@5153bf99379ad3d2fd653dcb58e9eebe6dcbb3e4
+      uses: vmactions/netbsd-vm@5eab95c3f7ac1d9cdf29020d2a0438738c4017b5
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -1630,7 +1630,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@5153bf99379ad3d2fd653dcb58e9eebe6dcbb3e4
+      uses: vmactions/netbsd-vm@5eab95c3f7ac1d9cdf29020d2a0438738c4017b5
       with:
         mem: 4096
         debug: true
@@ -1694,7 +1694,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs"],"aarch64":["rsync","scp","sshfs","nfs"],"riscv64":["rsync","scp","sshfs","nfs"],"powerpc64":[],"sparc64":["scp","sshfs","nfs"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@5153bf99379ad3d2fd653dcb58e9eebe6dcbb3e4
+      uses: vmactions/netbsd-vm@5eab95c3f7ac1d9cdf29020d2a0438738c4017b5
       with:
         mem: 4096
         debug: true
@@ -1774,7 +1774,7 @@ jobs:
     - name: Test in NetBSD
       id: testerr
       continue-on-error: true
-      uses: vmactions/netbsd-vm@5153bf99379ad3d2fd653dcb58e9eebe6dcbb3e4
+      uses: vmactions/netbsd-vm@5eab95c3f7ac1d9cdf29020d2a0438738c4017b5
       with:
         debug: true
         # A command that EXISTS and fails, rather than `false` or a made-up
@@ -1820,7 +1820,7 @@ jobs:
     - name: Test in NetBSD
       id: testpass
       continue-on-error: true
-      uses: vmactions/netbsd-vm@5153bf99379ad3d2fd653dcb58e9eebe6dcbb3e4
+      uses: vmactions/netbsd-vm@5eab95c3f7ac1d9cdf29020d2a0438738c4017b5
       with:
         debug: true
         # No `true` and no double quotes: this body runs on every guest, and
