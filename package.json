@@ -1,6 +1,6 @@
 {
   "name": "vmactions-NetBSD",
-  "version": "",
+  "version": "1.4.6",
   "description": "GitHub actions for NetBSD",
   "type": "module",
   "main": "index.js",
