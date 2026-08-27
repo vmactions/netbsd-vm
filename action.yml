@@ -4,7 +4,7 @@ inputs:
   osname:
     description: 'The OS name'
     required: true
-    default: 'NetBSD'
+    default: 'netbsd'
   prepare:
     description: 'Install some tools before CI runs'
     required: false
