@@ -38,6 +38,7 @@ All the supported releases are here:
 
 | Release | x86_64(amd64) | aarch64(arm64) | riscv64 | sparc64 |
 |---------|---------|---------|---------|---------|
+| 11.0-microvm | ✅ (rsync,scp,sshfs,tar) | — | — | — |
 | 11.0 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (scp,sshfs,nfs,tar) |
 | 10.1 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | — | ✅ (scp,sshfs,nfs,rsync,tar) |
 | 10.0 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | — | ✅ (scp,sshfs,nfs,rsync,tar) |
@@ -64,6 +65,14 @@ All the supported releases are here:
 > tarball, so there sparc64 falls back to the system QEMU and can still wedge
 > under heavy concurrent I/O -- a re-run usually succeeds.
 
+> **Note:** `11.0-microvm` is a fast-boot VARIANT of 11.0 (same install,
+> same userspace): anyvm boots NetBSD's official MICROVM kernel directly on
+> QEMU's `microvm` machine type (no BIOS/PCI/ACPI, virtio over MMIO), which
+> cuts boot-to-ssh about 4x vs the `pc` machine (7.4s vs 29.6s under KVM).
+> The kernel ships as the `netbsd-11.0-microvm-kernel` release asset. No
+> `nfs` sync: the MICROVM kernel has no NFS client and the GENERIC
+> `nfs.kmod` does not load into it; `sshfs` works (puffs is built in).
+
 > **Note:** NetBSD 8.0/8.1/8.2 confs are kept on disk but deliberately
 > shelved (undocumented -- no table row, no releases.json entry; verified
 > against `git show HEAD:.github/data/table.md`, which has never listed a
@@ -87,6 +96,11 @@ the installed disk as a compressed qcow2 image.
 Upstream install media: current releases from
 https://ftp.netbsd.org/pub/NetBSD/ and EOL releases from
 https://archive.netbsd.org/pub/NetBSD-archive/.
+
+The `-microvm` variants additionally ship NetBSD's own release MICROVM
+kernel (`binary/kernel/netbsd-MICROVM.gz`, SHA512-verified against the
+release checksums, gunzipped) as a `netbsd-<release>-microvm-kernel`
+asset; anyvm boots it directly on QEMU's `microvm` machine type.
 
 
 
