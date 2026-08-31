@@ -40,7 +40,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1", "11.0"
+        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1", "11.0", "11.0-microvm"
 , ""]
         arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386", "loongarch64", "armv7"]
         runs: [ "ubuntu-24.04", "ubuntu-24.04-arm"]
@@ -199,6 +199,24 @@ jobs:
             arch: loongarch64
           - release: "11.0"
             arch: armv7
+          - release: "11.0-microvm"
+            arch: aarch64
+          - release: "11.0-microvm"
+            arch: riscv64
+          - release: "11.0-microvm"
+            arch: powerpc64
+          - release: "11.0-microvm"
+            arch: sparc64
+          - release: "11.0-microvm"
+            arch: ppc64le
+          - release: "11.0-microvm"
+            arch: s390x
+          - release: "11.0-microvm"
+            arch: i386
+          - release: "11.0-microvm"
+            arch: loongarch64
+          - release: "11.0-microvm"
+            arch: armv7
           - release: ""
             arch: powerpc64
           - release: ""
@@ -233,7 +251,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'sshfs') }}
       id: test
-      uses: vmactions/netbsd-vm@fbe0b4b5f43f1327c39a62592538f1c7dd45e5c1
+      uses: vmactions/netbsd-vm@405bc5aebd57b5b9f6ca83553612b3b5b7fcbe63
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -326,7 +344,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1", "11.0"
+        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1", "11.0", "11.0-microvm"
 , ""]
         arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386", "loongarch64", "armv7"]
         runs: [ "ubuntu-24.04", "ubuntu-24.04-arm"]
@@ -485,6 +503,24 @@ jobs:
             arch: loongarch64
           - release: "11.0"
             arch: armv7
+          - release: "11.0-microvm"
+            arch: aarch64
+          - release: "11.0-microvm"
+            arch: riscv64
+          - release: "11.0-microvm"
+            arch: powerpc64
+          - release: "11.0-microvm"
+            arch: sparc64
+          - release: "11.0-microvm"
+            arch: ppc64le
+          - release: "11.0-microvm"
+            arch: s390x
+          - release: "11.0-microvm"
+            arch: i386
+          - release: "11.0-microvm"
+            arch: loongarch64
+          - release: "11.0-microvm"
+            arch: armv7
           - release: ""
             arch: powerpc64
           - release: ""
@@ -511,7 +547,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'nfs') }}
       id: test
-      uses: vmactions/netbsd-vm@fbe0b4b5f43f1327c39a62592538f1c7dd45e5c1
+      uses: vmactions/netbsd-vm@405bc5aebd57b5b9f6ca83553612b3b5b7fcbe63
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -605,7 +641,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1", "11.0"
+        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1", "11.0", "11.0-microvm"
 , ""]
         arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386", "loongarch64", "armv7"]
         runs: [ "ubuntu-24.04", "ubuntu-24.04-arm"]
@@ -764,6 +800,24 @@ jobs:
             arch: loongarch64
           - release: "11.0"
             arch: armv7
+          - release: "11.0-microvm"
+            arch: aarch64
+          - release: "11.0-microvm"
+            arch: riscv64
+          - release: "11.0-microvm"
+            arch: powerpc64
+          - release: "11.0-microvm"
+            arch: sparc64
+          - release: "11.0-microvm"
+            arch: ppc64le
+          - release: "11.0-microvm"
+            arch: s390x
+          - release: "11.0-microvm"
+            arch: i386
+          - release: "11.0-microvm"
+            arch: loongarch64
+          - release: "11.0-microvm"
+            arch: armv7
           - release: ""
             arch: powerpc64
           - release: ""
@@ -797,7 +851,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'scp') }}
       id: test
-      uses: vmactions/netbsd-vm@fbe0b4b5f43f1327c39a62592538f1c7dd45e5c1
+      uses: vmactions/netbsd-vm@405bc5aebd57b5b9f6ca83553612b3b5b7fcbe63
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -931,7 +985,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}', 'tar') }}
       id: test
-      uses: vmactions/netbsd-vm@fbe0b4b5f43f1327c39a62592538f1c7dd45e5c1
+      uses: vmactions/netbsd-vm@405bc5aebd57b5b9f6ca83553612b3b5b7fcbe63
       with:
         mem: 4096
         debug: true
@@ -998,7 +1052,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}', '9p') }}
       id: test
-      uses: vmactions/netbsd-vm@fbe0b4b5f43f1327c39a62592538f1c7dd45e5c1
+      uses: vmactions/netbsd-vm@405bc5aebd57b5b9f6ca83553612b3b5b7fcbe63
       with:
         mem: 4096
         debug: true
@@ -1044,7 +1098,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1", "11.0"
+        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1", "11.0", "11.0-microvm"
 , ""]
         arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386", "loongarch64", "armv7"]
         runs: [ "ubuntu-24.04", "ubuntu-24.04-arm"]
@@ -1204,6 +1258,24 @@ jobs:
             arch: loongarch64
           - release: "11.0"
             arch: armv7
+          - release: "11.0-microvm"
+            arch: aarch64
+          - release: "11.0-microvm"
+            arch: riscv64
+          - release: "11.0-microvm"
+            arch: powerpc64
+          - release: "11.0-microvm"
+            arch: sparc64
+          - release: "11.0-microvm"
+            arch: ppc64le
+          - release: "11.0-microvm"
+            arch: s390x
+          - release: "11.0-microvm"
+            arch: i386
+          - release: "11.0-microvm"
+            arch: loongarch64
+          - release: "11.0-microvm"
+            arch: armv7
           - release: ""
             arch: powerpc64
           - release: ""
@@ -1238,7 +1310,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@fbe0b4b5f43f1327c39a62592538f1c7dd45e5c1
+      uses: vmactions/netbsd-vm@405bc5aebd57b5b9f6ca83553612b3b5b7fcbe63
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -1326,7 +1398,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1", "11.0"
+        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "10.0", "10.1", "11.0", "11.0-microvm"
 , ""]
         arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386", "loongarch64", "armv7"]
         runs: [ "ubuntu-24.04", "ubuntu-24.04-arm"]
@@ -1485,6 +1557,24 @@ jobs:
             arch: loongarch64
           - release: "11.0"
             arch: armv7
+          - release: "11.0-microvm"
+            arch: aarch64
+          - release: "11.0-microvm"
+            arch: riscv64
+          - release: "11.0-microvm"
+            arch: powerpc64
+          - release: "11.0-microvm"
+            arch: sparc64
+          - release: "11.0-microvm"
+            arch: ppc64le
+          - release: "11.0-microvm"
+            arch: s390x
+          - release: "11.0-microvm"
+            arch: i386
+          - release: "11.0-microvm"
+            arch: loongarch64
+          - release: "11.0-microvm"
+            arch: armv7
           - release: ""
             arch: powerpc64
           - release: ""
@@ -1519,7 +1609,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@fbe0b4b5f43f1327c39a62592538f1c7dd45e5c1
+      uses: vmactions/netbsd-vm@405bc5aebd57b5b9f6ca83553612b3b5b7fcbe63
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -1646,7 +1736,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@fbe0b4b5f43f1327c39a62592538f1c7dd45e5c1
+      uses: vmactions/netbsd-vm@405bc5aebd57b5b9f6ca83553612b3b5b7fcbe63
       with:
         mem: 4096
         debug: true
@@ -1710,7 +1800,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@fbe0b4b5f43f1327c39a62592538f1c7dd45e5c1
+      uses: vmactions/netbsd-vm@405bc5aebd57b5b9f6ca83553612b3b5b7fcbe63
       with:
         mem: 4096
         debug: true
@@ -1790,7 +1880,7 @@ jobs:
     - name: Test in NetBSD
       id: testerr
       continue-on-error: true
-      uses: vmactions/netbsd-vm@fbe0b4b5f43f1327c39a62592538f1c7dd45e5c1
+      uses: vmactions/netbsd-vm@405bc5aebd57b5b9f6ca83553612b3b5b7fcbe63
       with:
         debug: true
         # A command that EXISTS and fails, rather than `false` or a made-up
@@ -1836,7 +1926,7 @@ jobs:
     - name: Test in NetBSD
       id: testpass
       continue-on-error: true
-      uses: vmactions/netbsd-vm@fbe0b4b5f43f1327c39a62592538f1c7dd45e5c1
+      uses: vmactions/netbsd-vm@405bc5aebd57b5b9f6ca83553612b3b5b7fcbe63
       with:
         debug: true
         # No `true` and no double quotes: this body runs on every guest, and

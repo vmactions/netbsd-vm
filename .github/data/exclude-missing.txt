@@ -118,6 +118,24 @@
             arch: loongarch64
           - release: "11.0"
             arch: armv7
+          - release: "11.0-microvm"
+            arch: aarch64
+          - release: "11.0-microvm"
+            arch: riscv64
+          - release: "11.0-microvm"
+            arch: powerpc64
+          - release: "11.0-microvm"
+            arch: sparc64
+          - release: "11.0-microvm"
+            arch: ppc64le
+          - release: "11.0-microvm"
+            arch: s390x
+          - release: "11.0-microvm"
+            arch: i386
+          - release: "11.0-microvm"
+            arch: loongarch64
+          - release: "11.0-microvm"
+            arch: armv7
           - release: ""
             arch: powerpc64
           - release: ""
