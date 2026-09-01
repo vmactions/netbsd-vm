@@ -251,7 +251,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'sshfs') }}
       id: test
-      uses: vmactions/netbsd-vm@d6c4d6a8bea19a4d74d40add2b7e1d5112f2085c
+      uses: vmactions/netbsd-vm@b017ed6250f1a7e5c7091c0b53e31b1d3a93ccde
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -547,7 +547,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'nfs') }}
       id: test
-      uses: vmactions/netbsd-vm@d6c4d6a8bea19a4d74d40add2b7e1d5112f2085c
+      uses: vmactions/netbsd-vm@b017ed6250f1a7e5c7091c0b53e31b1d3a93ccde
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -851,7 +851,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'scp') }}
       id: test
-      uses: vmactions/netbsd-vm@d6c4d6a8bea19a4d74d40add2b7e1d5112f2085c
+      uses: vmactions/netbsd-vm@b017ed6250f1a7e5c7091c0b53e31b1d3a93ccde
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -985,7 +985,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}', 'tar') }}
       id: test
-      uses: vmactions/netbsd-vm@d6c4d6a8bea19a4d74d40add2b7e1d5112f2085c
+      uses: vmactions/netbsd-vm@b017ed6250f1a7e5c7091c0b53e31b1d3a93ccde
       with:
         mem: 4096
         debug: true
@@ -1052,7 +1052,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}', '9p') }}
       id: test
-      uses: vmactions/netbsd-vm@d6c4d6a8bea19a4d74d40add2b7e1d5112f2085c
+      uses: vmactions/netbsd-vm@b017ed6250f1a7e5c7091c0b53e31b1d3a93ccde
       with:
         mem: 4096
         debug: true
@@ -1310,7 +1310,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@d6c4d6a8bea19a4d74d40add2b7e1d5112f2085c
+      uses: vmactions/netbsd-vm@b017ed6250f1a7e5c7091c0b53e31b1d3a93ccde
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -1609,7 +1609,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@d6c4d6a8bea19a4d74d40add2b7e1d5112f2085c
+      uses: vmactions/netbsd-vm@b017ed6250f1a7e5c7091c0b53e31b1d3a93ccde
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -1736,7 +1736,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@d6c4d6a8bea19a4d74d40add2b7e1d5112f2085c
+      uses: vmactions/netbsd-vm@b017ed6250f1a7e5c7091c0b53e31b1d3a93ccde
       with:
         mem: 4096
         debug: true
@@ -1800,7 +1800,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@d6c4d6a8bea19a4d74d40add2b7e1d5112f2085c
+      uses: vmactions/netbsd-vm@b017ed6250f1a7e5c7091c0b53e31b1d3a93ccde
       with:
         mem: 4096
         debug: true
@@ -1880,7 +1880,7 @@ jobs:
     - name: Test in NetBSD
       id: testerr
       continue-on-error: true
-      uses: vmactions/netbsd-vm@d6c4d6a8bea19a4d74d40add2b7e1d5112f2085c
+      uses: vmactions/netbsd-vm@b017ed6250f1a7e5c7091c0b53e31b1d3a93ccde
       with:
         debug: true
         # A command that EXISTS and fails, rather than `false` or a made-up
@@ -1926,7 +1926,7 @@ jobs:
     - name: Test in NetBSD
       id: testpass
       continue-on-error: true
-      uses: vmactions/netbsd-vm@d6c4d6a8bea19a4d74d40add2b7e1d5112f2085c
+      uses: vmactions/netbsd-vm@b017ed6250f1a7e5c7091c0b53e31b1d3a93ccde
       with:
         debug: true
         # No `true` and no double quotes: this body runs on every guest, and
