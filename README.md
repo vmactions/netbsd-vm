@@ -40,6 +40,7 @@ All the supported releases are here:
 |---------|---------|---------|---------|---------|
 | 11.0-microvm | ✅ (rsync,scp,sshfs,tar) | — | — | — |
 | 11.0 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (scp,sshfs,nfs,tar) |
+| 10.2 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | — | ✅ (scp,sshfs,nfs,rsync,tar) |
 | 10.1 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | — | ✅ (scp,sshfs,nfs,rsync,tar) |
 | 10.0 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | — | ✅ (scp,sshfs,nfs,rsync,tar) |
 | 9.5 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | — | — |
