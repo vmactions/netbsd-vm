@@ -41,7 +41,7 @@ jobs:
       fail-fast: false
       matrix:
         release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "9.5", "10.0", "10.1", "11.0", "11.0-microvm", "10.2"
-, ""]
+ ]
         arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386", "loongarch64", "armv7"]
         runs: [ "ubuntu-26.04", "ubuntu-26.04-arm"]
         exclude:
@@ -63,6 +63,11 @@ jobs:
             arch: "loongarch64"
           - runs: "ubuntu-26.04-arm"
             arch: "armv7"
+          # aarch64 on the x86 runner (TCG) is booted by the rsync matrix;
+          # the sync transport itself does not depend on TCG vs KVM, so
+          # these legs only repeat what the ubuntu-26.04-arm legs test.
+          - runs: "ubuntu-26.04"
+            arch: "aarch64"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
           # sparc64 used to be excluded here (2026-06-30 .. 2026-07-25): the
           # emulated CMD646 PCI-IDE and wm0 NIC intermittently lost interrupts
@@ -281,7 +286,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'sshfs') }}
       id: test
-      uses: vmactions/netbsd-vm@65b497480df219c03f9f17e4e4bc918fe6e2baf0
+      uses: vmactions/netbsd-vm@5c0349d5bb26bd9f58a2da1aad799eb5d1627702
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -375,7 +380,7 @@ jobs:
       fail-fast: false
       matrix:
         release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "9.5", "10.0", "10.1", "11.0", "11.0-microvm", "10.2"
-, ""]
+ ]
         arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386", "loongarch64", "armv7"]
         runs: [ "ubuntu-26.04", "ubuntu-26.04-arm"]
         exclude:
@@ -397,6 +402,11 @@ jobs:
             arch: "loongarch64"
           - runs: "ubuntu-26.04-arm"
             arch: "armv7"
+          # aarch64 on the x86 runner (TCG) is booted by the rsync matrix;
+          # the sync transport itself does not depend on TCG vs KVM, so
+          # these legs only repeat what the ubuntu-26.04-arm legs test.
+          - runs: "ubuntu-26.04"
+            arch: "aarch64"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
           # sparc64 used to be excluded here (2026-06-30 .. 2026-07-25): the
           # emulated CMD646 PCI-IDE and wm0 NIC intermittently lost interrupts
@@ -609,7 +619,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'nfs') }}
       id: test
-      uses: vmactions/netbsd-vm@65b497480df219c03f9f17e4e4bc918fe6e2baf0
+      uses: vmactions/netbsd-vm@5c0349d5bb26bd9f58a2da1aad799eb5d1627702
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -704,7 +714,7 @@ jobs:
       fail-fast: false
       matrix:
         release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "9.5", "10.0", "10.1", "11.0", "11.0-microvm", "10.2"
-, ""]
+ ]
         arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386", "loongarch64", "armv7"]
         runs: [ "ubuntu-26.04", "ubuntu-26.04-arm"]
         exclude:
@@ -726,6 +736,11 @@ jobs:
             arch: "loongarch64"
           - runs: "ubuntu-26.04-arm"
             arch: "armv7"
+          # aarch64 on the x86 runner (TCG) is booted by the rsync matrix;
+          # the sync transport itself does not depend on TCG vs KVM, so
+          # these legs only repeat what the ubuntu-26.04-arm legs test.
+          - runs: "ubuntu-26.04"
+            arch: "aarch64"
           # Manual matrix excludes only; combos with no conf are auto-excluded.
           # sparc64 used to be excluded here (2026-06-30 .. 2026-07-25): the
           # emulated CMD646 PCI-IDE and wm0 NIC intermittently lost interrupts
@@ -943,7 +958,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'scp') }}
       id: test
-      uses: vmactions/netbsd-vm@65b497480df219c03f9f17e4e4bc918fe6e2baf0
+      uses: vmactions/netbsd-vm@5c0349d5bb26bd9f58a2da1aad799eb5d1627702
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -1077,7 +1092,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}', 'tar') }}
       id: test
-      uses: vmactions/netbsd-vm@65b497480df219c03f9f17e4e4bc918fe6e2baf0
+      uses: vmactions/netbsd-vm@5c0349d5bb26bd9f58a2da1aad799eb5d1627702
       with:
         mem: 4096
         debug: true
@@ -1144,7 +1159,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}', '9p') }}
       id: test
-      uses: vmactions/netbsd-vm@65b497480df219c03f9f17e4e4bc918fe6e2baf0
+      uses: vmactions/netbsd-vm@5c0349d5bb26bd9f58a2da1aad799eb5d1627702
       with:
         mem: 4096
         debug: true
@@ -1191,10 +1206,9 @@ jobs:
       fail-fast: false
       matrix:
         release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "9.5", "10.0", "10.1", "11.0", "11.0-microvm", "10.2"
-, ""]
+ ]
         arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386", "loongarch64", "armv7"]
         runs: [ "ubuntu-26.04", "ubuntu-26.04-arm"]
-        disableCache: [ "", "true"]
         exclude:
           - runs: "ubuntu-26.04-arm"
             arch: ""
@@ -1428,7 +1442,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@65b497480df219c03f9f17e4e4bc918fe6e2baf0
+      uses: vmactions/netbsd-vm@5c0349d5bb26bd9f58a2da1aad799eb5d1627702
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -1443,7 +1457,6 @@ jobs:
           udp:"8081": "80"
         debug: true
         debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
-        disable-cache: ${{ matrix.disableCache }}
         run: |
           env
           echo "TEST_ENV=abc" >>${GITHUB_ENV}
@@ -1510,239 +1523,164 @@ jobs:
 
 
 
+  # disable-cache: true, once on the default release/arch. It used to be a
+  # second value in the matrix of the job above, which ran every release/arch
+  # leg twice; whether the cache is skipped does not depend on the release
+  # or arch, and every builder bump changes the cache key, so each image's
+  # download path is still exercised then.
+  testdisablecache:
+    if: ${{ contains('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}', 'rsync') }}
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-26.04
+    name: disable-cache NetBSD
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    steps:
+    - uses: actions/checkout@v7
+    - name: Test in NetBSD
+      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
+      id: test
+      uses: vmactions/netbsd-vm@5c0349d5bb26bd9f58a2da1aad799eb5d1627702
+      with:
+        prepare: |
+          /usr/sbin/pkg_add -u curl
+        mem: 4096
+        debug: true
+        debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
+        disable-cache: true
+        run: |
+          pwd
+          cd $GITHUB_WORKSPACE;
+          ls -lah
+          whoami
+          env
+          /sbin/sysctl hw.model
+          /sbin/sysctl hw.ncpu
+          /sbin/sysctl hw.physmem
+          /sbin/sysctl hw.usermem
+          /usr/bin/vmstat
+
+    - name: Collect VM debug artifacts
+      if: failure()
+      run: |
+        mkdir -p ./vm-debug-artifacts
+        find /home/runner/work/_actions -type d -name output 2>/dev/null | while read d; do
+          find "$d" -type f \( -name "*.log" -o -name "*.ppm" \) | while read f; do
+            rel="${f#/home/runner/work/_actions/}"
+            mkdir -p "./vm-debug-artifacts/$(dirname "$rel")"
+            cp "$f" "./vm-debug-artifacts/$rel"
+          done
+        done
+        echo "Collected:"
+        find ./vm-debug-artifacts -type f || true
+    - name: Upload VM debug artifacts
+      if: failure()
+      uses: actions/upload-artifact@v7
+      with:
+        name: vm-debug-${{ github.job }}-${{ strategy.job-index }}
+        path: vm-debug-artifacts/
+        retention-days: 7
+        if-no-files-found: ignore
+
+  # 'release' omitted, 'arch' set explicitly: one leg per arch the default
+  # release ships a conf for, with the default sync method. The sync
+  # matrices above only list test.releases, so this is where an omitted
+  # release is resolved to DEFAULT_RELEASE together with a given arch (the
+  # conf/<default>-<arch>.conf lookup). The arch list comes from the conf
+  # files at run time rather than from matrix excludes, so no leg is spawned
+  # for an arch the default release does not have. Keep ARCHES in sync with
+  # generate.tpl.yml, the arch matrices above and CONF_ARCHES in index.js.
+  defaultreleasearches:
+    runs-on: ubuntu-26.04
+    name: default release arches NetBSD
+    outputs:
+      arches: ${{ steps.list.outputs.arches }}
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        sparse-checkout: |
+          conf
+        sparse-checkout-cone-mode: true
+    - name: List the arches of the default release
+      id: list
+      run: |
+        set -e
+        . conf/default.release.conf
+        ARCHES="aarch64 riscv64 powerpc64 sparc64 ppc64le s390x i386 loongarch64 armv7"
+        list=""
+        [ -e "conf/${DEFAULT_RELEASE}.conf" ] && list='"x86_64"'
+        for a in $ARCHES; do
+          if [ -e "conf/${DEFAULT_RELEASE}-${a}.conf" ]; then
+            list="${list:+$list,}\"$a\""
+          fi
+        done
+        echo "default release ${DEFAULT_RELEASE}: [${list}]"
+        echo "arches=[${list}]" >> "$GITHUB_OUTPUT"
+
+  testdefaultrelease:
+    needs: defaultreleasearches
+    if: ${{ needs.defaultreleasearches.outputs.arches != '[]' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: ${{ fromJSON(needs.defaultreleasearches.outputs.arches) }}
+    # aarch64 on the arm runner (KVM); booting it under TCG on the x86 runner
+    # is covered by the rsync default matrix.
+    runs-on: ${{ matrix.arch == 'aarch64' && 'ubuntu-26.04-arm' || 'ubuntu-26.04' }}
+    name: default release NetBSD
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    steps:
+    # This job runs on every guest, agent guests included, so it follows
+    # testpass: a sparse checkout (small push payload) and a bare echo that
+    # sh, rc, cmd.exe and ion all accept, with no prepare.
+    - uses: actions/checkout@v7
+      with:
+        sparse-checkout: |
+          conf
+          .github
+        sparse-checkout-cone-mode: true
+    - name: Test in NetBSD
+      id: test
+      uses: vmactions/netbsd-vm@5c0349d5bb26bd9f58a2da1aad799eb5d1627702
+      with:
+        arch: ${{ matrix.arch }}
+        debug: true
+        debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
+        run: |
+          echo this is a normal command
+    - name: Collect VM debug artifacts
+      if: failure()
+      run: |
+        mkdir -p ./vm-debug-artifacts
+        find /home/runner/work/_actions -type d -name output 2>/dev/null | while read d; do
+          find "$d" -type f \( -name "*.log" -o -name "*.ppm" \) | while read f; do
+            rel="${f#/home/runner/work/_actions/}"
+            mkdir -p "./vm-debug-artifacts/$(dirname "$rel")"
+            cp "$f" "./vm-debug-artifacts/$rel"
+          done
+        done
+        echo "Collected:"
+        find ./vm-debug-artifacts -type f || true
+    - name: Upload VM debug artifacts
+      if: failure()
+      uses: actions/upload-artifact@v7
+      with:
+        name: vm-debug-${{ github.job }}-${{ strategy.job-index }}
+        path: vm-debug-artifacts/
+        retention-days: 7
+        if-no-files-found: ignore
+
   # Two-level sync gating -- see the comment above testsshfs.
+  # Single job on the default release/arch: envs, nat and the custom shell
+  # are action-side features, not per-release or per-arch ones, so a full
+  # matrix only multiplied the runner time.
   testcustomshell:
     if: ${{ contains('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}', 'rsync') }}
     strategy:
       fail-fast: false
-      matrix:
-        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "9.5", "10.0", "10.1", "11.0", "11.0-microvm", "10.2"
-, ""]
-        arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386", "loongarch64", "armv7"]
-        runs: [ "ubuntu-26.04", "ubuntu-26.04-arm"]
-        exclude:
-          - runs: "ubuntu-26.04-arm"
-            arch: ""
-          - runs: "ubuntu-26.04-arm"
-            arch: "riscv64"
-          - runs: "ubuntu-26.04-arm"
-            arch: "powerpc64"
-          - runs: "ubuntu-26.04-arm"
-            arch: "sparc64"
-          - runs: "ubuntu-26.04-arm"
-            arch: "ppc64le"
-          - runs: "ubuntu-26.04-arm"
-            arch: "s390x"
-          - runs: "ubuntu-26.04-arm"
-            arch: "i386"
-          - runs: "ubuntu-26.04-arm"
-            arch: "loongarch64"
-          - runs: "ubuntu-26.04-arm"
-            arch: "armv7"
-          # Manual matrix excludes only; combos with no conf are auto-excluded.
-          # sparc64 used to be excluded here (2026-06-30 .. 2026-07-25): the
-          # emulated CMD646 PCI-IDE and wm0 NIC intermittently lost interrupts
-          # under net+disk DMA, so guests randomly failed to boot. That was a
-          # QEMU bug, not a guest one -- the sun4u sabre PCI host bridge
-          # overwrites an outstanding IRQ request, so the guest's
-          # interrupt-clear is dropped and both devices wedge. netbsd-builder
-          # now patches it and publishes the fixed qemu-system-sparc64, which
-          # anyvm >= 0.5.3 downloads and forces on Linux x86_64 hosts; the
-          # sparc64 confs pin BUILDER_VERSION=2.1.5 / ANYVM_VERSION=0.5.3 so
-          # every run gets it. Verified by anyvm's own netbsd.yml testsparc64
-          # job (10.0/10.1/11.0 x sshfs,nfs,sys-nfs,scp,rsync -- all green),
-          # so sparc64 is CI-tested again and the exclude is gone.
-          # NOTE the arm64-runner excludes above still drop sparc64 there on
-          # purpose: the patched QEMU tarball is a Linux x86_64 build, so an
-          # ubuntu-24.04-arm runner would fall back to stock QEMU and wedge.
-          - release: "9.0"
-            arch: riscv64
-          - release: "9.0"
-            arch: powerpc64
-          - release: "9.0"
-            arch: sparc64
-          - release: "9.0"
-            arch: ppc64le
-          - release: "9.0"
-            arch: s390x
-          - release: "9.0"
-            arch: i386
-          - release: "9.0"
-            arch: loongarch64
-          - release: "9.0"
-            arch: armv7
-          - release: "9.1"
-            arch: riscv64
-          - release: "9.1"
-            arch: powerpc64
-          - release: "9.1"
-            arch: sparc64
-          - release: "9.1"
-            arch: ppc64le
-          - release: "9.1"
-            arch: s390x
-          - release: "9.1"
-            arch: i386
-          - release: "9.1"
-            arch: loongarch64
-          - release: "9.1"
-            arch: armv7
-          - release: "9.2"
-            arch: riscv64
-          - release: "9.2"
-            arch: powerpc64
-          - release: "9.2"
-            arch: sparc64
-          - release: "9.2"
-            arch: ppc64le
-          - release: "9.2"
-            arch: s390x
-          - release: "9.2"
-            arch: i386
-          - release: "9.2"
-            arch: loongarch64
-          - release: "9.2"
-            arch: armv7
-          - release: "9.3"
-            arch: riscv64
-          - release: "9.3"
-            arch: powerpc64
-          - release: "9.3"
-            arch: sparc64
-          - release: "9.3"
-            arch: ppc64le
-          - release: "9.3"
-            arch: s390x
-          - release: "9.3"
-            arch: i386
-          - release: "9.3"
-            arch: loongarch64
-          - release: "9.3"
-            arch: armv7
-          - release: "9.4"
-            arch: riscv64
-          - release: "9.4"
-            arch: powerpc64
-          - release: "9.4"
-            arch: sparc64
-          - release: "9.4"
-            arch: ppc64le
-          - release: "9.4"
-            arch: s390x
-          - release: "9.4"
-            arch: i386
-          - release: "9.4"
-            arch: loongarch64
-          - release: "9.4"
-            arch: armv7
-          - release: "9.5"
-            arch: riscv64
-          - release: "9.5"
-            arch: powerpc64
-          - release: "9.5"
-            arch: sparc64
-          - release: "9.5"
-            arch: ppc64le
-          - release: "9.5"
-            arch: s390x
-          - release: "9.5"
-            arch: i386
-          - release: "9.5"
-            arch: loongarch64
-          - release: "9.5"
-            arch: armv7
-          - release: "10.0"
-            arch: riscv64
-          - release: "10.0"
-            arch: powerpc64
-          - release: "10.0"
-            arch: ppc64le
-          - release: "10.0"
-            arch: s390x
-          - release: "10.0"
-            arch: i386
-          - release: "10.0"
-            arch: loongarch64
-          - release: "10.0"
-            arch: armv7
-          - release: "10.1"
-            arch: riscv64
-          - release: "10.1"
-            arch: powerpc64
-          - release: "10.1"
-            arch: ppc64le
-          - release: "10.1"
-            arch: s390x
-          - release: "10.1"
-            arch: i386
-          - release: "10.1"
-            arch: loongarch64
-          - release: "10.1"
-            arch: armv7
-          - release: "11.0"
-            arch: powerpc64
-          - release: "11.0"
-            arch: ppc64le
-          - release: "11.0"
-            arch: s390x
-          - release: "11.0"
-            arch: i386
-          - release: "11.0"
-            arch: loongarch64
-          - release: "11.0"
-            arch: armv7
-          - release: "11.0-microvm"
-            arch: aarch64
-          - release: "11.0-microvm"
-            arch: riscv64
-          - release: "11.0-microvm"
-            arch: powerpc64
-          - release: "11.0-microvm"
-            arch: sparc64
-          - release: "11.0-microvm"
-            arch: ppc64le
-          - release: "11.0-microvm"
-            arch: s390x
-          - release: "11.0-microvm"
-            arch: i386
-          - release: "11.0-microvm"
-            arch: loongarch64
-          - release: "11.0-microvm"
-            arch: armv7
-          - release: "10.2"
-            arch: riscv64
-          - release: "10.2"
-            arch: powerpc64
-          - release: "10.2"
-            arch: ppc64le
-          - release: "10.2"
-            arch: s390x
-          - release: "10.2"
-            arch: i386
-          - release: "10.2"
-            arch: loongarch64
-          - release: "10.2"
-            arch: armv7
-          - release: ""
-            arch: powerpc64
-          - release: ""
-            arch: ppc64le
-          - release: ""
-            arch: s390x
-          - release: ""
-            arch: i386
-          - release: ""
-            arch: loongarch64
-          - release: ""
-            arch: armv7
-          - release: "11.0"
-            arch: "sparc64"
-          - release: ""
-            arch: "sparc64"
-
-
-
-    runs-on: ${{ matrix.runs }}
+    runs-on: ubuntu-26.04
     name: customshell NetBSD
     env:
       MYTOKEN : ${{ secrets.MYTOKEN }}
@@ -1751,16 +1689,14 @@ jobs:
     steps:
     - uses: actions/checkout@v7
     - name: Test in NetBSD
-      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
+      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@65b497480df219c03f9f17e4e4bc918fe6e2baf0
+      uses: vmactions/netbsd-vm@5c0349d5bb26bd9f58a2da1aad799eb5d1627702
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
           /usr/sbin/pkg_add -u curl
         mem: 4096
-        release: ${{ matrix.release }}
-        arch: ${{ matrix.arch }}
         nat: |
           "20022": "22"
           "8080": "80"
@@ -1783,7 +1719,7 @@ jobs:
           /usr/bin/vmstat
 
     - name: Test NAT
-      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
+      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
       env:
         VM_USER: ""
       run: |
@@ -1793,7 +1729,7 @@ jobs:
         ssh -v  -p 20022 ${VM_USER:-root}@localhost  "uname -a;whoami;pwd"
 
     - name: Test custom shell
-      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
+      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
       shell: vmsh {0}
       run: |
         pwd
@@ -1813,17 +1749,17 @@ jobs:
     # its guest gets no GITHUB_WORKSPACE (SendEnv excluded), so the custom
     # shell does not run in the synced work tree.
     - name: Prepare custom shell sync test file on host
-      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') && !contains(github.repository, 'haiku') }}
+      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') && !contains(github.repository, 'haiku') }}
       run: |
         echo "host-data" > hostfile.txt
     - name: Test custom shell file sync
-      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') && !contains(github.repository, 'haiku') }}
+      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') && !contains(github.repository, 'haiku') }}
       shell: vmsh {0}
       run: |
         [ "$(cat hostfile.txt)" = "host-data" ]
         echo "vm-data" > vmfile.txt
     - name: Verify custom shell copyback on host
-      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') && !contains(github.repository, 'haiku') }}
+      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') && !contains(github.repository, 'haiku') }}
       run: |
         set -e
         [ "$(cat vmfile.txt)" = "vm-data" ]
@@ -1880,7 +1816,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@65b497480df219c03f9f17e4e4bc918fe6e2baf0
+      uses: vmactions/netbsd-vm@5c0349d5bb26bd9f58a2da1aad799eb5d1627702
       with:
         mem: 4096
         debug: true
@@ -1944,7 +1880,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@65b497480df219c03f9f17e4e4bc918fe6e2baf0
+      uses: vmactions/netbsd-vm@5c0349d5bb26bd9f58a2da1aad799eb5d1627702
       with:
         mem: 4096
         debug: true
@@ -1999,6 +1935,147 @@ jobs:
         retention-days: 7
         if-no-files-found: ignore
 
+  # cache-after-prepare-key-suffix (optional): same seed/hit pair as above,
+  # but with a key suffix built from a hashFiles() expression, the documented
+  # way to tie the prepared image to a file that 'prepare' depends on. Kept
+  # separate so the pair above still shows that cache-after-prepare needs no
+  # key suffix.
+  # Chained after it for the same reason the pair above runs last: no
+  # concurrent cache saves while seed and hit run back to back.
+  testkeysuffix:
+    needs: testcacheafterpreparehit
+    if: ${{ !cancelled() }}
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-26.04
+    name: cache-after-prepare key-suffix seed NetBSD
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    steps:
+    - uses: actions/checkout@v7
+    # hashFiles() returns an empty string when nothing matches; the key would
+    # then be a bare "test-" and the expression path would go untested.
+    - name: Check the key suffix hash
+      run: |
+        echo "hashFiles: ${{ hashFiles('.github/data/datafile.ini') }}"
+        [ -n "${{ hashFiles('.github/data/datafile.ini') }}" ]
+    - name: Test in NetBSD
+      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
+      id: test
+      uses: vmactions/netbsd-vm@5c0349d5bb26bd9f58a2da1aad799eb5d1627702
+      with:
+        mem: 4096
+        debug: true
+        debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
+        cache-after-prepare: true
+        cache-after-prepare-key-suffix: test-${{ hashFiles('.github/data/datafile.ini') }}
+        prepare: |
+          /usr/sbin/pkg_add -u curl
+          echo prepared >> "$HOME/.cache_after_prepare_count"
+        run: |
+          set -e
+          [ "$(grep -c prepared "$HOME/.cache_after_prepare_count")" -eq 1 ]
+          cd $GITHUB_WORKSPACE;
+          ls -lah
+          whoami
+          env
+          /sbin/sysctl hw.model
+          /sbin/sysctl hw.ncpu
+          /sbin/sysctl hw.physmem
+          /sbin/sysctl hw.usermem
+          /usr/bin/vmstat
+
+    - name: Collect VM debug artifacts
+      if: failure()
+      run: |
+        mkdir -p ./vm-debug-artifacts
+        find /home/runner/work/_actions -type d -name output 2>/dev/null | while read d; do
+          find "$d" -type f \( -name "*.log" -o -name "*.ppm" \) | while read f; do
+            rel="${f#/home/runner/work/_actions/}"
+            mkdir -p "./vm-debug-artifacts/$(dirname "$rel")"
+            cp "$f" "./vm-debug-artifacts/$rel"
+          done
+        done
+        echo "Collected:"
+        find ./vm-debug-artifacts -type f || true
+    - name: Upload VM debug artifacts
+      if: failure()
+      uses: actions/upload-artifact@v7
+      with:
+        name: vm-debug-${{ github.job }}-${{ strategy.job-index }}
+        path: vm-debug-artifacts/
+        retention-days: 7
+        if-no-files-found: ignore
+
+  testkeysuffixhit:
+    needs: testkeysuffix
+    # Only the seed's own result matters (see testcacheafterpreparehit).
+    if: ${{ !cancelled() && needs.testkeysuffix.result == 'success' }}
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-26.04
+    name: cache-after-prepare key-suffix hit NetBSD
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    steps:
+    - uses: actions/checkout@v7
+    # The inputs (notably 'prepare', 'cache-after-prepare-key-suffix' and the
+    # sync method) must be byte-identical to the seed job above: they all go
+    # into the key.
+    - name: Test in NetBSD
+      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
+      id: test
+      uses: vmactions/netbsd-vm@5c0349d5bb26bd9f58a2da1aad799eb5d1627702
+      with:
+        mem: 4096
+        debug: true
+        debug-on-error: ${{ vars.DEBUG_ON_ERROR }}
+        cache-after-prepare: true
+        cache-after-prepare-key-suffix: test-${{ hashFiles('.github/data/datafile.ini') }}
+        prepare: |
+          /usr/sbin/pkg_add -u curl
+          echo prepared >> "$HOME/.cache_after_prepare_count"
+        run: |
+          set -e
+          [ "$(grep -c prepared "$HOME/.cache_after_prepare_count")" -eq 1 ]
+          cd $GITHUB_WORKSPACE;
+          ls -lah
+          whoami
+          env
+          /sbin/sysctl hw.model
+          /sbin/sysctl hw.ncpu
+          /sbin/sysctl hw.physmem
+          /sbin/sysctl hw.usermem
+          /usr/bin/vmstat
+
+    - name: Verify prepare was skipped
+      if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
+      run: |
+        set -e
+        echo "cache-after-prepare-hit=${{ steps.test.outputs.cache-after-prepare-hit }}"
+        [ "${{ steps.test.outputs.cache-after-prepare-hit }}" = "true" ]
+    - name: Collect VM debug artifacts
+      if: failure()
+      run: |
+        mkdir -p ./vm-debug-artifacts
+        find /home/runner/work/_actions -type d -name output 2>/dev/null | while read d; do
+          find "$d" -type f \( -name "*.log" -o -name "*.ppm" \) | while read f; do
+            rel="${f#/home/runner/work/_actions/}"
+            mkdir -p "./vm-debug-artifacts/$(dirname "$rel")"
+            cp "$f" "./vm-debug-artifacts/$rel"
+          done
+        done
+        echo "Collected:"
+        find ./vm-debug-artifacts -type f || true
+    - name: Upload VM debug artifacts
+      if: failure()
+      uses: actions/upload-artifact@v7
+      with:
+        name: vm-debug-${{ github.job }}-${{ strategy.job-index }}
+        path: vm-debug-artifacts/
+        retention-days: 7
+        if-no-files-found: ignore
+
   # Skipped on RISC OS: its guest agent is not a shell and has no status
   # channel at all, so anyvm can only report that a command COMPLETED, never
   # whether it succeeded. A test whose whole point is "this must come back
@@ -2024,7 +2101,7 @@ jobs:
     - name: Test in NetBSD
       id: testerr
       continue-on-error: true
-      uses: vmactions/netbsd-vm@65b497480df219c03f9f17e4e4bc918fe6e2baf0
+      uses: vmactions/netbsd-vm@5c0349d5bb26bd9f58a2da1aad799eb5d1627702
       with:
         debug: true
         # A command that EXISTS and fails, rather than `false` or a made-up
@@ -2070,7 +2147,7 @@ jobs:
     - name: Test in NetBSD
       id: testpass
       continue-on-error: true
-      uses: vmactions/netbsd-vm@65b497480df219c03f9f17e4e4bc918fe6e2baf0
+      uses: vmactions/netbsd-vm@5c0349d5bb26bd9f58a2da1aad799eb5d1627702
       with:
         debug: true
         # No `true` and no double quotes: this body runs on every guest, and
