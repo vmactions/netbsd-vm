@@ -40,7 +40,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "9.5", "10.0", "10.1", "11.0", "11.0-microvm", "10.2"
+        release: [ "10.0", "10.1", "10.2", "11.0", "11.0-microvm"
  ]
         arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386", "loongarch64", "armv7"]
         runs: [ "ubuntu-26.04", "ubuntu-26.04-arm"]
@@ -84,102 +84,6 @@ jobs:
           # NOTE the arm64-runner excludes above still drop sparc64 there on
           # purpose: the patched QEMU tarball is a Linux x86_64 build, so an
           # ubuntu-24.04-arm runner would fall back to stock QEMU and wedge.
-          - release: "9.0"
-            arch: riscv64
-          - release: "9.0"
-            arch: powerpc64
-          - release: "9.0"
-            arch: sparc64
-          - release: "9.0"
-            arch: ppc64le
-          - release: "9.0"
-            arch: s390x
-          - release: "9.0"
-            arch: i386
-          - release: "9.0"
-            arch: loongarch64
-          - release: "9.0"
-            arch: armv7
-          - release: "9.1"
-            arch: riscv64
-          - release: "9.1"
-            arch: powerpc64
-          - release: "9.1"
-            arch: sparc64
-          - release: "9.1"
-            arch: ppc64le
-          - release: "9.1"
-            arch: s390x
-          - release: "9.1"
-            arch: i386
-          - release: "9.1"
-            arch: loongarch64
-          - release: "9.1"
-            arch: armv7
-          - release: "9.2"
-            arch: riscv64
-          - release: "9.2"
-            arch: powerpc64
-          - release: "9.2"
-            arch: sparc64
-          - release: "9.2"
-            arch: ppc64le
-          - release: "9.2"
-            arch: s390x
-          - release: "9.2"
-            arch: i386
-          - release: "9.2"
-            arch: loongarch64
-          - release: "9.2"
-            arch: armv7
-          - release: "9.3"
-            arch: riscv64
-          - release: "9.3"
-            arch: powerpc64
-          - release: "9.3"
-            arch: sparc64
-          - release: "9.3"
-            arch: ppc64le
-          - release: "9.3"
-            arch: s390x
-          - release: "9.3"
-            arch: i386
-          - release: "9.3"
-            arch: loongarch64
-          - release: "9.3"
-            arch: armv7
-          - release: "9.4"
-            arch: riscv64
-          - release: "9.4"
-            arch: powerpc64
-          - release: "9.4"
-            arch: sparc64
-          - release: "9.4"
-            arch: ppc64le
-          - release: "9.4"
-            arch: s390x
-          - release: "9.4"
-            arch: i386
-          - release: "9.4"
-            arch: loongarch64
-          - release: "9.4"
-            arch: armv7
-          - release: "9.5"
-            arch: riscv64
-          - release: "9.5"
-            arch: powerpc64
-          - release: "9.5"
-            arch: sparc64
-          - release: "9.5"
-            arch: ppc64le
-          - release: "9.5"
-            arch: s390x
-          - release: "9.5"
-            arch: i386
-          - release: "9.5"
-            arch: loongarch64
-          - release: "9.5"
-            arch: armv7
           - release: "10.0"
             arch: riscv64
           - release: "10.0"
@@ -207,6 +111,20 @@ jobs:
           - release: "10.1"
             arch: loongarch64
           - release: "10.1"
+            arch: armv7
+          - release: "10.2"
+            arch: riscv64
+          - release: "10.2"
+            arch: powerpc64
+          - release: "10.2"
+            arch: ppc64le
+          - release: "10.2"
+            arch: s390x
+          - release: "10.2"
+            arch: i386
+          - release: "10.2"
+            arch: loongarch64
+          - release: "10.2"
             arch: armv7
           - release: "11.0"
             arch: powerpc64
@@ -238,20 +156,6 @@ jobs:
             arch: loongarch64
           - release: "11.0-microvm"
             arch: armv7
-          - release: "10.2"
-            arch: riscv64
-          - release: "10.2"
-            arch: powerpc64
-          - release: "10.2"
-            arch: ppc64le
-          - release: "10.2"
-            arch: s390x
-          - release: "10.2"
-            arch: i386
-          - release: "10.2"
-            arch: loongarch64
-          - release: "10.2"
-            arch: armv7
 
 
     runs-on: ${{ matrix.runs }}
@@ -274,7 +178,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'sshfs') }}
       id: test
-      uses: vmactions/netbsd-vm@9d4845d5943444535c89ef31e540e20aac67eed5
+      uses: vmactions/netbsd-vm@c484771dde1b464629864ca8d621abc79998bc5c
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -367,7 +271,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "9.5", "10.0", "10.1", "11.0", "11.0-microvm", "10.2"
+        release: [ "10.0", "10.1", "10.2", "11.0", "11.0-microvm"
  ]
         arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386", "loongarch64", "armv7"]
         runs: [ "ubuntu-26.04", "ubuntu-26.04-arm"]
@@ -411,102 +315,6 @@ jobs:
           # NOTE the arm64-runner excludes above still drop sparc64 there on
           # purpose: the patched QEMU tarball is a Linux x86_64 build, so an
           # ubuntu-24.04-arm runner would fall back to stock QEMU and wedge.
-          - release: "9.0"
-            arch: riscv64
-          - release: "9.0"
-            arch: powerpc64
-          - release: "9.0"
-            arch: sparc64
-          - release: "9.0"
-            arch: ppc64le
-          - release: "9.0"
-            arch: s390x
-          - release: "9.0"
-            arch: i386
-          - release: "9.0"
-            arch: loongarch64
-          - release: "9.0"
-            arch: armv7
-          - release: "9.1"
-            arch: riscv64
-          - release: "9.1"
-            arch: powerpc64
-          - release: "9.1"
-            arch: sparc64
-          - release: "9.1"
-            arch: ppc64le
-          - release: "9.1"
-            arch: s390x
-          - release: "9.1"
-            arch: i386
-          - release: "9.1"
-            arch: loongarch64
-          - release: "9.1"
-            arch: armv7
-          - release: "9.2"
-            arch: riscv64
-          - release: "9.2"
-            arch: powerpc64
-          - release: "9.2"
-            arch: sparc64
-          - release: "9.2"
-            arch: ppc64le
-          - release: "9.2"
-            arch: s390x
-          - release: "9.2"
-            arch: i386
-          - release: "9.2"
-            arch: loongarch64
-          - release: "9.2"
-            arch: armv7
-          - release: "9.3"
-            arch: riscv64
-          - release: "9.3"
-            arch: powerpc64
-          - release: "9.3"
-            arch: sparc64
-          - release: "9.3"
-            arch: ppc64le
-          - release: "9.3"
-            arch: s390x
-          - release: "9.3"
-            arch: i386
-          - release: "9.3"
-            arch: loongarch64
-          - release: "9.3"
-            arch: armv7
-          - release: "9.4"
-            arch: riscv64
-          - release: "9.4"
-            arch: powerpc64
-          - release: "9.4"
-            arch: sparc64
-          - release: "9.4"
-            arch: ppc64le
-          - release: "9.4"
-            arch: s390x
-          - release: "9.4"
-            arch: i386
-          - release: "9.4"
-            arch: loongarch64
-          - release: "9.4"
-            arch: armv7
-          - release: "9.5"
-            arch: riscv64
-          - release: "9.5"
-            arch: powerpc64
-          - release: "9.5"
-            arch: sparc64
-          - release: "9.5"
-            arch: ppc64le
-          - release: "9.5"
-            arch: s390x
-          - release: "9.5"
-            arch: i386
-          - release: "9.5"
-            arch: loongarch64
-          - release: "9.5"
-            arch: armv7
           - release: "10.0"
             arch: riscv64
           - release: "10.0"
@@ -534,6 +342,20 @@ jobs:
           - release: "10.1"
             arch: loongarch64
           - release: "10.1"
+            arch: armv7
+          - release: "10.2"
+            arch: riscv64
+          - release: "10.2"
+            arch: powerpc64
+          - release: "10.2"
+            arch: ppc64le
+          - release: "10.2"
+            arch: s390x
+          - release: "10.2"
+            arch: i386
+          - release: "10.2"
+            arch: loongarch64
+          - release: "10.2"
             arch: armv7
           - release: "11.0"
             arch: powerpc64
@@ -565,20 +387,6 @@ jobs:
             arch: loongarch64
           - release: "11.0-microvm"
             arch: armv7
-          - release: "10.2"
-            arch: riscv64
-          - release: "10.2"
-            arch: powerpc64
-          - release: "10.2"
-            arch: ppc64le
-          - release: "10.2"
-            arch: s390x
-          - release: "10.2"
-            arch: i386
-          - release: "10.2"
-            arch: loongarch64
-          - release: "10.2"
-            arch: armv7
           - release: "11.0-microvm"
             arch: ""
 
@@ -595,7 +403,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'nfs') }}
       id: test
-      uses: vmactions/netbsd-vm@9d4845d5943444535c89ef31e540e20aac67eed5
+      uses: vmactions/netbsd-vm@c484771dde1b464629864ca8d621abc79998bc5c
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -740,7 +548,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "9.5", "10.0", "10.1", "11.0", "11.0-microvm", "10.2"
+        release: [ "10.0", "10.1", "10.2", "11.0", "11.0-microvm"
  ]
         arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386", "loongarch64", "armv7"]
         runs: [ "ubuntu-26.04", "ubuntu-26.04-arm"]
@@ -784,102 +592,6 @@ jobs:
           # NOTE the arm64-runner excludes above still drop sparc64 there on
           # purpose: the patched QEMU tarball is a Linux x86_64 build, so an
           # ubuntu-24.04-arm runner would fall back to stock QEMU and wedge.
-          - release: "9.0"
-            arch: riscv64
-          - release: "9.0"
-            arch: powerpc64
-          - release: "9.0"
-            arch: sparc64
-          - release: "9.0"
-            arch: ppc64le
-          - release: "9.0"
-            arch: s390x
-          - release: "9.0"
-            arch: i386
-          - release: "9.0"
-            arch: loongarch64
-          - release: "9.0"
-            arch: armv7
-          - release: "9.1"
-            arch: riscv64
-          - release: "9.1"
-            arch: powerpc64
-          - release: "9.1"
-            arch: sparc64
-          - release: "9.1"
-            arch: ppc64le
-          - release: "9.1"
-            arch: s390x
-          - release: "9.1"
-            arch: i386
-          - release: "9.1"
-            arch: loongarch64
-          - release: "9.1"
-            arch: armv7
-          - release: "9.2"
-            arch: riscv64
-          - release: "9.2"
-            arch: powerpc64
-          - release: "9.2"
-            arch: sparc64
-          - release: "9.2"
-            arch: ppc64le
-          - release: "9.2"
-            arch: s390x
-          - release: "9.2"
-            arch: i386
-          - release: "9.2"
-            arch: loongarch64
-          - release: "9.2"
-            arch: armv7
-          - release: "9.3"
-            arch: riscv64
-          - release: "9.3"
-            arch: powerpc64
-          - release: "9.3"
-            arch: sparc64
-          - release: "9.3"
-            arch: ppc64le
-          - release: "9.3"
-            arch: s390x
-          - release: "9.3"
-            arch: i386
-          - release: "9.3"
-            arch: loongarch64
-          - release: "9.3"
-            arch: armv7
-          - release: "9.4"
-            arch: riscv64
-          - release: "9.4"
-            arch: powerpc64
-          - release: "9.4"
-            arch: sparc64
-          - release: "9.4"
-            arch: ppc64le
-          - release: "9.4"
-            arch: s390x
-          - release: "9.4"
-            arch: i386
-          - release: "9.4"
-            arch: loongarch64
-          - release: "9.4"
-            arch: armv7
-          - release: "9.5"
-            arch: riscv64
-          - release: "9.5"
-            arch: powerpc64
-          - release: "9.5"
-            arch: sparc64
-          - release: "9.5"
-            arch: ppc64le
-          - release: "9.5"
-            arch: s390x
-          - release: "9.5"
-            arch: i386
-          - release: "9.5"
-            arch: loongarch64
-          - release: "9.5"
-            arch: armv7
           - release: "10.0"
             arch: riscv64
           - release: "10.0"
@@ -907,6 +619,20 @@ jobs:
           - release: "10.1"
             arch: loongarch64
           - release: "10.1"
+            arch: armv7
+          - release: "10.2"
+            arch: riscv64
+          - release: "10.2"
+            arch: powerpc64
+          - release: "10.2"
+            arch: ppc64le
+          - release: "10.2"
+            arch: s390x
+          - release: "10.2"
+            arch: i386
+          - release: "10.2"
+            arch: loongarch64
+          - release: "10.2"
             arch: armv7
           - release: "11.0"
             arch: powerpc64
@@ -938,20 +664,6 @@ jobs:
             arch: loongarch64
           - release: "11.0-microvm"
             arch: armv7
-          - release: "10.2"
-            arch: riscv64
-          - release: "10.2"
-            arch: powerpc64
-          - release: "10.2"
-            arch: ppc64le
-          - release: "10.2"
-            arch: s390x
-          - release: "10.2"
-            arch: i386
-          - release: "10.2"
-            arch: loongarch64
-          - release: "10.2"
-            arch: armv7
 
 
     runs-on: ${{ matrix.runs }}
@@ -973,7 +685,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'scp') }}
       id: test
-      uses: vmactions/netbsd-vm@9d4845d5943444535c89ef31e540e20aac67eed5
+      uses: vmactions/netbsd-vm@c484771dde1b464629864ca8d621abc79998bc5c
       with:
         envs: 'DEBUG MYTOKEN MYTOKEN2'
         prepare: |
@@ -1107,7 +819,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}', 'tar') }}
       id: test
-      uses: vmactions/netbsd-vm@9d4845d5943444535c89ef31e540e20aac67eed5
+      uses: vmactions/netbsd-vm@c484771dde1b464629864ca8d621abc79998bc5c
       with:
         mem: 4096
         debug: true
@@ -1174,7 +886,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}', '9p') }}
       id: test
-      uses: vmactions/netbsd-vm@9d4845d5943444535c89ef31e540e20aac67eed5
+      uses: vmactions/netbsd-vm@c484771dde1b464629864ca8d621abc79998bc5c
       with:
         mem: 4096
         debug: true
@@ -1220,7 +932,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        release: [ "9.0", "9.1", "9.2", "9.3", "9.4", "9.5", "10.0", "10.1", "11.0", "11.0-microvm", "10.2"
+        release: [ "10.0", "10.1", "10.2", "11.0", "11.0-microvm"
  ]
         arch: [ "aarch64", "", "riscv64", "powerpc64", "sparc64", "ppc64le", "s390x", "i386", "loongarch64", "armv7"]
         runs: [ "ubuntu-26.04", "ubuntu-26.04-arm"]
@@ -1259,102 +971,6 @@ jobs:
           # NOTE the arm64-runner excludes above still drop sparc64 there on
           # purpose: the patched QEMU tarball is a Linux x86_64 build, so an
           # ubuntu-24.04-arm runner would fall back to stock QEMU and wedge.
-          - release: "9.0"
-            arch: riscv64
-          - release: "9.0"
-            arch: powerpc64
-          - release: "9.0"
-            arch: sparc64
-          - release: "9.0"
-            arch: ppc64le
-          - release: "9.0"
-            arch: s390x
-          - release: "9.0"
-            arch: i386
-          - release: "9.0"
-            arch: loongarch64
-          - release: "9.0"
-            arch: armv7
-          - release: "9.1"
-            arch: riscv64
-          - release: "9.1"
-            arch: powerpc64
-          - release: "9.1"
-            arch: sparc64
-          - release: "9.1"
-            arch: ppc64le
-          - release: "9.1"
-            arch: s390x
-          - release: "9.1"
-            arch: i386
-          - release: "9.1"
-            arch: loongarch64
-          - release: "9.1"
-            arch: armv7
-          - release: "9.2"
-            arch: riscv64
-          - release: "9.2"
-            arch: powerpc64
-          - release: "9.2"
-            arch: sparc64
-          - release: "9.2"
-            arch: ppc64le
-          - release: "9.2"
-            arch: s390x
-          - release: "9.2"
-            arch: i386
-          - release: "9.2"
-            arch: loongarch64
-          - release: "9.2"
-            arch: armv7
-          - release: "9.3"
-            arch: riscv64
-          - release: "9.3"
-            arch: powerpc64
-          - release: "9.3"
-            arch: sparc64
-          - release: "9.3"
-            arch: ppc64le
-          - release: "9.3"
-            arch: s390x
-          - release: "9.3"
-            arch: i386
-          - release: "9.3"
-            arch: loongarch64
-          - release: "9.3"
-            arch: armv7
-          - release: "9.4"
-            arch: riscv64
-          - release: "9.4"
-            arch: powerpc64
-          - release: "9.4"
-            arch: sparc64
-          - release: "9.4"
-            arch: ppc64le
-          - release: "9.4"
-            arch: s390x
-          - release: "9.4"
-            arch: i386
-          - release: "9.4"
-            arch: loongarch64
-          - release: "9.4"
-            arch: armv7
-          - release: "9.5"
-            arch: riscv64
-          - release: "9.5"
-            arch: powerpc64
-          - release: "9.5"
-            arch: sparc64
-          - release: "9.5"
-            arch: ppc64le
-          - release: "9.5"
-            arch: s390x
-          - release: "9.5"
-            arch: i386
-          - release: "9.5"
-            arch: loongarch64
-          - release: "9.5"
-            arch: armv7
           - release: "10.0"
             arch: riscv64
           - release: "10.0"
@@ -1382,6 +998,20 @@ jobs:
           - release: "10.1"
             arch: loongarch64
           - release: "10.1"
+            arch: armv7
+          - release: "10.2"
+            arch: riscv64
+          - release: "10.2"
+            arch: powerpc64
+          - release: "10.2"
+            arch: ppc64le
+          - release: "10.2"
+            arch: s390x
+          - release: "10.2"
+            arch: i386
+          - release: "10.2"
+            arch: loongarch64
+          - release: "10.2"
             arch: armv7
           - release: "11.0"
             arch: powerpc64
@@ -1413,20 +1043,6 @@ jobs:
             arch: loongarch64
           - release: "11.0-microvm"
             arch: armv7
-          - release: "10.2"
-            arch: riscv64
-          - release: "10.2"
-            arch: powerpc64
-          - release: "10.2"
-            arch: ppc64le
-          - release: "10.2"
-            arch: s390x
-          - release: "10.2"
-            arch: i386
-          - release: "10.2"
-            arch: loongarch64
-          - release: "10.2"
-            arch: armv7
           - release: "11.0"
             arch: "sparc64"
 
@@ -1443,7 +1059,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')[matrix.arch == '' && 'x86_64' || matrix.arch], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@9d4845d5943444535c89ef31e540e20aac67eed5
+      uses: vmactions/netbsd-vm@c484771dde1b464629864ca8d621abc79998bc5c
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -1542,7 +1158,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@9d4845d5943444535c89ef31e540e20aac67eed5
+      uses: vmactions/netbsd-vm@c484771dde1b464629864ca8d621abc79998bc5c
       with:
         prepare: |
           /usr/sbin/pkg_add -u curl
@@ -1644,7 +1260,7 @@ jobs:
         sparse-checkout-cone-mode: true
     - name: Test in NetBSD
       id: test
-      uses: vmactions/netbsd-vm@9d4845d5943444535c89ef31e540e20aac67eed5
+      uses: vmactions/netbsd-vm@c484771dde1b464629864ca8d621abc79998bc5c
       with:
         arch: ${{ matrix.arch }}
         debug: true
@@ -1692,7 +1308,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@9d4845d5943444535c89ef31e540e20aac67eed5
+      uses: vmactions/netbsd-vm@c484771dde1b464629864ca8d621abc79998bc5c
       with:
         envs: 'MYTOKEN MYTOKEN2'
         prepare: |
@@ -1817,7 +1433,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@9d4845d5943444535c89ef31e540e20aac67eed5
+      uses: vmactions/netbsd-vm@c484771dde1b464629864ca8d621abc79998bc5c
       with:
         mem: 4096
         debug: true
@@ -1881,7 +1497,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@9d4845d5943444535c89ef31e540e20aac67eed5
+      uses: vmactions/netbsd-vm@c484771dde1b464629864ca8d621abc79998bc5c
       with:
         mem: 4096
         debug: true
@@ -1963,7 +1579,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@9d4845d5943444535c89ef31e540e20aac67eed5
+      uses: vmactions/netbsd-vm@c484771dde1b464629864ca8d621abc79998bc5c
       with:
         mem: 4096
         debug: true
@@ -2026,7 +1642,7 @@ jobs:
     - name: Test in NetBSD
       if: ${{ contains(fromJSON('{"x86_64":["rsync","scp","sshfs","nfs","tar"],"aarch64":["rsync","scp","sshfs","nfs","tar"],"riscv64":["rsync","scp","sshfs","nfs","tar"],"powerpc64":[],"sparc64":["scp","sshfs","nfs","tar"],"ppc64le":[],"s390x":[],"i386":[],"loongarch64":[],"armv7":[]}')['x86_64'], 'rsync') }}
       id: test
-      uses: vmactions/netbsd-vm@9d4845d5943444535c89ef31e540e20aac67eed5
+      uses: vmactions/netbsd-vm@c484771dde1b464629864ca8d621abc79998bc5c
       with:
         mem: 4096
         debug: true
@@ -2102,7 +1718,7 @@ jobs:
     - name: Test in NetBSD
       id: testerr
       continue-on-error: true
-      uses: vmactions/netbsd-vm@9d4845d5943444535c89ef31e540e20aac67eed5
+      uses: vmactions/netbsd-vm@c484771dde1b464629864ca8d621abc79998bc5c
       with:
         debug: true
         # A command that EXISTS and fails, rather than `false` or a made-up
@@ -2148,7 +1764,7 @@ jobs:
     - name: Test in NetBSD
       id: testpass
       continue-on-error: true
-      uses: vmactions/netbsd-vm@9d4845d5943444535c89ef31e540e20aac67eed5
+      uses: vmactions/netbsd-vm@c484771dde1b464629864ca8d621abc79998bc5c
       with:
         debug: true
         # No `true` and no double quotes: this body runs on every guest, and
