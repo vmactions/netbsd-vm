@@ -1,2 +1,4 @@
           - release: "11.0-microvm"
             arch: ""
+          - release: "11.1-microvm"
+            arch: ""

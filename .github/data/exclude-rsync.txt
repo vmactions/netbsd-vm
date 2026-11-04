@@ -1,2 +1,4 @@
           - release: "11.0"
             arch: "sparc64"
+          - release: "11.1"
+            arch: "sparc64"
