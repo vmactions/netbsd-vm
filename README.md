@@ -281,7 +281,7 @@ The VM is using all the cpu cores of the host by default, you can use `cpu` opti
 
 ## 5. Select release
 
-It uses [the NetBSD 11.0](conf/default.release.conf) by default, you can use `release` option to use another version of NetBSD:
+It uses [the NetBSD 11.1](conf/default.release.conf) by default, you can use `release` option to use another version of NetBSD:
 
 ```yaml
 ...
@@ -289,7 +289,7 @@ It uses [the NetBSD 11.0](conf/default.release.conf) by default, you can use `re
       id: test
       uses: vmactions/netbsd-vm@v1
       with:
-        release: "10.1"
+        release: "11.0"
 ...
 ```
 
