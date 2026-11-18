@@ -38,10 +38,10 @@ All the supported releases are here:
 
 | Release | x86_64(amd64) | aarch64(arm64) | riscv64 | sparc64 |
 |---------|---------|---------|---------|---------|
-| 11.1-microvm | ✅ (rsync,scp,sshfs,tar) | — | — | — |
 | 11.1 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (scp,sshfs,nfs,tar) |
-| 11.0-microvm | ✅ (rsync,scp,sshfs,tar) | — | — | — |
+| 11.1-microvm | ✅ (rsync,scp,sshfs,tar) | — | — | — |
 | 11.0 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (scp,sshfs,nfs,tar) |
+| 11.0-microvm | ✅ (rsync,scp,sshfs,tar) | — | — | — |
 | 10.2 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | — | ✅ (scp,sshfs,nfs,rsync,tar) |
 | 10.1 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | — | ✅ (scp,sshfs,nfs,rsync,tar) |
 | 10.0 | ✅ (rsync,scp,sshfs,nfs,tar) | ✅ (rsync,scp,sshfs,nfs,tar) | — | ✅ (scp,sshfs,nfs,rsync,tar) |
